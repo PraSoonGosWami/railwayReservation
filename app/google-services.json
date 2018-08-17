@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "726180113041",
+    "firebase_url": "https://railways-f1c39.firebaseio.com",
+    "project_id": "railways-f1c39",
+    "storage_bucket": "railways-f1c39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726180113041:android:9521050faca92fd6",
+        "android_client_info": {
+          "package_name": "com.invaderx.railway"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726180113041-fu3tgsfupof3q22rjg2875vko3tukno1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0TTneDpwRE0m1gQcX8N2SZhbF5cQzPN4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

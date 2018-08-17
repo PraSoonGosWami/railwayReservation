@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".TrainResponseActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/searchRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <LinearLayout
+        android:id="@+id/noTrains"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX=".5"
+            android:scaleY=".5"
+            android:src="@drawable/train"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="16dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:text="No trains found en route\nTry searching trains another day"/>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
+
+<!--
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:padding="12dp"
+android:background="@color/colorPrimaryDark">
+
+<EditText
+    android:id="@+id/destEditText"
+    android:padding="12dp"
+    android:inputType="textAutoComplete"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:background="@android:color/white"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="8dp"
+    android:hint="To"
+    android:textSize="18sp"
+    android:textColor="@android:color/black" />
+
+<EditText
+    android:id="@+id/srcEditText"
+    android:padding="12dp"
+    android:inputType="textAutoComplete"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:background="@android:color/white"
+    android:hint="From"
+    android:textSize="18sp"
+    android:textColor="@android:color/black"
+    android:layout_marginBottom="12dp"/>
+<Button
+    android:id="@+id/searchButton"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:textColor="@android:color/white"
+    android:background="?attr/selectableItemBackground"
+    android:text="Go"
+    />
+
+
+</LinearLayout>-->
