@@ -20,14 +20,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".auth.SignUpActivity" />
-        <activity android:name=".auth.ProfileActivity" />
+        <activity android:name=".auth.ProfileActivity"
+            android:parentActivityName=".TrainSearchActivity"
+            android:label="My Profile"/>
         <activity
             android:name=".TrainResponseActivity"
             android:parentActivityName=".TrainSearchActivity"
             />
         <activity
             android:name=".TrainSearchActivity"
-            android:label="Search Trains"></activity>
+            android:label="Search Trains"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".BookingActivity"
             android:parentActivityName=".TrainResponseActivity"></activity>
     </application>

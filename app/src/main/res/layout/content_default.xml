@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".TrainSearchActivity">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="6dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+            <EditText
+                android:id="@+id/destEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:hint="From"/>
+            <EditText
+                android:id="@+id/ldesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="To"/>
+
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimaryDark"
+        android:text="Go"
+        />
+
+</RelativeLayout>

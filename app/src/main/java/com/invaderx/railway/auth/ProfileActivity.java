@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.invaderx.railway.R;
+import com.invaderx.railway.TrainSearchActivity;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -40,5 +41,11 @@ public class ProfileActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         finish();
         startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, TrainSearchActivity.class));
     }
 }
