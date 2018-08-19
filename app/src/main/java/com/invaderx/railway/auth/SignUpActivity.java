@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.invaderx.railway.R;
 import com.invaderx.railway.TrainSearchActivity;
 
@@ -86,8 +88,17 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
+
+                    //Adding user name
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(name).build();
+                    user.updateProfile(profileUpdates);
+
+                    //starting the train search activity after successful auth
                     startActivity(new Intent(SignUpActivity.this, TrainSearchActivity.class));
                     finish();
+
                 } else {
 
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {

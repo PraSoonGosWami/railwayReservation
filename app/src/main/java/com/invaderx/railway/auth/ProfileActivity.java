@@ -43,9 +43,4 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(new Intent(this, LoginActivity.class));
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(this, TrainSearchActivity.class));
-    }
 }

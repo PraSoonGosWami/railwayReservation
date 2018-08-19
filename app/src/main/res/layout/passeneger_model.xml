@@ -13,6 +13,8 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="16sp"
+        android:padding="2dp"
+        android:layout_gravity="center"
         android:layout_margin="6dp"
         android:text="Prasoon Goswami"
         android:layout_weight="0.2"
@@ -21,6 +23,9 @@
         android:id="@+id/passSex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="2dp"
+
         android:text="M"
         android:layout_margin="6dp"
         android:layout_weight="0.4"/>
@@ -28,8 +33,21 @@
         android:id="@+id/passAge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="2dp"
         android:text="21"
         android:layout_weight="0.4"
         android:layout_margin="6dp"
         />
+
+    <Button
+        android:id="@+id/deletePassengers"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_margin="6dp"
+        android:background="@android:drawable/ic_menu_delete" />
 </LinearLayout>

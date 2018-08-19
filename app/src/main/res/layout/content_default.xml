@@ -11,7 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="6dp">
+        app:cardElevation="6dp"
+        android:layout_centerInParent="true"
+        app:cardBackgroundColor="@color/colorPrimary">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,10 +23,12 @@
                 android:id="@+id/destEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:textColor="@android:color/black"
                 android:hint="From"/>
             <EditText
                 android:id="@+id/ldesc"
+                android:inputType="text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="To"/>

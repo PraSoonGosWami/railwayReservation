@@ -6,9 +6,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -42,6 +45,8 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     ListView passengersList;
     List<Passengers> pArrayList = new ArrayList<>();
 
+    String selectedGender;
+    int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +81,10 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
             noPassengersMessage.setVisibility(View.VISIBLE);
         else
             noPassengersMessage.setVisibility(View.INVISIBLE);
-       // pArrayList.add(new Passengers("Prasoon",21,"M"));
 
+        //opens update dialog for the selected row
+        passengersList.setOnItemClickListener((adapterView, view, i, l) ->
+                customUpdateDialog(i));
 
         //setting adapter
         passengersList.setAdapter(new PassengersAdapter(this,R.layout.passeneger_model,pArrayList));
@@ -94,6 +101,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
 
 
     }
+    //gets selected train data for booking
     public void getCurrentTraindata(String trainNumber,int i){
         databaseReference.child("Trains").orderByChild("tNumber").equalTo(trainNumber)
                 .addValueEventListener(new ValueEventListener() {
@@ -154,35 +162,205 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
       switch (view.getId()){
           case R.id.addPassengers:
-
+              cusotmEntryDialog();
               break;
+          case R.id.makePayment:
+              Toast.makeText(this, ""+pArrayList.size(), Toast.LENGTH_SHORT).show();
 
       }
     }
-    //views not returning texts
-    public void cusotmDialog(){
+
+    //custom popup dialog to enter passengers
+    public void cusotmEntryDialog(){
         LayoutInflater layoutInflater =LayoutInflater.from(this);
         View view =layoutInflater.inflate(R.layout.passenger_add_model,null);
         final EditText passName,passAge;
         Spinner genderSpinner;
         passName=view.findViewById(R.id.pNameEditText);
         passAge=view.findViewById(R.id.pAgeEditText);
-        //genderSpinner=view.findViewById(R.id.genderSpinner)
-        LovelyCustomDialog l =new LovelyCustomDialog(this);
-        l.setView(R.layout.passenger_add_model)
+        genderSpinner=view.findViewById(R.id.genderSpinner);
+
+        //gender drop down list
+        ArrayList<String> gender = new ArrayList<>();
+        gender.add("Male");
+        gender.add("Female");
+        gender.add("Others");
+
+        //spinner adapter
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,gender);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genderSpinner.setAdapter(arrayAdapter);
+
+
+        //getting the selected option from spinner
+        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                switch (position){
+                    case 0:
+                        selectedGender="M";
+                        break;
+                    case 1:
+                        selectedGender="F";
+                        break;
+                    case 2:
+                        selectedGender="Ot";
+                        break;
+                        default:
+                            selectedGender="M";
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                    selectedGender="M";
+            }
+        });
+
+        //custom dialog box
+        LovelyCustomDialog lovelyCustomDialog =new LovelyCustomDialog(this);
+        lovelyCustomDialog.setView(view)
         .setTopColorRes(R.color.colorPrimaryDark)
         .setTitle("Add Passengers")
         .setIcon(R.drawable.multiple_users32)
         .setListener(R.id.cancel, v -> {
-            l.dismiss();
+            lovelyCustomDialog.dismiss();
         })
         .setListener(R.id.addP, v -> {
-            pArrayList.add(new Passengers(passName.getText().toString(),
-                    Integer.parseInt(passAge.getText().toString()),
-                    "M"));
-            noPassengersMessage.setVisibility(View.INVISIBLE);
-            l.dismiss();
+
+            if(TextUtils.isEmpty(passName.getText().toString())|| passName.getText().toString().equals(""))
+                passName.setError("Please enter a name");
+            else if(TextUtils.isEmpty(passAge.getText().toString())|| passAge.getText().toString().equals(""))
+                passAge.setError("Please enter age");
+
+            else {
+                pArrayList.add(new Passengers(passName.getText().toString(),
+                        Integer.parseInt(passAge.getText().toString()),
+                        selectedGender));
+                noPassengersMessage.setVisibility(View.INVISIBLE);
+                lovelyCustomDialog.dismiss();
+            }
         })
         .show();
+    }
+
+    public void customUpdateDialog(int positon){
+        LayoutInflater layoutInflater =LayoutInflater.from(this);
+        View view =layoutInflater.inflate(R.layout.passenger_add_model,null);
+        final EditText passName,passAge;
+        Spinner genderSpinner;
+        passName=view.findViewById(R.id.pNameEditText);
+        passAge=view.findViewById(R.id.pAgeEditText);
+        genderSpinner=view.findViewById(R.id.genderSpinner);
+
+
+        switch (pArrayList.get(positon).getpSex()){
+            case "M":
+                i=0;break;
+            case "F":
+                i=1;break;
+            case "Ot":
+                i=2;break;
+                default:
+                    i=0;break;
+        }
+
+        //gender drop down list
+        ArrayList<String> gender = new ArrayList<>();
+        gender.add("Male");
+        gender.add("Female");
+        gender.add("Others");
+
+        //spinner adapter
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,gender);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genderSpinner.setAdapter(arrayAdapter);
+
+
+        //getting the selected option from spinner
+        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                switch (position){
+                    case 0:
+                        selectedGender="M";
+                        break;
+                    case 1:
+                        selectedGender="F";
+                        break;
+                    case 2:
+                        selectedGender="Ot";
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                selectedGender="M";
+            }
+        });
+
+        passAge.setText(String.valueOf(pArrayList.get(positon).getpAge()));
+        passName.setText(pArrayList.get(positon).getpName());
+        genderSpinner.setSelection(i);
+
+
+
+
+        //getting the selected option from spinner
+        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                switch (position){
+                    case 0:
+                        selectedGender="M";
+                        break;
+                    case 1:
+                        selectedGender="F";
+                        break;
+                    case 2:
+                        selectedGender="Ot";
+                        break;
+                    default:
+                        selectedGender="M";
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                selectedGender="M";
+            }
+        });
+
+        //custom dialog box
+        LovelyCustomDialog lovelyCustomDialog =new LovelyCustomDialog(this);
+        lovelyCustomDialog.setView(view)
+                .setTopColorRes(R.color.colorPrimaryDark)
+                .setTitle("Update Passengers")
+                .setIcon(R.drawable.multiple_users32)
+                .setListener(R.id.cancel, v -> {
+                    lovelyCustomDialog.dismiss();
+                })
+                .setListener(R.id.addP, v -> {
+
+                    if(TextUtils.isEmpty(passName.getText().toString())|| passName.getText().toString().equals(""))
+                        passName.setError("Please enter a name");
+                    else if(TextUtils.isEmpty(passAge.getText().toString())|| passAge.getText().toString().equals(""))
+                        passAge.setError("Please enter age");
+
+                    else {
+                        pArrayList.set(positon,(new Passengers(passName.getText().toString(),
+                                Integer.parseInt(passAge.getText().toString()),
+                                selectedGender)));
+                        passengersList.setAdapter(new PassengersAdapter(this,R.layout.passeneger_model,pArrayList));
+                        noPassengersMessage.setVisibility(View.INVISIBLE);
+                        lovelyCustomDialog.dismiss();
+                    }
+                })
+                .show();
+
     }
 }
