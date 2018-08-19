@@ -249,10 +249,13 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         LayoutInflater layoutInflater =LayoutInflater.from(this);
         View view =layoutInflater.inflate(R.layout.passenger_add_model,null);
         final EditText passName,passAge;
+        final Button addp;
         Spinner genderSpinner;
         passName=view.findViewById(R.id.pNameEditText);
         passAge=view.findViewById(R.id.pAgeEditText);
         genderSpinner=view.findViewById(R.id.genderSpinner);
+        addp=view.findViewById(R.id.addP);
+        addp.setText("Update");
 
 
         switch (pArrayList.get(positon).getpSex()){
@@ -306,35 +309,6 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         passName.setText(pArrayList.get(positon).getpName());
         genderSpinner.setSelection(i);
 
-
-
-
-        //getting the selected option from spinner
-        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                switch (position){
-                    case 0:
-                        selectedGender="M";
-                        break;
-                    case 1:
-                        selectedGender="F";
-                        break;
-                    case 2:
-                        selectedGender="Ot";
-                        break;
-                    default:
-                        selectedGender="M";
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                selectedGender="M";
-            }
-        });
-
         //custom dialog box
         LovelyCustomDialog lovelyCustomDialog =new LovelyCustomDialog(this);
         lovelyCustomDialog.setView(view)
@@ -356,6 +330,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                                 Integer.parseInt(passAge.getText().toString()),
                                 selectedGender)));
                         passengersList.setAdapter(new PassengersAdapter(this,R.layout.passeneger_model,pArrayList));
+                        Toast.makeText(this, "Update successful", Toast.LENGTH_SHORT).show();
                         noPassengersMessage.setVisibility(View.INVISIBLE);
                         lovelyCustomDialog.dismiss();
                     }
