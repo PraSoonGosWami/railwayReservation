@@ -21,6 +21,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,11 +32,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.invaderx.railway.adapters.PassengersAdapter;
 import com.invaderx.railway.pojoClasses.Passengers;
+import com.invaderx.railway.pojoClasses.Ticket;
 import com.invaderx.railway.pojoClasses.Trains;
 import com.yarolegovich.lovelydialog.LovelyCustomDialog;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class BookingActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -44,9 +53,11 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     Button addPassengers,makePayment;
     ListView passengersList;
     List<Passengers> pArrayList = new ArrayList<>();
-
-    String selectedGender;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
+    String selectedGender,userUID;
     int i;
+    Ticket ticket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +82,15 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         makePayment.setOnClickListener(this);
         noPassengersMessage=findViewById(R.id.noPassengerMessage);
 
-
         //firebase Database references
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
+
+        //firebase auth reference
+        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseUser=firebaseAuth.getCurrentUser();
+        userUID=firebaseUser.getUid();
+
 
         //if no passengers exist
         if(pArrayList.size()==0)
@@ -101,6 +117,23 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
 
 
     }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.addPassengers:
+                cusotmEntryDialog();
+                break;
+            case R.id.makePayment:
+                if (pArrayList.size()>0)
+                    doPayment();
+                else
+                    Toast.makeText(this, "No Passengers added", Toast.LENGTH_SHORT).show();
+
+                break;
+
+        }
+    }
+
     //gets selected train data for booking
     public void getCurrentTraindata(String trainNumber,int i){
         databaseReference.child("Trains").orderByChild("tNumber").equalTo(trainNumber)
@@ -121,7 +154,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                            //handle no such trains
                         }
                         bTrainNameNumber.setText(trains1.gettName()+"  ("+trains1.gettNumber()+")");
-                        //TODO:set src dest from TrainSearchActivity
+                        bSrcDest.setText(TrainSearchActivity.source+" -> "+TrainSearchActivity.destination);
                         bTime.setText("Time: "+trains1.getTime());
                         switch (i){
                             case 1:
@@ -158,19 +191,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                 });
     }
 
-    @Override
-    public void onClick(View view) {
-      switch (view.getId()){
-          case R.id.addPassengers:
-              cusotmEntryDialog();
-              break;
-          case R.id.makePayment:
-              Toast.makeText(this, ""+pArrayList.size(), Toast.LENGTH_SHORT).show();
-
-      }
-    }
-
-    //custom popup dialog to enter passengers
+        //custom popup dialog to enter passengers
     public void cusotmEntryDialog(){
         LayoutInflater layoutInflater =LayoutInflater.from(this);
         View view =layoutInflater.inflate(R.layout.passenger_add_model,null);
@@ -245,6 +266,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         .show();
     }
 
+    //custom popup dialog to update passengers
     public void customUpdateDialog(int positon){
         LayoutInflater layoutInflater =LayoutInflater.from(this);
         View view =layoutInflater.inflate(R.layout.passenger_add_model,null);
@@ -338,4 +360,38 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                 .show();
 
     }
+
+    //confirms booking and generates ticket in database
+    public void doPayment(){
+        makePayment.setEnabled(false);
+        ticket=new Ticket(bTrainNameNumber.getText().toString(),TrainSearchActivity.source,TrainSearchActivity.destination,
+                bClass.getText().toString(),bTime.getText().toString(),bFare.getText().toString(),
+                getDate(),pArrayList);
+        Task<Void> voidTask = databaseReference.child("Ticket").child(userUID).child(generatePNR()).setValue(ticket)
+                .addOnSuccessListener(aVoid ->{
+                        Toast.makeText(BookingActivity.this, "Ticket generated Successfully", Toast.LENGTH_SHORT).show();
+
+                        //finishing booking and TrainResponseActivity
+                        finish();
+                        TrainResponseActivity.trainResponse.finish();
+                });
+
+    }
+
+    //generates pnr Number
+    public String generatePNR(){
+        long number = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
+        return String.valueOf(number);
+    }
+
+    //get current date
+    public String getDate(){
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c);
+        return formattedDate;
+    }
+
 }

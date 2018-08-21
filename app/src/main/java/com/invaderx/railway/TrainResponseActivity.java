@@ -1,5 +1,6 @@
 package com.invaderx.railway;
 
+import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.invaderx.railway.adapters.TrainsAdapter;
 import com.invaderx.railway.pojoClasses.Trains;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -34,11 +36,13 @@ public class TrainResponseActivity extends AppCompatActivity{
     DatabaseReference databaseReference;
     ProgressBar progressBar;
     LinearLayout noTrains;
+    public static Activity trainResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_response);
+        trainResponse=this;
         recyclerView=findViewById(R.id.searchRecyclerView);
         trainsAdapter=new TrainsAdapter(trains,this,recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -55,12 +59,6 @@ public class TrainResponseActivity extends AppCompatActivity{
                 .setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN );
         data();
 
-
-       /* trains.add(new Trains("6:40-14:55","2846","1995","1080","0","450",
-                1,1,0,0,1,1,1,65,135,205,0,640,
-                "bhagalpur,kahalgon,pirpaitin,sahibganj,pakur,bolpur,shantiniketan,howrah",
-                "Bgp Hwh Exp","13608"));
-      */
     }
     //get search data
     public void data(){
@@ -75,17 +73,26 @@ public class TrainResponseActivity extends AppCompatActivity{
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot t : dataSnapshot.getChildren()) {
                                 Trains trains1 = t.getValue(Trains.class);
-                                trains.add(new Trains(trains1.getTime(),trains1.getClass1A(),trains1.getClass2A(),trains1.getClass3A(),
-                                        trains1.getClassCC(),trains1.getClassSL(),trains1.getdFri(),trains1.getdMon(),trains1.getdSat(),
-                                        trains1.getdSun(),trains1.getdThur(),trains1.getdTue(),trains1.getdWed(),trains1.getSeat1A(),
-                                        trains1.getSeat2A(),trains1.getSeat3A(),trains1.getSeatCC(),trains1.getSeatSL(),
-                                        trains1.getStations(),trains1.gettName(),trains1.gettNumber()));
+                                String availableStation=trains1.getStations();
+                                String src=TrainSearchActivity.source.toLowerCase();
+                                String dest=TrainSearchActivity.destination.toLowerCase();
+                                Boolean srcFound = Arrays.asList(availableStation.split(",")).contains(src);
+                                Boolean destFound = Arrays.asList(availableStation.split(",")).contains(dest);
+                                if(srcFound && destFound) {
+                                    trains.add(new Trains(trains1.getTime(), trains1.getClass1A(), trains1.getClass2A(), trains1.getClass3A(),
+                                            trains1.getClassCC(), trains1.getClassSL(), trains1.getdFri(), trains1.getdMon(), trains1.getdSat(),
+                                            trains1.getdSun(), trains1.getdThur(), trains1.getdTue(), trains1.getdWed(), trains1.getSeat1A(),
+                                            trains1.getSeat2A(), trains1.getSeat3A(), trains1.getSeatCC(), trains1.getSeatSL(),
+                                            trains1.getStations(), trains1.gettName(), trains1.gettNumber()));
+                                }
                             }
+                            if(trains.size()==0)
+                                Toast.makeText(TrainResponseActivity.this, "No Trains found en route", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             noTrains.setVisibility(View.VISIBLE);
                         }
-                            progressBar.setVisibility(View.INVISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
                         recyclerView.setAdapter(trainsAdapter);
 
 
@@ -117,7 +124,6 @@ public class TrainResponseActivity extends AppCompatActivity{
             }
         });
     }
-
     public String getToday(){
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
@@ -142,10 +148,3 @@ public class TrainResponseActivity extends AppCompatActivity{
     }
 
 }
-
-
-
-   /* String dayAvailable=userList.get(i).getDays();
-    //matching pattern
-    Boolean found = Arrays.asList(dayAvailable.split(",")).contains(daySearch);
-                           if(found)*/

@@ -8,10 +8,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 import com.invaderx.railway.auth.ProfileActivity;
@@ -21,13 +23,28 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
     Button searchButton;
     Toolbar toolbar;
     private CardDrawerLayout drawer;
+    public static String source;
+    public static String destination;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_search);
+        EditText lsrc,ldest;
+        lsrc=findViewById(R.id.lsrc);
+        ldest=findViewById(R.id.ldesc);
         searchButton=findViewById(R.id.searchButton);
-        searchButton.setOnClickListener(v->
-        startActivity(new Intent(this,TrainResponseActivity.class)));
+        searchButton.setOnClickListener(v->{
+            if(TextUtils.isEmpty(lsrc.getText().toString()) || lsrc.getText().toString().equals(""))
+                lsrc.setError("Please Enter a source station");
+
+            else if(TextUtils.isEmpty(ldest.getText().toString()) || ldest.getText().toString().equals(""))
+                lsrc.setError("Please Enter a destination station");
+            else {
+                source = lsrc.getText().toString();
+                destination = ldest.getText().toString();
+                startActivity(new Intent(this, TrainResponseActivity.class));
+            }
+        });
 
         //side nav
         toolbar = findViewById(R.id.toolbar);
@@ -74,11 +91,6 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         return true;
     }
 
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

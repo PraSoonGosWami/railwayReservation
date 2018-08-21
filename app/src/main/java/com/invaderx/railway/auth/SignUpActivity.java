@@ -111,19 +111,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 }
             }
         });
-/*
-        mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth){
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(name)
-                        .build();
-                assert user != null;
-                user.updateProfile(profileUpdates);
-            }
-        });*/
-
     }
 
 

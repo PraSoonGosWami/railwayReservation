@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.invaderx.railway.BookingActivity;
 import com.invaderx.railway.R;
+import com.invaderx.railway.TrainSearchActivity;
 import com.invaderx.railway.pojoClasses.Trains;
 
 import java.util.List;
@@ -48,8 +49,7 @@ public class TrainsAdapter extends RecyclerView.Adapter<TrainsAdapter.ViewHolder
         final Trains list = trainsAdapterList.get(position);
         holder.trainNameNumber.setText(list.gettName()+"\t\t("+list.gettNumber()+")");
         String stations=list.getStations();
-        String [] sAray = stations.split(",");
-        holder.srcDest.setText(sAray[0]+"\t->\t"+sAray[sAray.length-1]);
+        holder.srcDest.setText(TrainSearchActivity.source+" -> "+TrainSearchActivity.destination);
         holder.trainTime.setText(list.getTime());
         holder.oneA.setBackgroundColor(Color.GRAY);
         holder.twoA.setBackgroundColor(Color.GRAY);
