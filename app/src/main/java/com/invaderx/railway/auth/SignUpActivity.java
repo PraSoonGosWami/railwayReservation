@@ -20,12 +20,16 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.invaderx.railway.R;
 import com.invaderx.railway.TrainSearchActivity;
 
+import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
+import br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener;
+
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     ProgressBar progressBar;
     EditText editTextEmail;
     EditText editTextPassword;
     EditText editTextName;
+    CircularProgressButton signup;
     String name;
 
     private FirebaseAuth mAuth;
@@ -42,7 +46,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         mAuth = FirebaseAuth.getInstance();
 
-        findViewById(R.id.buttonSignUp).setOnClickListener(this);
+        signup=findViewById(R.id.buttonSignUp);
+        signup.setOnClickListener(this);
         findViewById(R.id.textViewLogin).setOnClickListener(this);
     }
 
@@ -81,14 +86,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
+        signup.startAnimation();
+        signup.setFinalCornerRadius(200f);
+        signup.setInitialCornerRadius(200f);
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
-
+                    signup.dispose();
                     //Adding user name
                     FirebaseUser user = mAuth.getCurrentUser();
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -100,7 +107,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     finish();
 
                 } else {
-
+                    signup.revertAnimation(new OnAnimationEndListener() {
+                        @Override
+                        public void onAnimationEnd() {
+                            signup.setFinalCornerRadius(200f);
+                            signup.setInitialCornerRadius(200f);
+                        }
+                    });
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                         Toast.makeText(getApplicationContext(), "You are already registered", Toast.LENGTH_SHORT).show();
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".auth.LoginActivity">
 
@@ -57,7 +58,9 @@
                 android:paddingBottom="15dp"
                 android:textColorHint="@color/colorAccent" />
 
-            <Button
+
+
+            <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                 android:id="@+id/buttonLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,8 +68,13 @@
                 android:layout_margin="7dp"
                 android:background="@drawable/rounded_button_transparent"
                 android:text="Login"
+                android:padding="10dp"
+                android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                app:spinning_bar_width="4dp"
+                app:spinning_bar_color="@color/colorWhite"
+                app:spinning_bar_padding="6dp"/>
 
             <TextView
                 android:id="@+id/textViewSignup"

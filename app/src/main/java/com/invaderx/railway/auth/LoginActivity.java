@@ -18,12 +18,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.invaderx.railway.R;
 import com.invaderx.railway.TrainSearchActivity;
 
+import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
+import br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     FirebaseAuth mAuth;
     EditText editTextEmail;
     EditText editTextPassword;
     ProgressBar progressBar;
     TextView textView;
+    CircularProgressButton loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +41,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressBar = findViewById(R.id.progressbar);
 
         findViewById(R.id.textViewSignup).setOnClickListener(this);
-        findViewById(R.id.buttonLogin).setOnClickListener(this);
+        loginButton= findViewById(R.id.buttonLogin);
+        loginButton.setOnClickListener(this);
         // For Password reset
         textView = findViewById(R.id.textViewReset);
         textView.setOnClickListener(new View.OnClickListener() {
@@ -71,23 +76,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        if (password.length() < 6) {
-            editTextPassword.setError("Minimum lenght of password should be 6");
-            editTextPassword.requestFocus();
-            return;
-        }
-        progressBar.setVisibility(View.VISIBLE);
+        loginButton.startAnimation();
+        loginButton.setFinalCornerRadius(200f);
+        loginButton.setInitialCornerRadius(200f);
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
+                    loginButton.dispose();
                     Intent intent = new Intent(LoginActivity.this, TrainSearchActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
                 } else {
+                    loginButton.revertAnimation(new OnAnimationEndListener() {
+                        @Override
+                        public void onAnimationEnd() {
+                            loginButton.setFinalCornerRadius(200f);
+                            loginButton.setInitialCornerRadius(200f);
+                        }
+                    });
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -148,15 +157,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressBar.setVisibility(View.VISIBLE);
 
         mAuth.sendPasswordResetEmail(email)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        progressBar.setVisibility(View.GONE);
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
+                .addOnCompleteListener(task -> {
+                    progressBar.setVisibility(View.GONE);
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getApplicationContext(), "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
         // [END send_password_reset]

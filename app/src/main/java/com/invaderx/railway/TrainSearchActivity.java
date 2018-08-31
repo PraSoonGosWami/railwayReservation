@@ -1,5 +1,6 @@
 package com.invaderx.railway;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -25,11 +26,13 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
     private CardDrawerLayout drawer;
     public static String source;
     public static String destination;
+    public static Activity searchActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_search);
         EditText lsrc,ldest;
+        searchActivity=this;
         lsrc=findViewById(R.id.lsrc);
         ldest=findViewById(R.id.ldesc);
         searchButton=findViewById(R.id.searchButton);
@@ -38,7 +41,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
                 lsrc.setError("Please Enter a source station");
 
             else if(TextUtils.isEmpty(ldest.getText().toString()) || ldest.getText().toString().equals(""))
-                lsrc.setError("Please Enter a destination station");
+                ldest.setError("Please Enter a destination station");
             else {
                 source = lsrc.getText().toString();
                 destination = ldest.getText().toString();
