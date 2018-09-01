@@ -1,8 +1,7 @@
-package com.invaderx.railway;
+package com.invaderx.railway.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,12 +10,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 
 
+import com.invaderx.railway.R;
 import com.invaderx.railway.auth.ProfileActivity;
 import com.rupins.drawercardbehaviour.CardDrawerLayout;
 
@@ -88,7 +87,8 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
             case R.id.nav_profile:
                 startActivity(new Intent(this,ProfileActivity.class));
                 break;
-
+            case R.id.nav_bookings:
+                startActivity(new Intent(this,MyBookings.class));
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

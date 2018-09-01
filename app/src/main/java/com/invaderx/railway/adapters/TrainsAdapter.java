@@ -13,9 +13,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.invaderx.railway.BookingActivity;
+import com.invaderx.railway.activity.BookingActivity;
 import com.invaderx.railway.R;
-import com.invaderx.railway.TrainSearchActivity;
+import com.invaderx.railway.activity.TrainSearchActivity;
 import com.invaderx.railway.pojoClasses.Trains;
 
 import java.util.List;

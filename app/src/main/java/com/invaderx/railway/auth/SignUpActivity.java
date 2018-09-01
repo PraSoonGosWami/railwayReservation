@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.invaderx.railway.R;
-import com.invaderx.railway.TrainSearchActivity;
+import com.invaderx.railway.activity.TrainSearchActivity;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 import br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener;

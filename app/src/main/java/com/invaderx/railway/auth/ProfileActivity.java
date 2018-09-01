@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.invaderx.railway.R;
-import com.invaderx.railway.TrainSearchActivity;
+import com.invaderx.railway.activity.TrainSearchActivity;
 
 public class ProfileActivity extends AppCompatActivity {
 

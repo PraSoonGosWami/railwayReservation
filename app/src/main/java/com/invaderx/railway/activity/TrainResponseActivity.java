@@ -1,4 +1,4 @@
-package com.invaderx.railway;
+package com.invaderx.railway.activity;
 
 import android.app.Activity;
 import android.graphics.PorterDuff;
@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.invaderx.railway.R;
 import com.invaderx.railway.adapters.TrainsAdapter;
 import com.invaderx.railway.pojoClasses.Trains;
 
@@ -42,17 +43,21 @@ public class TrainResponseActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_response);
+        //getting reference of this activity for finishing it after successful payment
         trainResponse=this;
+
+        //binding views
         recyclerView=findViewById(R.id.searchRecyclerView);
         trainsAdapter=new TrainsAdapter(trains,this,recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         progressBar=findViewById(R.id.progressbar);
-       /* getSupportActionBar().setTitle("Train Search"); // for set actionbar title
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+        //database references
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
+        //layout for no trains in the route
         noTrains=findViewById(R.id.noTrains);
         noTrains.setVisibility(View.INVISIBLE);
+
         progressBar.setVisibility(View.VISIBLE);
         //setting progressbar color
         progressBar.getIndeterminateDrawable()
@@ -87,7 +92,7 @@ public class TrainResponseActivity extends AppCompatActivity{
                                 }
                             }
                             if(trains.size()==0)
-                                Toast.makeText(TrainResponseActivity.this, "No Trains found en route", Toast.LENGTH_SHORT).show();
+                                noTrains.setVisibility(View.VISIBLE);
                         }
                         else {
                             noTrains.setVisibility(View.VISIBLE);
@@ -100,10 +105,12 @@ public class TrainResponseActivity extends AppCompatActivity{
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(TrainResponseActivity.this, "No Network", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TrainResponseActivity.this, ""+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
+    //checks if there is internet connection
     public void noInternet(){
         DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
         connectedRef.addValueEventListener(new ValueEventListener() {
@@ -124,6 +131,8 @@ public class TrainResponseActivity extends AppCompatActivity{
             }
         });
     }
+
+    //getting current day for seaching trains on today's date
     public String getToday(){
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);

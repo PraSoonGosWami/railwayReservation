@@ -38,6 +38,10 @@ dependencies {
     implementation 'com.github.RupinSahu:CardDrawer:-SNAPSHOT'
     //animated button
     implementation 'br.com.simplepass:loading-button-android:1.14.0'
+    //lottie
+    implementation 'com.airbnb.android:lottie:2.5.0'
+    //moving image view
+    implementation 'com.flaviofaria:kenburnsview:1.0.7'
 
 
 }

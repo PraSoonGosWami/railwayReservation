@@ -1,4 +1,4 @@
-package com.invaderx.railway;
+package com.invaderx.railway.activity;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -21,7 +21,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.invaderx.railway.R;
 import com.invaderx.railway.adapters.PassengersAdapter;
 import com.invaderx.railway.pojoClasses.Passengers;
 import com.invaderx.railway.pojoClasses.Ticket;
@@ -41,7 +41,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 public class BookingActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -191,7 +190,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                 });
     }
 
-        //custom popup dialog to enter passengers
+    //custom popup dialog to enter passengers
     public void cusotmEntryDialog(){
         LayoutInflater layoutInflater =LayoutInflater.from(this);
         View view =layoutInflater.inflate(R.layout.passenger_add_model,null);

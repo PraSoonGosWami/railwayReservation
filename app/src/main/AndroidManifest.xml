@@ -9,9 +9,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:screenOrientation="portrait">
+        android:theme="@style/AppTheme">
         <activity android:name=".auth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,19 +20,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".auth.SignUpActivity" />
-        <activity android:name=".auth.ProfileActivity"
-            android:parentActivityName=".TrainSearchActivity"
-            android:label="My Profile"/>
         <activity
-            android:name=".TrainResponseActivity"
-            android:parentActivityName=".TrainSearchActivity"
-            />
+            android:name=".auth.ProfileActivity"
+            android:label="My Profile"
+            android:parentActivityName=".activity.TrainSearchActivity" />
         <activity
-            android:name=".TrainSearchActivity"
+            android:name=".activity.TrainResponseActivity"
+            android:parentActivityName=".activity.TrainSearchActivity" />
+        <activity
+            android:name=".activity.TrainSearchActivity"
             android:label="Search Trains"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".BookingActivity"
-            android:parentActivityName=".TrainResponseActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.BookingActivity"
+            android:parentActivityName=".activity.TrainResponseActivity" />
+        <activity android:name=".activity.MyBookings"></activity>
     </application>
 
 </manifest>
