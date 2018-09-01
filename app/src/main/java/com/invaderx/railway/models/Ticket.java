@@ -1,4 +1,4 @@
-package com.invaderx.railway.pojoClasses;
+package com.invaderx.railway.models;
 
 import java.util.List;
 

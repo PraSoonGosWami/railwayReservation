@@ -17,7 +17,14 @@ import android.widget.EditText;
 
 import com.invaderx.railway.R;
 import com.invaderx.railway.auth.ProfileActivity;
+import com.invaderx.railway.models.Stations;
 import com.rupins.drawercardbehaviour.CardDrawerLayout;
+
+import java.util.ArrayList;
+
+import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.SearchResultListener;
 
 public class TrainSearchActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Button searchButton;
@@ -35,12 +42,16 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         lsrc=findViewById(R.id.lsrc);
         ldest=findViewById(R.id.ldesc);
         searchButton=findViewById(R.id.searchButton);
+
         searchButton.setOnClickListener(v->{
             if(TextUtils.isEmpty(lsrc.getText().toString()) || lsrc.getText().toString().equals(""))
                 lsrc.setError("Please Enter a source station");
 
             else if(TextUtils.isEmpty(ldest.getText().toString()) || ldest.getText().toString().equals(""))
                 ldest.setError("Please Enter a destination station");
+            else if(lsrc.getText().toString().equals(ldest.getText().toString()))
+                ldest.setError("Source and destination can't  be same");
+
             else {
                 source = lsrc.getText().toString();
                 destination = ldest.getText().toString();
@@ -64,6 +75,30 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         drawer.setViewScale(Gravity.START, 0.9f);
         drawer.setRadius(Gravity.START, 35);
         drawer.setViewElevation(Gravity.START, 20);
+
+        //setting search views
+        lsrc.setOnClickListener(v->{
+            new SimpleSearchDialogCompat(this, "Search...",
+                    "Search for Source Staion", null, stationList(),
+                    new SearchResultListener<Stations>() {
+                        @Override
+                        public void onSelected(BaseSearchDialogCompat dialog, Stations item, int position) {
+                           lsrc.setText(item.getTitle().toString());
+                            dialog.dismiss();
+                        }
+                    }).show();
+        });
+        ldest.setOnClickListener(v->{
+            new SimpleSearchDialogCompat(this, "Search...",
+                    "Search for Destination Staion", null, stationList(),
+                    new SearchResultListener<Stations>() {
+                        @Override
+                        public void onSelected(BaseSearchDialogCompat dialog, Stations item, int position) {
+                            ldest.setText(item.getTitle().toString());
+                            dialog.dismiss();
+                        }
+                    }).show();
+        });
 
 
     }
@@ -100,5 +135,19 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         //startActivity(new Intent(this,CalculatorActivity.class));
         return super.onOptionsItemSelected(item);
 
+    }
+
+    private ArrayList<Stations> stationList(){
+        ArrayList<Stations> list = new ArrayList<>();
+        list.add(new Stations("Howrah"));
+        list.add(new Stations("Bhagalpur"));
+        list.add(new Stations("Patna"));
+        list.add(new Stations("Sealdah"));
+        list.add(new Stations("Kahalgaon"));
+        list.add(new Stations("Pirpaitin"));
+        list.add(new Stations("Kota"));
+        list.add(new Stations("Sabour"));
+
+        return list;
     }
 }

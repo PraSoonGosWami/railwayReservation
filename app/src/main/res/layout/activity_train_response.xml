@@ -21,23 +21,22 @@
 
     <LinearLayout
         android:id="@+id/noTrains"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_centerInParent="true">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleX=".5"
-            android:scaleY=".5"
+            android:layout_width="220dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
             android:src="@drawable/train"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_margin="16dp"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textColor="@android:color/black"
             android:text="No trains found en route\nTry searching trains another day"/>
 

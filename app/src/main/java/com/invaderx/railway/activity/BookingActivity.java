@@ -31,9 +31,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.invaderx.railway.R;
 import com.invaderx.railway.adapters.PassengersAdapter;
-import com.invaderx.railway.pojoClasses.Passengers;
-import com.invaderx.railway.pojoClasses.Ticket;
-import com.invaderx.railway.pojoClasses.Trains;
+import com.invaderx.railway.models.Passengers;
+import com.invaderx.railway.models.Ticket;
+import com.invaderx.railway.models.Trains;
 import com.yarolegovich.lovelydialog.LovelyCustomDialog;
 
 import java.text.SimpleDateFormat;

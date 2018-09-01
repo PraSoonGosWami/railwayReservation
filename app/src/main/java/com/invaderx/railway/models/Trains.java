@@ -1,4 +1,4 @@
-package com.invaderx.railway.pojoClasses;
+package com.invaderx.railway.models;
 
 public class Trains {
     private String class1A;

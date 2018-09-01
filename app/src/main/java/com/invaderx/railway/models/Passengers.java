@@ -1,4 +1,4 @@
-package com.invaderx.railway.pojoClasses;
+package com.invaderx.railway.models;
 
 public class Passengers {
     private String pName;

@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.invaderx.railway.R;
 import com.invaderx.railway.adapters.TrainsAdapter;
-import com.invaderx.railway.pojoClasses.Trains;
+import com.invaderx.railway.models.Trains;
 
 import java.util.ArrayList;
 import java.util.Arrays;

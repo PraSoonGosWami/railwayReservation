@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.invaderx.railway.R;
-import com.invaderx.railway.pojoClasses.Passengers;
+import com.invaderx.railway.models.Passengers;
 import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
 import java.util.List;
