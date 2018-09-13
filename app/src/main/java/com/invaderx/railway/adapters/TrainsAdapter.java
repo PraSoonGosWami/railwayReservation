@@ -18,6 +18,7 @@ import com.invaderx.railway.R;
 import com.invaderx.railway.activity.TrainSearchActivity;
 import com.invaderx.railway.models.Trains;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TrainsAdapter extends RecyclerView.Adapter<TrainsAdapter.ViewHolder> {
@@ -48,7 +49,6 @@ public class TrainsAdapter extends RecyclerView.Adapter<TrainsAdapter.ViewHolder
     public void onBindViewHolder(@NonNull final TrainsAdapter.ViewHolder holder, int position) {
         final Trains list = trainsAdapterList.get(position);
         holder.trainNameNumber.setText(list.gettName()+"\t\t("+list.gettNumber()+")");
-        String stations=list.getStations();
         holder.srcDest.setText(TrainSearchActivity.source+" -> "+TrainSearchActivity.destination);
         holder.trainTime.setText(list.getTime());
         holder.oneA.setBackgroundColor(Color.GRAY);

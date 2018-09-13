@@ -1,7 +1,9 @@
 package com.invaderx.railway.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -9,18 +11,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.invaderx.railway.R;
 import com.invaderx.railway.auth.ProfileActivity;
 import com.invaderx.railway.models.Stations;
 import com.rupins.drawercardbehaviour.CardDrawerLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
@@ -33,6 +43,9 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
     public static String source;
     public static String destination;
     public static Activity searchActivity;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    ArrayList<String>station =new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +56,11 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         ldest=findViewById(R.id.ldesc);
         searchButton=findViewById(R.id.searchButton);
 
+        //firebase Database references
+        firebaseDatabase=FirebaseDatabase.getInstance();
+        databaseReference=firebaseDatabase.getReference();
+
+        //onClick for search Button
         searchButton.setOnClickListener(v->{
             if(TextUtils.isEmpty(lsrc.getText().toString()) || lsrc.getText().toString().equals(""))
                 lsrc.setError("Please Enter a source station");
@@ -76,10 +94,11 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         drawer.setRadius(Gravity.START, 35);
         drawer.setViewElevation(Gravity.START, 20);
 
+        ArrayList listOfStation = getStationList();
         //setting search views
         lsrc.setOnClickListener(v->{
             new SimpleSearchDialogCompat(this, "Search...",
-                    "Search for Source Staion", null, stationList(),
+                    "Search for Source Staion", null, stationList(listOfStation),
                     new SearchResultListener<Stations>() {
                         @Override
                         public void onSelected(BaseSearchDialogCompat dialog, Stations item, int position) {
@@ -90,7 +109,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         });
         ldest.setOnClickListener(v->{
             new SimpleSearchDialogCompat(this, "Search...",
-                    "Search for Destination Staion", null, stationList(),
+                    "Search for Destination Staion", null, stationList(listOfStation),
                     new SearchResultListener<Stations>() {
                         @Override
                         public void onSelected(BaseSearchDialogCompat dialog, Stations item, int position) {
@@ -136,17 +155,40 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         return super.onOptionsItemSelected(item);
 
     }
+    private ArrayList<String> getStationList(){
 
-    private ArrayList<Stations> stationList(){
+        ProgressDialog dialog = ProgressDialog.show(this, "Sit back and relax",
+                "Loading. Please wait...", true);
+        databaseReference.child("Stations").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+                    ArrayList<String> stn = (ArrayList<String>) dataSnapshot.getValue();
+                    station.clear();
+                    for (int i = 0; i<stn.size();i++){
+                        station.add(stn.get(i));
+
+                    }
+                }
+                else{
+                    Toast.makeText(TrainSearchActivity.this, "Please try in a bit", Toast.LENGTH_SHORT).show();
+                }
+                dialog.dismiss();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        Log.v("station",String.valueOf(station.size()));
+        return station;
+    }
+    private ArrayList<Stations> stationList(ArrayList<String> stn){
         ArrayList<Stations> list = new ArrayList<>();
-        list.add(new Stations("Howrah"));
-        list.add(new Stations("Bhagalpur"));
-        list.add(new Stations("Patna"));
-        list.add(new Stations("Sealdah"));
-        list.add(new Stations("Kahalgaon"));
-        list.add(new Stations("Pirpaitin"));
-        list.add(new Stations("Kota"));
-        list.add(new Stations("Sabour"));
+
+        for (int i =0; i < stn.size();i++)
+            list.add(new Stations(stn.get(i)));
 
         return list;
     }

@@ -42,6 +42,8 @@ dependencies {
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
     //search dialog
     implementation 'com.github.mirrajabi:search-dialog:1.2.2'
+    //lottie
+    implementation "com.airbnb.android:lottie:2.6.1"
 
 
 }

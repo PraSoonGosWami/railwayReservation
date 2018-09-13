@@ -18,6 +18,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX=".6"
+        android:scaleY=".6"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/an"/>
 
     <LinearLayout
         android:id="@+id/noTrains"
@@ -47,54 +56,3 @@
 
 </RelativeLayout>
 
-<!--
-<LinearLayout
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:orientation="vertical"
-android:padding="12dp"
-android:background="@color/colorPrimaryDark">
-
-<EditText
-    android:id="@+id/destEditText"
-    android:padding="12dp"
-    android:inputType="textAutoComplete"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="6dp"
-    android:layout_marginRight="6dp"
-    android:background="@android:color/white"
-    android:layout_marginTop="16dp"
-    android:layout_marginBottom="8dp"
-    android:hint="To"
-    android:textSize="18sp"
-    android:textColor="@android:color/black" />
-
-<EditText
-    android:id="@+id/srcEditText"
-    android:padding="12dp"
-    android:inputType="textAutoComplete"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:layout_marginLeft="6dp"
-    android:layout_marginRight="6dp"
-    android:background="@android:color/white"
-    android:hint="From"
-    android:textSize="18sp"
-    android:textColor="@android:color/black"
-    android:layout_marginBottom="12dp"/>
-<Button
-    android:id="@+id/searchButton"
-    android:layout_width="match_parent"
-    android:layout_marginLeft="6dp"
-    android:layout_marginRight="6dp"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:textColor="@android:color/white"
-    android:background="?attr/selectableItemBackground"
-    android:text="Go"
-    />
-
-
-</LinearLayout>-->

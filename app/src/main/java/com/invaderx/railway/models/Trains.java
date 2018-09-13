@@ -1,5 +1,7 @@
 package com.invaderx.railway.models;
 
+import java.util.ArrayList;
+
 public class Trains {
     private String class1A;
     private String class2A;
@@ -19,14 +21,14 @@ public class Trains {
     private int seat3A;
     private int seatCC;
     private int seatSL;
-    private String stations;
+    private ArrayList<String> stations;
     private String tName;
     private String tNumber;
 
     public Trains() {
     }
 
-    public Trains(String time, String class1A, String class2A, String class3A, String classCC, String classSL, int dFri, int dMon, int dSat, int dSun, int dThur, int dTue, int dWed, int seat1A, int seat2A, int seat3A, int seatCC, int seatSL, String stations, String tName, String tNumber) {
+    public Trains(String time, String class1A, String class2A, String class3A, String classCC, String classSL, int dFri, int dMon, int dSat, int dSun, int dThur, int dTue, int dWed, int seat1A, int seat2A, int seat3A, int seatCC, int seatSL, ArrayList<String> stations, String tName, String tNumber) {
         this.class1A = class1A;
         this.time=time;
         this.class2A = class2A;
@@ -118,7 +120,7 @@ public class Trains {
         return seatSL;
     }
 
-    public String getStations() {
+    public ArrayList<String> getStations() {
         return stations;
     }
 

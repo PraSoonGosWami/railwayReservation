@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +37,7 @@ public class TrainResponseActivity extends AppCompatActivity{
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     ProgressBar progressBar;
+    LottieAnimationView lottieAnimationView;
     LinearLayout noTrains;
     public static Activity trainResponse;
 
@@ -51,6 +53,7 @@ public class TrainResponseActivity extends AppCompatActivity{
         trainsAdapter=new TrainsAdapter(trains,this,recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         progressBar=findViewById(R.id.progressbar);
+        lottieAnimationView=findViewById(R.id.animation_view);
         //database references
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
@@ -58,7 +61,8 @@ public class TrainResponseActivity extends AppCompatActivity{
         noTrains=findViewById(R.id.noTrains);
         noTrains.setVisibility(View.INVISIBLE);
 
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
+        lottieAnimationView.playAnimation();
         //setting progressbar color
         progressBar.getIndeterminateDrawable()
                 .setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN );
@@ -78,12 +82,14 @@ public class TrainResponseActivity extends AppCompatActivity{
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot t : dataSnapshot.getChildren()) {
                                 Trains trains1 = t.getValue(Trains.class);
-                                String availableStation=trains1.getStations();
+                                ArrayList<String> availableStation=trains1.getStations();
                                 String src=TrainSearchActivity.source.toLowerCase();
                                 String dest=TrainSearchActivity.destination.toLowerCase();
-                                Boolean srcFound = Arrays.asList(availableStation.split(",")).contains(src);
-                                Boolean destFound = Arrays.asList(availableStation.split(",")).contains(dest);
-                                if(srcFound && destFound) {
+                                Boolean srcFound = availableStation.contains(src);
+                                Boolean destFound = availableStation.contains(dest);
+                                int srcPos= availableStation.indexOf(src);
+                                int destPos= availableStation.indexOf(dest);
+                                if(srcFound && destFound && (srcPos<destPos)) {
                                     trains.add(new Trains(trains1.getTime(), trains1.getClass1A(), trains1.getClass2A(), trains1.getClass3A(),
                                             trains1.getClassCC(), trains1.getClassSL(), trains1.getdFri(), trains1.getdMon(), trains1.getdSat(),
                                             trains1.getdSun(), trains1.getdThur(), trains1.getdTue(), trains1.getdWed(), trains1.getSeat1A(),
@@ -99,6 +105,7 @@ public class TrainResponseActivity extends AppCompatActivity{
                         }
                         progressBar.setVisibility(View.INVISIBLE);
                         recyclerView.setAdapter(trainsAdapter);
+                        lottieAnimationView.setVisibility(View.INVISIBLE);
 
 
                     }
