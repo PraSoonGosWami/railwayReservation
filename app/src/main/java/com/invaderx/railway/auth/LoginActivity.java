@@ -90,12 +90,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     startActivity(intent);
                     finish();
                 } else {
-                    loginButton.revertAnimation(new OnAnimationEndListener() {
-                        @Override
-                        public void onAnimationEnd() {
-                            loginButton.setFinalCornerRadius(200f);
-                            loginButton.setInitialCornerRadius(200f);
-                        }
+                    loginButton.revertAnimation(() -> {
+                        loginButton.setFinalCornerRadius(200f);
+                        loginButton.setInitialCornerRadius(200f);
                     });
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }

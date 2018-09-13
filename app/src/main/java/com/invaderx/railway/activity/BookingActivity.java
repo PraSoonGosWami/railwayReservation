@@ -56,6 +56,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     FirebaseUser firebaseUser;
     String selectedGender,userUID;
     int i;
+    String sFare;
     Ticket ticket;
 
     @Override
@@ -159,26 +160,32 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                             case 1:
                                 bClass.setText("Class: AC 1A");
                                 bFare.setText("Fare: "+trains1.getClass1A());
+                                sFare=trains1.getClass1A();
                                 break;
                             case 2:
                                 bClass.setText("Class: AC 2A");
                                 bFare.setText("Fare: "+trains1.getClass2A());
+                                sFare=trains1.getClass2A();
                                 break;
                             case 3:
                                 bClass.setText("Class: AC 3A");
                                 bFare.setText("Fare: "+trains1.getClass3A());
+                                sFare=trains1.getClass3A();
                                 break;
                             case 4:
                                 bClass.setText("Class: Sleeper");
                                 bFare.setText("Fare: "+trains1.getClassSL());
+                                sFare=trains1.getClassSL();
                                 break;
                             case 5:
                                 bClass.setText("Class: CC");
                                 bFare.setText("Fare: "+trains1.getClassCC());
+                                sFare=trains1.getClassCC();
                                 break;
                                 default:
                                     bClass.setText("Class: N/A");
                                     bFare.setText("Fare: N/A");
+                                    sFare="0";
                                     break;
                         }
                     }
@@ -363,8 +370,9 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     //confirms booking and generates ticket in database
     public void doPayment(){
         makePayment.setEnabled(false);
+        int totalFare=(Integer.parseInt(sFare))*(pArrayList.size());
         ticket=new Ticket(bTrainNameNumber.getText().toString(),TrainSearchActivity.source,TrainSearchActivity.destination,
-                bClass.getText().toString(),bTime.getText().toString(),bFare.getText().toString(),
+                bClass.getText().toString(),bTime.getText().toString(),String.valueOf(totalFare).toString(),
                 getDate(),pArrayList);
         Task<Void> voidTask = databaseReference.child("Ticket").child(userUID).child(generatePNR()).setValue(ticket)
                 .addOnSuccessListener(aVoid ->{
