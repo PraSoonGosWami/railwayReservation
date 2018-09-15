@@ -154,7 +154,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                            //handle no such trains
                         }
                         bTrainNameNumber.setText(trains1.gettName()+"  ("+trains1.gettNumber()+")");
-                        bSrcDest.setText(TrainSearchActivity.source+" -> "+TrainSearchActivity.destination);
+                        bSrcDest.setText(TrainSearchActivity.source.toUpperCase()+" → "+TrainSearchActivity.destination.toUpperCase());
                         bTime.setText("Time: "+trains1.getTime());
                         switch (i){
                             case 1:

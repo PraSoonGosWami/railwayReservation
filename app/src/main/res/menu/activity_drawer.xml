@@ -5,12 +5,12 @@
 
         <item
             android:id="@+id/nav_bookings"
-            android:icon="@drawable/multiple_users32"
+            android:icon="@drawable/onlinebooking"
             android:title="My Bookings" />
         <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/multiple_users32"
-            android:title="My Profile" />
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/logout"
+            android:title="Logout" />
 
     </group>
 
@@ -20,11 +20,11 @@
 
             <item
                 android:id="@+id/nav_share"
-                android:icon="@drawable/multiple_users32"
+                android:icon="@drawable/share"
                 android:title="Share" />
             <item
                 android:id="@+id/nav_rate"
-                android:icon="@drawable/multiple_users32"
+                android:icon="@drawable/review"
                 android:title="Rate App" />
 
         </menu>

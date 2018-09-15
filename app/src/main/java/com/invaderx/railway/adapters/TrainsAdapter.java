@@ -49,7 +49,7 @@ public class TrainsAdapter extends RecyclerView.Adapter<TrainsAdapter.ViewHolder
     public void onBindViewHolder(@NonNull final TrainsAdapter.ViewHolder holder, int position) {
         final Trains list = trainsAdapterList.get(position);
         holder.trainNameNumber.setText(list.gettName()+"\t\t("+list.gettNumber()+")");
-        holder.srcDest.setText(TrainSearchActivity.source+" -> "+TrainSearchActivity.destination);
+        holder.srcDest.setText(TrainSearchActivity.source.toUpperCase()+" → "+TrainSearchActivity.destination.toUpperCase());
         holder.trainTime.setText(list.getTime());
         holder.oneA.setBackgroundColor(Color.GRAY);
         holder.twoA.setBackgroundColor(Color.GRAY);

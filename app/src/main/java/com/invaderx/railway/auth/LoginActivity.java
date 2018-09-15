@@ -1,11 +1,13 @@
 package com.invaderx.railway.auth;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -51,6 +53,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 sendPasswordReset();
             }
         });
+        editTextEmail.setTranslationX(1000f);
+        editTextPassword.setTranslationX(1000f);
+        loginButton.setTranslationX(1000f);
+        viewAnimator();
+
 
     }
 
@@ -103,7 +110,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onStart() {
         super.onStart();
-
+        loginButton.setTranslationX(1000f);
+        editTextEmail.setTranslationX(1000f);
+        editTextPassword.setTranslationX(1000f);
+        viewAnimator();
         if (mAuth.getCurrentUser() != null) {
             finish();
             startActivity(new Intent(this, TrainSearchActivity.class));
@@ -113,6 +123,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onResume() {
         super.onResume();
+        loginButton.setTranslationX(1000f);
+        editTextEmail.setTranslationX(1000f);
+        editTextPassword.setTranslationX(1000f);
+        viewAnimator();
         if (mAuth.getCurrentUser() != null) {
             finish();
             startActivity(new Intent(this, TrainSearchActivity.class));
@@ -163,6 +177,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                 });
         // [END send_password_reset]
+    }
+
+    public void viewAnimator(){
+        ObjectAnimator loginButtonAnim = ObjectAnimator.ofFloat(loginButton, "translationX",1000f,0f);
+        loginButtonAnim.setDuration(500);
+        loginButtonAnim.setInterpolator(new AccelerateDecelerateInterpolator());
+        loginButtonAnim.start();
+
+        ObjectAnimator emailAnim = ObjectAnimator.ofFloat(editTextEmail, "translationX",1000f,0f);
+        emailAnim.setDuration(300);
+        emailAnim.setInterpolator(new AccelerateDecelerateInterpolator());
+        emailAnim.start();
+
+        ObjectAnimator passwordAnim = ObjectAnimator.ofFloat(editTextPassword, "translationX",1000f,0f);
+        passwordAnim.setDuration(400);
+        passwordAnim.setInterpolator(new AccelerateDecelerateInterpolator());
+        passwordAnim.start();
     }
 
 }

@@ -24,9 +24,11 @@ import com.invaderx.railway.R;
 import com.invaderx.railway.adapters.TrainsAdapter;
 import com.invaderx.railway.models.Trains;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -47,6 +49,9 @@ public class TrainResponseActivity extends AppCompatActivity{
         setContentView(R.layout.activity_train_response);
         //getting reference of this activity for finishing it after successful payment
         trainResponse=this;
+
+        setTitle(TrainSearchActivity.source.toUpperCase()+" → "+TrainSearchActivity.destination.toUpperCase());
+        getSupportActionBar().setSubtitle(getDate());
 
         //binding views
         recyclerView=findViewById(R.id.searchRecyclerView);
@@ -162,5 +167,16 @@ public class TrainResponseActivity extends AppCompatActivity{
         }
         return "null";
     }
+
+    //get current date
+    public String getDate(){
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c);
+        return formattedDate;
+    }
+
 
 }

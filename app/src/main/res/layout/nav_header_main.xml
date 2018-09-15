@@ -21,6 +21,7 @@
         app:srcCompat="@drawable/train" />
 
     <TextView
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Railway Reservation System "
@@ -31,12 +32,5 @@
         android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Version 1.0"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"/>
 
 </LinearLayout>

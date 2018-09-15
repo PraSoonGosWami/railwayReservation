@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,31 +15,36 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.invaderx.railway.R;
-import com.invaderx.railway.auth.ProfileActivity;
+import com.invaderx.railway.auth.LoginActivity;
 import com.invaderx.railway.models.Stations;
 import com.rupins.drawercardbehaviour.CardDrawerLayout;
+import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
 
 public class TrainSearchActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    Button searchButton;
+    FloatingActionButton searchButton;
     Toolbar toolbar;
     private CardDrawerLayout drawer;
     public static String source;
@@ -51,9 +58,12 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_search);
         EditText lsrc,ldest;
+        TextInputLayout srcLayout,destLayout;
         searchActivity=this;
         lsrc=findViewById(R.id.lsrc);
         ldest=findViewById(R.id.ldesc);
+        srcLayout=findViewById(R.id.srcTextLayout);
+        destLayout=findViewById(R.id.destTextLayout);
         searchButton=findViewById(R.id.searchButton);
 
         //firebase Database references
@@ -63,12 +73,12 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         //onClick for search Button
         searchButton.setOnClickListener(v->{
             if(TextUtils.isEmpty(lsrc.getText().toString()) || lsrc.getText().toString().equals(""))
-                lsrc.setError("Please Enter a source station");
+                srcLayout.setError("Please Enter a source station");
 
             else if(TextUtils.isEmpty(ldest.getText().toString()) || ldest.getText().toString().equals(""))
-                ldest.setError("Please Enter a destination station");
+                destLayout.setError("Please Enter a destination station");
             else if(lsrc.getText().toString().equals(ldest.getText().toString()))
-                ldest.setError("Source and destination can't  be same");
+                destLayout.setError("Source and destination can't  be same");
 
             else {
                 source = lsrc.getText().toString();
@@ -93,6 +103,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         drawer.setViewScale(Gravity.START, 0.9f);
         drawer.setRadius(Gravity.START, 35);
         drawer.setViewElevation(Gravity.START, 20);
+        getUsername();
 
         ArrayList listOfStation = getStationList();
         //setting search views
@@ -138,8 +149,8 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         switch (item.getItemId()){
-            case R.id.nav_profile:
-                startActivity(new Intent(this,ProfileActivity.class));
+            case R.id.nav_logout:
+                logoutDialog();
                 break;
             case R.id.nav_bookings:
                 startActivity(new Intent(this,MyBookings.class));
@@ -151,7 +162,6 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //startActivity(new Intent(this,CalculatorActivity.class));
         return super.onOptionsItemSelected(item);
 
     }
@@ -191,5 +201,44 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
             list.add(new Stations(stn.get(i)));
 
         return list;
+    }
+
+    public void logout() {
+        FirebaseAuth.getInstance().signOut();
+        TrainSearchActivity.searchActivity.finish();
+        finish();
+        startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    public void logoutDialog(){
+        new LovelyStandardDialog(this, LovelyStandardDialog.ButtonLayout.VERTICAL)
+                .setTopColorRes(android.R.color.holo_red_dark)
+                .setButtonsColorRes(R.color.color_button_default)
+                .setIcon(R.drawable.logout)
+                .setTitle("Logout")
+                .setMessage("Are you sure you wan't to logout?")
+                .setPositiveButton(android.R.string.yes, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       logout();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .show();
+    }
+
+    public void getUsername(){
+        LayoutInflater layoutInflater = LayoutInflater.from(this);
+        View view = layoutInflater.inflate(R.layout.nav_header_main,null);
+        TextView username = view.findViewById(R.id.username);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String name = user.getDisplayName();
+            Log.v("Username",name);
+
+            username.setText("User Name: " + name);
+        } else {
+            username.setText("No user name");
+        }
     }
 }

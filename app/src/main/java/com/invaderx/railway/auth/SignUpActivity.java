@@ -1,11 +1,13 @@
 package com.invaderx.railway.auth;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -49,6 +51,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         signup=findViewById(R.id.buttonSignUp);
         signup.setOnClickListener(this);
         findViewById(R.id.textViewLogin).setOnClickListener(this);
+
+        editTextEmail.setTranslationX(1000f);
+        editTextPassword.setTranslationX(1000f);
+        editTextName.setTranslationX(1000f);
+        signup.setTranslationX(1000f);
+        viewAnimator();
     }
 
     private void registerUser() {
@@ -139,6 +147,49 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 finish();
                 break;
         }
+    }
+
+    public void viewAnimator(){
+        ObjectAnimator loginButtonAnim = ObjectAnimator.ofFloat(signup, "translationX",1000f,0f);
+        loginButtonAnim.setDuration(600);
+        loginButtonAnim.setInterpolator(new AccelerateDecelerateInterpolator());
+        loginButtonAnim.start();
+
+        ObjectAnimator emailAnim = ObjectAnimator.ofFloat(editTextEmail, "translationX",1000f,0f);
+        emailAnim.setDuration(500);
+        emailAnim.setInterpolator(new AccelerateDecelerateInterpolator());
+        emailAnim.start();
+
+        ObjectAnimator passwordAnim = ObjectAnimator.ofFloat(editTextPassword, "translationX",1000f,0f);
+        passwordAnim.setDuration(400);
+        passwordAnim.setInterpolator(new AccelerateDecelerateInterpolator());
+        passwordAnim.start();
+
+        ObjectAnimator nameAnim = ObjectAnimator.ofFloat(editTextName, "translationX",1000f,0f);
+        nameAnim.setDuration(300);
+        nameAnim.setInterpolator(new AccelerateDecelerateInterpolator());
+        nameAnim.start();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        editTextEmail.setTranslationX(1000f);
+        editTextPassword.setTranslationX(1000f);
+        editTextName.setTranslationX(1000f);
+        signup.setTranslationX(1000f);
+        viewAnimator();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        editTextEmail.setTranslationX(1000f);
+        editTextPassword.setTranslationX(1000f);
+        editTextName.setTranslationX(1000f);
+        signup.setTranslationX(1000f);
+        viewAnimator();
     }
 }
 

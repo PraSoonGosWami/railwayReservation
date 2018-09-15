@@ -3,51 +3,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.TrainSearchActivity">
-    <com.flaviofaria.kenburnsview.KenBurnsView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/searchButton"
-        android:scaleType="fitCenter"
-        android:src="@drawable/rails3" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:orientation="vertical"
         android:padding="12dp">
-        <EditText
-            android:id="@+id/lsrc"
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/srcTextLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <EditText
+                android:id="@+id/lsrc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textColorHint="@android:color/background_dark"
+                android:hint="From"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/destTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="22dp"
-            android:inputType="text"
-            android:textColor="@color/black"
-            android:textColorHint="@android:color/background_dark"
-            android:hint="From"/>
-        <EditText
-            android:id="@+id/ldesc"
-            android:inputType="text"
-            android:textColorHint="@android:color/background_dark"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:hint="To"/>
+            android:layout_marginTop="12dp"
+            >
+            <EditText
+                android:id="@+id/ldesc"
+                android:inputType="text"
+                android:textColorHint="@android:color/background_dark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:hint="To"/>
+        </android.support.design.widget.TextInputLayout>
+
 
 
 
     </LinearLayout>
-    <Button
-        android:id="@+id/searchButton"
+   <android.support.design.widget.FloatingActionButton
+       android:id="@+id/searchButton"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_margin="22dp"
+       android:layout_alignParentBottom="true"
+       android:layout_alignParentRight="true"
+       android:clickable="true"
+       app:fabSize="normal"
+       app:backgroundTint="@color/colorPrimaryDark"
+       app:elevation="6dp"
+       android:src="@drawable/arrowright"
+       />
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180dp"
+        android:layout_marginBottom="-20dp"
         android:layout_alignParentBottom="true"
-        android:textColor="@android:color/white"
-        android:background="?android:attr/selectableItemBackground"
-        android:text="Go"
-        />
+        android:layout_alignParentStart="true"
+        android:scaleX="1.16"
+        android:scaleY=".8"
+        android:src="@drawable/trainclip" />
 
 </RelativeLayout>

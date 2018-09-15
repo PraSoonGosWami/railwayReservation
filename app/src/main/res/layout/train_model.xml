@@ -53,58 +53,64 @@
                 android:textColor="@android:color/black"
                 android:text="19:50-6:45"/>
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="8dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:weightSum="5">
 
                 <Button
                     android:id="@+id/oneA"
-                    android:layout_width="60dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:layout_marginRight="2dp"
+                    android:layout_weight="1"
                     android:textColor="@android:color/white"
                     android:text="1A" />
                 <Button
                     android:id="@+id/twoA"
-                    android:layout_width="60dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:layout_marginRight="2dp"
+                    android:layout_weight="1"
                     android:textColor="@android:color/white"
                     android:text="2A" />
                 <Button
                     android:id="@+id/threeA"
-                    android:layout_width="60dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:layout_marginRight="2dp"
+                    android:layout_weight="1"
                     android:textColor="@android:color/white"
                     android:text="3A" />
                 <Button
                     android:id="@+id/cc"
-                    android:layout_width="60dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:layout_marginRight="2dp"
+                    android:layout_weight="1"
                     android:textColor="@android:color/white"
                     android:text="CC" />
                 <Button
                     android:id="@+id/sleeper"
-                    android:layout_width="60dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:layout_marginRight="2dp"
+                    android:layout_weight="1"
                     android:textColor="@android:color/white"
                     android:text="SL" />
 
@@ -115,7 +121,7 @@
                 android:id="@+id/expandable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -189,6 +195,7 @@
                 android:layout_marginRight="4dp"
                 android:textSize="16sp"
                 android:background="@drawable/rounded_button_solid"
+                android:hapticFeedbackEnabled="true"
                 android:text="Book"/>
             </LinearLayout>
 
