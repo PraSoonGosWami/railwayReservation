@@ -1,5 +1,6 @@
 package com.invaderx.railway.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ticket {
@@ -10,9 +11,15 @@ public class Ticket {
     private String time;
     private String fare;
     private String date;
-    private List<Passengers> people;
+    private ArrayList<Passengers> people;
+    private String seatNo;
+    private String pnr;
 
-    public Ticket(String ticketNameNumber, String src, String dest, String travelClass, String time, String fare, String date,List<Passengers> people) {
+    public Ticket(){
+
+    }
+    public Ticket(String ticketNameNumber, String src, String dest, String travelClass, String time, String fare, String date,ArrayList<Passengers> people,
+                  String seatNo,String pnr) {
         this.ticketNameNumber = ticketNameNumber;
         this.src = src;
         this.dest = dest;
@@ -21,6 +28,8 @@ public class Ticket {
         this.fare = fare;
         this.date = date;
         this.people=people;
+        this.seatNo=seatNo;
+        this.pnr=pnr;
     }
 
     public String getTicketNameNumber() {
@@ -51,7 +60,17 @@ public class Ticket {
         return date;
     }
 
-    public List<Passengers> getPeople() {
+    public ArrayList<Passengers> getPeople() {
         return people;
     }
+
+    public String getSeatNo() {
+        return seatNo;
+    }
+
+    public String getPnr() {
+        return pnr;
+    }
+
+
 }

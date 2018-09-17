@@ -6,7 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".activity.TrainResponseActivity">
-
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@color/colorPrimaryDark"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/searchRecyclerView"
         android:layout_width="match_parent"
@@ -30,7 +34,7 @@
 
     <LinearLayout
         android:id="@+id/noTrains"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -39,7 +43,7 @@
             android:layout_width="220dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:src="@drawable/train"/>
+            android:src="@drawable/notrain"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

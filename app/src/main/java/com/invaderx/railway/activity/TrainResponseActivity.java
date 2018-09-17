@@ -33,14 +33,14 @@ import java.util.List;
 
 
 public class TrainResponseActivity extends AppCompatActivity{
-    RecyclerView recyclerView;
-    TrainsAdapter trainsAdapter;
-    List<Trains> trains = new ArrayList<>();
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
-    ProgressBar progressBar;
-    LottieAnimationView lottieAnimationView;
-    LinearLayout noTrains;
+    private RecyclerView recyclerView;
+    private TrainsAdapter trainsAdapter;
+    private List<Trains> trains = new ArrayList<>();
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private ProgressBar progressBar;
+    private LottieAnimationView lottieAnimationView;
+    private LinearLayout noTrains;
     public static Activity trainResponse;
 
     @Override
@@ -52,6 +52,7 @@ public class TrainResponseActivity extends AppCompatActivity{
 
         setTitle(TrainSearchActivity.source.toUpperCase()+" → "+TrainSearchActivity.destination.toUpperCase());
         getSupportActionBar().setSubtitle(getDate());
+        getSupportActionBar().setElevation(0);
 
         //binding views
         recyclerView=findViewById(R.id.searchRecyclerView);
@@ -72,7 +73,7 @@ public class TrainResponseActivity extends AppCompatActivity{
         progressBar.getIndeterminateDrawable()
                 .setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN );
         data();
-
+        recyclerView.setAdapter(trainsAdapter);
     }
     //get search data
     public void data(){

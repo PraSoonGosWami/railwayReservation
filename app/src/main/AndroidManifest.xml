@@ -23,7 +23,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:screenOrientation="portrait"
-            android:label="Availability"
             android:name=".activity.TrainResponseActivity"
             android:parentActivityName=".activity.TrainSearchActivity" />
         <activity
@@ -38,7 +37,8 @@
             android:parentActivityName=".activity.TrainResponseActivity" />
         <activity android:name=".activity.MyBookings"
             android:screenOrientation="portrait"
-            android:label="My Bookings"></activity>
+            android:label="My Bookings"
+            android:parentActivityName=".activity.TrainSearchActivity"></activity>
     </application>
 
 </manifest>

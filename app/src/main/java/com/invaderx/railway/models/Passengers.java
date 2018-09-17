@@ -5,6 +5,8 @@ public class Passengers {
     private int pAge;
     private String pSex;
 
+    public Passengers(){}
+
     public Passengers(String pName, int pAge, String pSex) {
         this.pName = pName;
         this.pAge = pAge;

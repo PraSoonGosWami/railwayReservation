@@ -52,6 +52,7 @@ public class Trains {
         this.tNumber = tNumber;
     }
 
+
     public String getClass1A() {
         return class1A;
     }

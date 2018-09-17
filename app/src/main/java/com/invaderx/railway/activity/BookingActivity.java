@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -51,12 +52,12 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     LinearLayout passengers,noPassengersMessage;
     Button addPassengers,makePayment;
     ListView passengersList;
-    List<Passengers> pArrayList = new ArrayList<>();
+    ArrayList<Passengers> pArrayList = new ArrayList<>();
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-    String selectedGender,userUID;
-    int i;
-    String sFare;
+    String selectedGender,userUID,trainNumber;
+    int i , availableSeats ,trainClass;
+    String sFare,travelClass,updateFareofClass;
     Ticket ticket;
 
     @Override
@@ -64,9 +65,11 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking);
         Intent intent=getIntent();
+
+        getSupportActionBar().setElevation(0);
         //getting Train number and class selected
-        String trainNumber=intent.getStringExtra("trainNumber");
-        int trainClass=intent.getIntExtra("trainClass",0);
+        trainNumber=intent.getStringExtra("trainNumber");
+        trainClass=intent.getIntExtra("trainClass",0);
 
         bTrainNameNumber=findViewById(R.id.bTrainNameNumber);
         bSrcDest=findViewById(R.id.bSrcDest);
@@ -160,31 +163,48 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                             case 1:
                                 bClass.setText("Class: AC 1A");
                                 bFare.setText("Fare: "+trains1.getClass1A());
+                                //to get avalable seats to generate seat no and reduce the no of seats after booking
+                                availableSeats=trains1.getSeat1A();
+                                //to get fare of selected class to caluclate the total amount to be paid during payment
                                 sFare=trains1.getClass1A();
                                 break;
                             case 2:
                                 bClass.setText("Class: AC 2A");
                                 bFare.setText("Fare: "+trains1.getClass2A());
+                                //to get avalable seats to generate seat no and reduce the no of seats after
+                                availableSeats=trains1.getSeat2A();
+                                //to get fare of selected class to caluclate the total amount to be paid during payment
                                 sFare=trains1.getClass2A();
                                 break;
                             case 3:
                                 bClass.setText("Class: AC 3A");
                                 bFare.setText("Fare: "+trains1.getClass3A());
+                                //to get avalable seats to generate seat no and reduce the no of seats after
+                                availableSeats=trains1.getSeat3A();
                                 sFare=trains1.getClass3A();
                                 break;
                             case 4:
                                 bClass.setText("Class: Sleeper");
                                 bFare.setText("Fare: "+trains1.getClassSL());
+                                //to get avalable seats to generate seat no and reduce the no of seats after
+                                availableSeats=trains1.getSeatSL();
+                                //to get fare of selected class to caluclate the total amount to be paid during payment
                                 sFare=trains1.getClassSL();
                                 break;
                             case 5:
                                 bClass.setText("Class: CC");
                                 bFare.setText("Fare: "+trains1.getClassCC());
+                                //to get avalable seats to generate seat no and reduce the no of seats after
+                                availableSeats=trains1.getSeatCC();
+                                //to get fare of selected class to caluclate the total amount to be paid during payment
                                 sFare=trains1.getClassCC();
                                 break;
                                 default:
                                     bClass.setText("Class: N/A");
                                     bFare.setText("Fare: N/A");
+                                    //to get avalable seats to generate seat no and reduce the no of seats after
+                                    availableSeats=0;
+                                    //to get fare of selected class to caluclate the total amount to be paid during payment
                                     sFare="0";
                                     break;
                         }
@@ -370,18 +390,47 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     //confirms booking and generates ticket in database
     public void doPayment(){
         makePayment.setEnabled(false);
-        int totalFare=(Integer.parseInt(sFare))*(pArrayList.size());
-        ticket=new Ticket(bTrainNameNumber.getText().toString(),TrainSearchActivity.source,TrainSearchActivity.destination,
-                bClass.getText().toString(),bTime.getText().toString(),String.valueOf(totalFare).toString(),
-                getDate(),pArrayList);
-        Task<Void> voidTask = databaseReference.child("Ticket").child(userUID).child(generatePNR()).setValue(ticket)
-                .addOnSuccessListener(aVoid ->{
-                        Toast.makeText(BookingActivity.this, "Ticket generated Successfully", Toast.LENGTH_SHORT).show();
+        String seatNo ="";
+        switch (trainClass){
+            case 1:
+                travelClass="A1 ";
+                updateFareofClass="seat1A";
+                break;
+            case 2:
+                travelClass="A2 ";
+                updateFareofClass="seat2A";
+                break;
+            case 3:
+                travelClass="B1 ";
+                updateFareofClass="seat3A";
+                break;
+            case 4:
+                travelClass="SL ";
+                updateFareofClass="seatSL";
+                break;
+            case 5:
+                travelClass="CC ";
+                updateFareofClass="seatCC";
+                break;
+            default:
+                travelClass="N/A ";
+                updateFareofClass="N/A";
+                break;
+        }
+        for(int i=1;i<=pArrayList.size();i++){
+            seatNo+=travelClass+String.valueOf(availableSeats)+"\n";
+            availableSeats=availableSeats-i;
+        }
 
-                        //finishing booking and TrainResponseActivity
-                        finish();
-                        TrainResponseActivity.trainResponse.finish();
-                });
+        int totalFare=(Integer.parseInt(sFare))*(pArrayList.size());
+        String pnr = generatePNR();
+        ticket=new Ticket(bTrainNameNumber.getText().toString(),TrainSearchActivity.source,TrainSearchActivity.destination,
+                bClass.getText().toString(),bTime.getText().toString(),String.valueOf(totalFare).toString()
+                ,getDate(),pArrayList,seatNo,pnr);
+        databaseReference.child("Ticket").child(userUID).child(pnr).setValue(ticket)
+        .addOnSuccessListener(aVoid ->{
+                updateSeatAvalabilty(availableSeats,trainNumber,updateFareofClass);
+        });
 
     }
 
@@ -399,6 +448,17 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
         return formattedDate;
+    }
+
+    //updates the seat avalabilty after payment of the ticket
+    public void updateSeatAvalabilty(int newAvailbaeSeat,String trainNumber,String classSeat){
+            databaseReference.child("Trains").child(trainNumber).child(classSeat).setValue(newAvailbaeSeat)
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(BookingActivity.this, "Ticket generated Successfully", Toast.LENGTH_SHORT).show();
+                        //finishing booking and TrainResponseActivity
+                        finish();
+                        TrainResponseActivity.trainResponse.finish();
+                    });
     }
 
 }
