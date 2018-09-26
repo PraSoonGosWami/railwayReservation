@@ -17,11 +17,6 @@
         android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
-    <ProgressBar
-        android:id="@+id/progressbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
         android:layout_width="wrap_content"
@@ -30,7 +25,8 @@
         android:scaleY=".6"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/an"/>
+        android:layout_centerInParent="true"
+        app:lottie_rawRes="@raw/loading"/>
 
     <LinearLayout
         android:id="@+id/noTrains"

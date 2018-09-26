@@ -38,7 +38,6 @@ public class TrainResponseActivity extends AppCompatActivity{
     private List<Trains> trains = new ArrayList<>();
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private ProgressBar progressBar;
     private LottieAnimationView lottieAnimationView;
     private LinearLayout noTrains;
     public static Activity trainResponse;
@@ -58,7 +57,6 @@ public class TrainResponseActivity extends AppCompatActivity{
         recyclerView=findViewById(R.id.searchRecyclerView);
         trainsAdapter=new TrainsAdapter(trains,this,recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        progressBar=findViewById(R.id.progressbar);
         lottieAnimationView=findViewById(R.id.animation_view);
         //database references
         firebaseDatabase=FirebaseDatabase.getInstance();
@@ -67,11 +65,9 @@ public class TrainResponseActivity extends AppCompatActivity{
         noTrains=findViewById(R.id.noTrains);
         noTrains.setVisibility(View.INVISIBLE);
 
-        progressBar.setVisibility(View.INVISIBLE);
         lottieAnimationView.playAnimation();
         //setting progressbar color
-        progressBar.getIndeterminateDrawable()
-                .setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN );
+
         data();
         recyclerView.setAdapter(trainsAdapter);
     }
@@ -109,7 +105,6 @@ public class TrainResponseActivity extends AppCompatActivity{
                         else {
                             noTrains.setVisibility(View.VISIBLE);
                         }
-                        progressBar.setVisibility(View.INVISIBLE);
                         recyclerView.setAdapter(trainsAdapter);
                         lottieAnimationView.setVisibility(View.INVISIBLE);
 

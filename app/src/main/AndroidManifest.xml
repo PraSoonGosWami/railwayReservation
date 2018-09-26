@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".auth.LoginActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".auth.SignUpActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            />
         <activity
             android:screenOrientation="portrait"
             android:name=".activity.TrainResponseActivity"
@@ -29,12 +31,15 @@
             android:screenOrientation="portrait"
             android:name=".activity.TrainSearchActivity"
             android:label="Search Trains"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            />
         <activity
             android:screenOrientation="portrait"
             android:label="Book Tickets"
             android:name=".activity.BookingActivity"
-            android:parentActivityName=".activity.TrainResponseActivity" />
+            android:parentActivityName=".activity.TrainResponseActivity"
+            />
         <activity android:name=".activity.MyBookings"
             android:screenOrientation="portrait"
             android:label="My Bookings"

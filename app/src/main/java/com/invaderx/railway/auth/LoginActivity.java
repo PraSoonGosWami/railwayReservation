@@ -3,6 +3,7 @@ package com.invaderx.railway.auth;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText editTextPassword;
     ProgressBar progressBar;
     TextView textView;
+    TextInputLayout emailTextLayout,passTextLayout;
     CircularProgressButton loginButton;
 
     @Override
@@ -41,6 +43,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
         progressBar = findViewById(R.id.progressbar);
+        emailTextLayout = findViewById(R.id.emailTextLayout);
+        passTextLayout = findViewById(R.id.passTextLayout);
 
         findViewById(R.id.textViewSignup).setOnClickListener(this);
         loginButton= findViewById(R.id.buttonLogin);
@@ -53,8 +57,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 sendPasswordReset();
             }
         });
-        editTextEmail.setTranslationX(1000f);
-        editTextPassword.setTranslationX(1000f);
+        emailTextLayout.setTranslationX(1000f);
+        passTextLayout.setTranslationX(1000f);
         loginButton.setTranslationX(1000f);
         viewAnimator();
 
@@ -111,8 +115,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onStart() {
         super.onStart();
         loginButton.setTranslationX(1000f);
-        editTextEmail.setTranslationX(1000f);
-        editTextPassword.setTranslationX(1000f);
+        emailTextLayout.setTranslationX(1000f);
+        passTextLayout.setTranslationX(1000f);
         viewAnimator();
         if (mAuth.getCurrentUser() != null) {
             finish();
@@ -124,8 +128,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onResume() {
         super.onResume();
         loginButton.setTranslationX(1000f);
-        editTextEmail.setTranslationX(1000f);
-        editTextPassword.setTranslationX(1000f);
+        emailTextLayout.setTranslationX(1000f);
+        passTextLayout.setTranslationX(1000f);
         viewAnimator();
         if (mAuth.getCurrentUser() != null) {
             finish();
@@ -185,12 +189,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginButtonAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         loginButtonAnim.start();
 
-        ObjectAnimator emailAnim = ObjectAnimator.ofFloat(editTextEmail, "translationX",1000f,0f);
+        ObjectAnimator emailAnim = ObjectAnimator.ofFloat(emailTextLayout, "translationX",1000f,0f);
         emailAnim.setDuration(300);
         emailAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         emailAnim.start();
 
-        ObjectAnimator passwordAnim = ObjectAnimator.ofFloat(editTextPassword, "translationX",1000f,0f);
+        ObjectAnimator passwordAnim = ObjectAnimator.ofFloat(passTextLayout, "translationX",1000f,0f);
         passwordAnim.setDuration(400);
         passwordAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         passwordAnim.start();

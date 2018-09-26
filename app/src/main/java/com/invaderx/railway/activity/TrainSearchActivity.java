@@ -73,12 +73,12 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         //onClick for search Button
         searchButton.setOnClickListener(v->{
             if(TextUtils.isEmpty(lsrc.getText().toString()) || lsrc.getText().toString().equals(""))
-                srcLayout.setError("Please Enter a source station");
+                lsrc.setError("Please Enter a source station");
 
             else if(TextUtils.isEmpty(ldest.getText().toString()) || ldest.getText().toString().equals(""))
-                destLayout.setError("Please Enter a destination station");
+                ldest.setError("Please Enter a destination station");
             else if(lsrc.getText().toString().equals(ldest.getText().toString()))
-                destLayout.setError("Source and destination can't  be same");
+                ldest.setError("Source and destination can't  be same");
 
             else {
                 source = lsrc.getText().toString();
