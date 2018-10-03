@@ -43,6 +43,8 @@ import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
 
+import static maes.tech.intentanim.CustomIntent.customType;
+
 public class TrainSearchActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     FloatingActionButton searchButton;
     Toolbar toolbar;
@@ -57,6 +59,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_search);
+        customType(TrainSearchActivity.this,"fadein-to-fadeout");
         EditText lsrc,ldest;
         TextInputLayout srcLayout,destLayout;
         searchActivity=this;

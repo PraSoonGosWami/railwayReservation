@@ -43,6 +43,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static maes.tech.intentanim.CustomIntent.customType;
+
 public class BookingActivity extends AppCompatActivity implements View.OnClickListener{
 
     TextView bTrainNameNumber,bSrcDest,bTime,bClass,bFare;
@@ -65,6 +67,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking);
         Intent intent=getIntent();
+        customType(BookingActivity.this,"fadein-to-fadeout");
 
         getSupportActionBar().setElevation(0);
         //getting Train number and class selected

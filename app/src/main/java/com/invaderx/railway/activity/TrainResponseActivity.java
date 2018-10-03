@@ -31,6 +31,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static maes.tech.intentanim.CustomIntent.customType;
+
 
 public class TrainResponseActivity extends AppCompatActivity{
     private RecyclerView recyclerView;
@@ -46,6 +48,7 @@ public class TrainResponseActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_response);
+        customType(TrainResponseActivity.this,"fadein-to-fadeout");
         //getting reference of this activity for finishing it after successful payment
         trainResponse=this;
 

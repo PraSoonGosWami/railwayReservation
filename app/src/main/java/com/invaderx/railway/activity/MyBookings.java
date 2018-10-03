@@ -5,6 +5,7 @@ import android.graphics.Point;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -29,11 +30,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.invaderx.railway.R;
+import com.invaderx.railway.adapters.PassengersAdapter;
 import com.invaderx.railway.adapters.TicketAdapter;
+import com.invaderx.railway.models.Passengers;
 import com.invaderx.railway.models.Ticket;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static maes.tech.intentanim.CustomIntent.customType;
 
 
 public class MyBookings extends AppCompatActivity implements TicketAdapter.ListItemClickListner {
@@ -47,14 +52,16 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private String userUID;
+    private ArrayList<Passengers> passList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        customType(MyBookings.this,"fadein-to-fadeout");
         setContentView(R.layout.activity_my_bookings);
         bookingsRecyclerView = findViewById(R.id.bookingsRecyclerView);
         noBookingMessage=findViewById(R.id.noBookingMessage);
         progressBar=findViewById(R.id.ticketProgressBar);
-
+        passList = new ArrayList<>();
         getSupportActionBar().setElevation(0);
         setTitle("My Bookings");
         //database references
@@ -116,12 +123,29 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
 
     //get current ticket for specific pnr
     public void getCurrentTicket(String pnr){
-
+        TextView exPNR,exSeatNo,exClass,exTrainNameNum,exSrcDest,exDate,exTime,exFare;
+        ListView exPassengerList;
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         PopupWindow popWindow;
+        ProgressBar progressBar;
+        CardView eXTicket;
         // inflate the custom popup layout
         View inflatedView = layoutInflater.inflate(R.layout.ticket_popup, null,false);
-        // find the ListView in the popup layout
+
+        exPNR = inflatedView.findViewById(R.id.exPNR);
+        exSeatNo = inflatedView.findViewById(R.id.exSeatNo);
+        exClass = inflatedView.findViewById(R.id.exClass);
+        exTrainNameNum = inflatedView.findViewById(R.id.exTrainNameNum);
+        exSrcDest = inflatedView.findViewById(R.id.exSrcDest);
+        exDate = inflatedView.findViewById(R.id.exDate);
+        exTime = inflatedView.findViewById(R.id.exTime);
+        exFare = inflatedView.findViewById(R.id.exFare);
+        progressBar = inflatedView.findViewById(R.id.exProgressBar);
+        progressBar.setVisibility(View.VISIBLE);
+        eXTicket = inflatedView.findViewById(R.id.exTicket);
+        eXTicket.setVisibility(View.INVISIBLE);
+        exPassengerList = inflatedView.findViewById(R.id.exPassengerList);
+
         // get device size
         Display display = getWindowManager().getDefaultDisplay();
         final Point size = new Point();
@@ -132,8 +156,7 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
         int height = displayMetrics.heightPixels;
 
         // set height depends on the device size
-        popWindow = new PopupWindow(inflatedView, width,height-50, true );
-        // set a background drawable with rounders corners
+        popWindow = new PopupWindow(inflatedView, width,height-60, true );
         popWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
         popWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
 
@@ -142,29 +165,47 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
         // show the popup at bottom of the screen and set some margin at bottom ie,
         popWindow.showAtLocation(inflatedView, Gravity.BOTTOM, 0,100);
 
-       /* databaseReference.child("Ticket").child(userUID).child(pnr)
+        databaseReference.child("Ticket").child(userUID).orderByChild("pnr").equalTo(pnr)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Ticket ticket;
+                        Ticket ticket2=null;
                         if (dataSnapshot.exists()){
+                            passList.clear();
                             for(DataSnapshot t : dataSnapshot.getChildren()) {
-                                ticket = t.getValue(Ticket.class);
+                                ticket2 = t.getValue(Ticket.class);
                             }
+                            eXTicket.setVisibility(View.VISIBLE);
+                            passList.addAll(ticket2.getPeople());
+                            exPassengerList.setAdapter(new PassengersAdapter(MyBookings.this,R.layout.passeneger_model,passList));
+                            exPNR.setText(ticket2.getPnr());
+                            exSeatNo.setText(ticket2.getSeatNo());
+                            exClass.setText(ticket2.getTravelClass());
+                            exTrainNameNum.setText(ticket2.getTicketNameNumber());
+                            exSrcDest.setText("From: "+ticket2.getSrc()+"\n"+"To: "+ticket2.getDest());
+                            exDate.setText(ticket2.getDate());
+                            exTime.setText(ticket2.getTime());
+                            exFare.setText("Fare: ₹"+ticket2.getFare());
                         }
+                        else {
+                            Toast.makeText(MyBookings.this, "Something went wrong\nPlease try again in a bit", Toast.LENGTH_LONG).show();
+                        }
+
+                        progressBar.setVisibility(View.INVISIBLE);
+
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                        Toast.makeText(MyBookings.this, "Error"+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-                });*/
+                });
     }
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
-        String PNR = ((TextView) bookingsRecyclerView.findViewHolderForAdapterPosition(clickedItemIndex).itemView.findViewById(R.id.ticketPNR)).getText().toString();
-        Toast.makeText(this, "PNR "+PNR, Toast.LENGTH_SHORT).show();
+        String PNR = ((TextView) bookingsRecyclerView.findViewHolderForAdapterPosition(clickedItemIndex)
+                .itemView.findViewById(R.id.ticketPNR)).getText().toString();
         getCurrentTicket(PNR);
     }
 }

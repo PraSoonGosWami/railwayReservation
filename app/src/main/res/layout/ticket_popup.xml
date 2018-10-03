@@ -5,142 +5,159 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/exTicket"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="22dp"
-        app:cardElevation="22dp"
-        android:translationZ="8dp"
-        app:cardCornerRadius="16dp">
+        android:layout_marginTop="56dp"
+        app:cardElevation="16dp"
+        android:translationZ="12dp"
+        app:cardCornerRadius="18dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingLeft="12dp"
-                android:padding="8dp"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PNR No."
-                    android:padding="2dp"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="4dp"
-                    android:textColor="@color/colorWhite"/>
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingLeft="12dp"
+                    android:padding="8dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/exPNR"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="9254426889"
-                    android:textStyle="bold"
-                    android:padding="2dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PNR No."
+                        android:padding="2dp"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="4dp"
+                        android:textColor="@color/colorWhite"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Seat No."
-                    android:layout_marginTop="14dp"
-                    android:padding="2dp"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="4dp"
-                    android:textColor="@color/colorWhite"/>
-                <TextView
-                    android:id="@+id/exSeatNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="9254426889"
-                    android:textStyle="bold"
-                    android:padding="2dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/exPNR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9254426889"
+                        android:textStyle="bold"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"/>
 
-                <TextView
-                    android:id="@+id/exClass"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Seat No."
+                        android:layout_marginTop="14dp"
+                        android:padding="2dp"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="4dp"
+                        android:textColor="@color/colorWhite"/>
+                    <TextView
+                        android:id="@+id/exSeatNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9254426889"
+                        android:textStyle="bold"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"/>
+
+                    <TextView
+                        android:id="@+id/exClass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Class : 2A"
+                        android:layout_marginTop="14dp"
+                        android:padding="2dp"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="4dp"
+                        android:textColor="@color/colorWhite"/>
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Class : 2A"
-                    android:layout_marginTop="14dp"
-                    android:padding="2dp"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="4dp"
-                    android:textColor="@color/colorWhite"/>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="8dp">
+
+                    <TextView
+                        android:id="@+id/exTrainNameNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Howrah Jmp Exp    (13165)"
+                        android:textSize="16sp"
+                        android:padding="2dp"
+                        android:layout_margin="2dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/exSrcDest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:layout_margin="2dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:text="Howrah -> Bhagalpur"/>
+
+                    <TextView
+                        android:id="@+id/exDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:layout_margin="2dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:text="16-Sep-2018"/>
+
+                    <TextView
+                        android:id="@+id/exTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:layout_margin="2dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:text="Time : 14:30-5:45"/>
+                    <TextView
+                        android:id="@+id/exFare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginTop="4dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:text="Fare : 2522"
+                        />
+
+
+                </LinearLayout>
+
+
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_margin="8dp">
 
-                <TextView
-                    android:id="@+id/exTrainNameNum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Howrah Jmp Exp    (13165)"
-                    android:textSize="16sp"
-                    android:padding="2dp"
-                    android:layout_margin="2dp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/exSrcDest"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    android:layout_margin="2dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"
-                    android:text="Howrah -> Bhagalpur"/>
-
-                <TextView
-                    android:id="@+id/exDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    android:layout_margin="2dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"
-                    android:text="16-Sep-2018"/>
-
-                <TextView
-                    android:id="@+id/exTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    android:layout_margin="2dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"
-                    android:text="Time : 14:30-5:45"/>
-                <TextView
-                    android:id="@+id/exFare"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginTop="4dp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:text="Fare : 2522"
-                    />
-
-
-            </LinearLayout>
-
+            <ListView
+                android:id="@+id/exPassengerList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"/>
 
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/exProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
@@ -149,10 +166,11 @@
             android:layout_margin="22dp"
             android:clickable="true"
             app:fabSize="normal"
-            app:backgroundTint="@color/colorPrimaryDark"
+            app:backgroundTint="@android:color/holo_red_dark"
             app:elevation="6dp"
-            android:src="@drawable/arrowright"/>
+            android:src="@drawable/cancel_button"/>
 
     </android.support.v7.widget.CardView>
+
 
 </RelativeLayout>
