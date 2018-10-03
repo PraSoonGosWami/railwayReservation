@@ -22,4 +22,9 @@
         <item name="elevation">0dp</item>
     </style>
 
+    <style name="PopupAnimation" parent="Widget.AppCompat.PopupWindow">
+        <item name="android:windowEnterAnimation">@anim/bottom_up</item>
+        <item name="android:windowExitAnimation">@anim/bottom_down</item>
+    </style>
+
 </resources>

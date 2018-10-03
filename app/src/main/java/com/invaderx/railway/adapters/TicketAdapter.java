@@ -1,5 +1,6 @@
 package com.invaderx.railway.adapters;
 
+
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -18,13 +19,18 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
     private List<Ticket> ticketAdapterList;
     private Context context;
+    final private ListItemClickListner listItemClickListner;
 
-    public TicketAdapter(){}
 
 
-    public TicketAdapter(List<Ticket> ticketAdapterList, Context context) {
+    public interface ListItemClickListner{
+        void onListItemClick(int clickedItemIndex);
+    }
+
+    public TicketAdapter(List<Ticket> ticketAdapterList, Context context,ListItemClickListner listItemClickListner) {
         this.ticketAdapterList = ticketAdapterList;
         this.context = context;
+        this.listItemClickListner = listItemClickListner;
     }
 
     @NonNull
@@ -46,9 +52,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         holder.ticketTime.setText(list.getTime());
         holder.ticketFare.setText("Fare: ₹"+list.getFare());
         holder.ticketClass.setText(list.getTravelClass());
-        holder.itemView.setOnClickListener(v -> {
-            Toast.makeText(context, "Ticket"+i, Toast.LENGTH_SHORT).show();
-        });
+
     }
 
     @Override
@@ -56,7 +60,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
         return ticketAdapterList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView ticketPNR,ticketSeatNo,ticketTrainNameNum,ticketSrcDest,ticketDate,ticketTime,ticketFare,ticketClass;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,8 +72,14 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
             ticketFare=itemView.findViewById(R.id.ticketFare);
             ticketDate=itemView.findViewById(R.id.ticketDate);
             ticketClass=itemView.findViewById(R.id.ticketClass);
+            itemView.setOnClickListener(this);
 
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            listItemClickListner.onListItemClick(getAdapterPosition());
         }
     }
 
