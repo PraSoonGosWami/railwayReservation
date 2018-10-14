@@ -51,6 +51,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
     private CardDrawerLayout drawer;
     public static String source;
     public static String destination;
+    NavigationView navigationView;
     public static Activity searchActivity;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -61,12 +62,9 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         setContentView(R.layout.activity_train_search);
         customType(TrainSearchActivity.this,"fadein-to-fadeout");
         EditText lsrc,ldest;
-        TextInputLayout srcLayout,destLayout;
         searchActivity=this;
         lsrc=findViewById(R.id.lsrc);
         ldest=findViewById(R.id.ldesc);
-        srcLayout=findViewById(R.id.srcTextLayout);
-        destLayout=findViewById(R.id.destTextLayout);
         searchButton=findViewById(R.id.searchButton);
 
         //firebase Database references
@@ -100,7 +98,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         drawer.setViewScale(Gravity.START, 0.9f);
@@ -113,23 +111,17 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         lsrc.setOnClickListener(v->{
             new SimpleSearchDialogCompat(this, "Search...",
                     "Search for Source Staion", null, stationList(listOfStation),
-                    new SearchResultListener<Stations>() {
-                        @Override
-                        public void onSelected(BaseSearchDialogCompat dialog, Stations item, int position) {
-                           lsrc.setText(item.getTitle().toString());
-                            dialog.dismiss();
-                        }
+                    (SearchResultListener<Stations>) (dialog, item, position) -> {
+                       lsrc.setText(item.getTitle().toString());
+                        dialog.dismiss();
                     }).show();
         });
         ldest.setOnClickListener(v->{
             new SimpleSearchDialogCompat(this, "Search...",
                     "Search for Destination Staion", null, stationList(listOfStation),
-                    new SearchResultListener<Stations>() {
-                        @Override
-                        public void onSelected(BaseSearchDialogCompat dialog, Stations item, int position) {
-                            ldest.setText(item.getTitle().toString());
-                            dialog.dismiss();
-                        }
+                    (SearchResultListener<Stations>) (dialog, item, position) -> {
+                        ldest.setText(item.getTitle().toString());
+                        dialog.dismiss();
                     }).show();
         });
 
@@ -231,15 +223,14 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
     }
 
     public void getUsername(){
-        LayoutInflater layoutInflater = LayoutInflater.from(this);
-        View view = layoutInflater.inflate(R.layout.nav_header_main,null);
+        View view = navigationView.getHeaderView(0);
         TextView username = view.findViewById(R.id.username);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String name = user.getDisplayName();
             Log.v("Username",name);
 
-            username.setText("User Name: " + name);
+            username.setText("Welcome\n" + name);
         } else {
             username.setText("No user name");
         }

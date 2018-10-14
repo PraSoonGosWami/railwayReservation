@@ -12,16 +12,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.invaderx.railway.R;
+import com.invaderx.railway.activity.MyBookings;
 import com.invaderx.railway.models.Passengers;
 import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
 import java.util.List;
 
 public class PassengersAdapter extends ArrayAdapter<Passengers> {
+    Context context;
     List<Passengers> objects;
     public PassengersAdapter(@NonNull Context context, int resource, @NonNull List<Passengers> objects) {
         super(context, resource, objects);
         this.objects=objects;
+        this.context=context;
     }
 
     @NonNull
@@ -54,11 +57,16 @@ public class PassengersAdapter extends ArrayAdapter<Passengers> {
                         objects.remove(index.intValue());
                         notifyDataSetChanged();
                         Toast.makeText(getContext(), "Deleted", Toast.LENGTH_SHORT).show();
+
                     })
                     .setNegativeButton(android.R.string.no, null)
                     .show();
 
         });
+
+        if(context instanceof MyBookings){
+                deletePassengers.setVisibility(View.GONE);
+        }
 
         passAge.setText(String.valueOf(passengers.getpAge()));
         passName.setText(passengers.getpName());

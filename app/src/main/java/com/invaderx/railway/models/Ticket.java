@@ -14,12 +14,14 @@ public class Ticket {
     private ArrayList<Passengers> people;
     private String seatNo;
     private String pnr;
+    private String trainNo;
+    private String baseClass;
 
     public Ticket(){
 
     }
     public Ticket(String ticketNameNumber, String src, String dest, String travelClass, String time, String fare, String date,ArrayList<Passengers> people,
-                  String seatNo,String pnr) {
+                  String seatNo,String pnr,String trainNo,String baseClass) {
         this.ticketNameNumber = ticketNameNumber;
         this.src = src;
         this.dest = dest;
@@ -30,6 +32,8 @@ public class Ticket {
         this.people=people;
         this.seatNo=seatNo;
         this.pnr=pnr;
+        this.trainNo = trainNo;
+        this.baseClass = baseClass;
     }
 
     public String getTicketNameNumber() {
@@ -72,5 +76,9 @@ public class Ticket {
         return pnr;
     }
 
+    public String getTrainNo(){ return trainNo;}
 
+    public String getBaseClass() {
+        return baseClass;
+    }
 }

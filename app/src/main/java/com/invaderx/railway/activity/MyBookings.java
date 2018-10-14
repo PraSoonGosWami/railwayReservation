@@ -3,6 +3,8 @@ package com.invaderx.railway.activity;
 import android.content.Context;
 import android.graphics.Point;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -15,12 +17,15 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,8 +39,12 @@ import com.invaderx.railway.adapters.PassengersAdapter;
 import com.invaderx.railway.adapters.TicketAdapter;
 import com.invaderx.railway.models.Passengers;
 import com.invaderx.railway.models.Ticket;
+import com.invaderx.railway.models.Trains;
+import com.yarolegovich.lovelydialog.LovelyStandardDialog;
+
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static maes.tech.intentanim.CustomIntent.customType;
@@ -53,6 +62,9 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
     private FirebaseUser firebaseUser;
     private String userUID;
     private ArrayList<Passengers> passList;
+    private PopupWindow popWindow;
+    private String PNR,seatAlloted,freshSeats="",trainNumber="",currentclass="";
+    private int fare = 0,i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +97,14 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
         getTicket();
         bookingsRecyclerView.setAdapter(ticketAdapter);
 
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.passeneger_model,null);
+        Button deletePassengers = view.findViewById(R.id.deletePassengers);
+        deletePassengers.setVisibility(View.INVISIBLE);
+
+
+
     }
     //gets all the tickets of the current user
     public void getTicket(){
@@ -100,7 +120,7 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
                                 Ticket ticket1 = tt.getValue(Ticket.class);
                                 ticketList.add(new Ticket(ticket1.getTicketNameNumber(),ticket1.getSrc(),ticket1.getDest()
                                 ,ticket1.getTravelClass(),ticket1.getTime(),ticket1.getFare(),ticket1.getDate()
-                                ,ticket1.getPeople(),ticket1.getSeatNo(),ticket1.getPnr()));
+                                ,ticket1.getPeople(),ticket1.getSeatNo(),ticket1.getPnr(),ticket1.getTrainNo(),ticket1.getBaseClass()));
                             }
                             if(ticketList.size()==0){
                                 noBookingMessage.setVisibility(View.VISIBLE);
@@ -115,7 +135,7 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(MyBookings.this, ""+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(android.R.id.content),""+databaseError.getMessage(),Snackbar.LENGTH_SHORT).show();
 
                     }
                 });
@@ -126,11 +146,13 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
         TextView exPNR,exSeatNo,exClass,exTrainNameNum,exSrcDest,exDate,exTime,exFare;
         ListView exPassengerList;
         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        PopupWindow popWindow;
+
         ProgressBar progressBar;
         CardView eXTicket;
+        FloatingActionButton cancelFAB;
         // inflate the custom popup layout
         View inflatedView = layoutInflater.inflate(R.layout.ticket_popup, null,false);
+
 
         exPNR = inflatedView.findViewById(R.id.exPNR);
         exSeatNo = inflatedView.findViewById(R.id.exSeatNo);
@@ -145,12 +167,15 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
         eXTicket = inflatedView.findViewById(R.id.exTicket);
         eXTicket.setVisibility(View.INVISIBLE);
         exPassengerList = inflatedView.findViewById(R.id.exPassengerList);
+        cancelFAB = inflatedView.findViewById(R.id.cancelFAB);
+
 
         // get device size
         Display display = getWindowManager().getDefaultDisplay();
         final Point size = new Point();
         display.getSize(size);
-//        mDeviceHeight = size.y;
+
+       //mDeviceHeight = size.y;
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
@@ -186,9 +211,10 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
                             exDate.setText(ticket2.getDate());
                             exTime.setText(ticket2.getTime());
                             exFare.setText("Fare: ₹"+ticket2.getFare());
-                        }
-                        else {
-                            Toast.makeText(MyBookings.this, "Something went wrong\nPlease try again in a bit", Toast.LENGTH_LONG).show();
+                            fare=Integer.parseInt(ticket2.getFare());
+                            seatAlloted=ticket2.getSeatNo();
+                            trainNumber = ticket2.getTrainNo();
+                            currentclass = ticket2.getBaseClass();
                         }
 
                         progressBar.setVisibility(View.INVISIBLE);
@@ -197,15 +223,158 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(MyBookings.this, "Error"+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(android.R.id.content),""+databaseError.getMessage(),Snackbar.LENGTH_SHORT).show();
+
+
                     }
                 });
+
+
+        //gets current available seats
+        getCurrentSeats();
+
+
+        cancelFAB.setOnClickListener(v -> {
+            cancelTicket(pnr);
+        });
+
+        exPassengerList.setOnItemClickListener((parent, view, position, id) -> {
+            if(passList.size()<2)
+                cancelTicket(pnr);
+            else {
+                cancelPerson(pnr,position);
+            }
+
+        });
+
     }
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
-        String PNR = ((TextView) bookingsRecyclerView.findViewHolderForAdapterPosition(clickedItemIndex)
+        PNR = ((TextView) bookingsRecyclerView.findViewHolderForAdapterPosition(clickedItemIndex)
                 .itemView.findViewById(R.id.ticketPNR)).getText().toString();
         getCurrentTicket(PNR);
+    }
+
+    //cancel whole ticket
+    public void cancelTicket(String pnr){
+        new LovelyStandardDialog(this, LovelyStandardDialog.ButtonLayout.HORIZONTAL)
+                .setTopColorRes(android.R.color.holo_red_dark)
+                .setButtonsColorRes(android.R.color.holo_orange_dark)
+                .setIcon(android.R.drawable.ic_menu_delete)
+                .setTitle("Cancel Ticket")
+                .setMessage("Are you sure you want to cancel this ticket?")
+                .setPositiveButton("Yes", v -> {
+                    databaseReference.child("Ticket").child(userUID).child(pnr).setValue(null)
+                            .addOnSuccessListener(aVoid -> {
+
+                                updateSeatAvalabilty(passList.size());
+                                popWindow.dismiss();
+
+                            });
+                })
+                .setNegativeButton("No",null)
+                .show();
+        getCurrentSeats();
+
+    }
+
+    //cancel only selected passengers
+    public void cancelPerson(String PNR,int position){
+
+        new LovelyStandardDialog(this, LovelyStandardDialog.ButtonLayout.HORIZONTAL)
+                .setTopColorRes(android.R.color.holo_red_dark)
+                .setButtonsColorRes(android.R.color.holo_orange_dark)
+                .setIcon(android.R.drawable.ic_menu_delete)
+                .setTitle("Cancel Passenger")
+                .setMessage("Are you sure you want to cancel this particular passenger?")
+                .setPositiveButton("Yes", v -> {
+                    passList.remove(position);
+                    //removes selected passenger ticket
+                    databaseReference.child("Ticket").child(userUID).child(PNR).child("people").setValue(passList)
+                            .addOnSuccessListener(p->{
+                                freshSeats="";
+                                ArrayList<String> deletedSeats= new ArrayList<>(Arrays.asList(seatAlloted.split("\\r?\\n")));
+                                int n = deletedSeats.size();
+                                deletedSeats.remove(n-1);
+                                for(int i=0; i<deletedSeats.size();i++){
+                                    freshSeats+=deletedSeats.get(i)+"\n";
+                                }
+                                //updates seat no after cancellation
+                                databaseReference.child("Ticket").child(userUID).child(PNR).child("seatNo").setValue(freshSeats);
+
+                                //updates fare of ticket
+                                String newFare = String.valueOf(fare-(fare/n));
+                                databaseReference.child("Ticket").child(userUID).child(PNR).child("fare").setValue(newFare)
+                                        .addOnSuccessListener(m->{
+                                            updateSeatAvalabilty(1);
+                                            Toast.makeText(this, "Cancel Successful", Toast.LENGTH_SHORT).show();
+                                        });
+
+
+                            });
+                })
+                .setNegativeButton("No",null)
+                .show();
+        getCurrentSeats();
+
+
+    }
+
+    //update trainSeats after cancellation
+    public void updateSeatAvalabilty(int cancelledSeats){
+
+        int s = i + cancelledSeats;
+        Log.i("SEATS",String.valueOf(s)+"\t"+i+"\t"+cancelledSeats);
+        databaseReference.child("Trains").child(trainNumber).child(currentclass).setValue(s)
+                .addOnSuccessListener(v -> {
+                    Snackbar.make(findViewById(android.R.id.content), "Cancel Successful\nRefund will be made within 42 hours", Snackbar.LENGTH_LONG).show();
+
+                });
+    }
+
+    //gets current available seats
+    public void getCurrentSeats(){
+
+        Log.v("Train no",trainNumber);
+        databaseReference.child("Trains").orderByChild("tNumber").equalTo(trainNumber)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Trains trains1=null;
+                        Log.v("Data Ticket", String.valueOf(dataSnapshot.getValue(Trains.class)));
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot t : dataSnapshot.getChildren()) {
+                                trains1 = t.getValue(Trains.class);
+                            }
+
+                            switch (currentclass) {
+                                case "seat1A":
+                                    i = trains1.getSeat1A();
+                                    break;
+                                case "seat2A":
+                                    i = trains1.getSeat2A();
+                                    break;
+                                case "seat3A":
+                                    i = trains1.getSeat3A();
+                                    break;
+                                case "seatSL":
+                                    i = trains1.getSeatSL();
+                                    break;
+                                case "seatCC":
+                                    i = trains1.getSeatCC();
+                                    break;
+
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
     }
 }

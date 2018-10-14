@@ -18,7 +18,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
-        app:srcCompat="@drawable/train" />
+        app:srcCompat="@drawable/engine" />
 
     <TextView
         android:id="@+id/username"

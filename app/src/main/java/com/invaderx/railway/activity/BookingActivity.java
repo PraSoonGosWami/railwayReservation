@@ -3,6 +3,7 @@ package com.invaderx.railway.activity;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,9 +21,6 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,12 +34,10 @@ import com.invaderx.railway.models.Passengers;
 import com.invaderx.railway.models.Ticket;
 import com.invaderx.railway.models.Trains;
 import com.yarolegovich.lovelydialog.LovelyCustomDialog;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import static maes.tech.intentanim.CustomIntent.customType;
 
@@ -61,7 +57,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     int i , availableSeats ,trainClass;
     String sFare,travelClass,updateFareofClass;
     Ticket ticket;
-
+    private String baseclass = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,7 +129,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                 if (pArrayList.size()>0)
                     doPayment();
                 else
-                    Toast.makeText(this, "No Passengers added", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(android.R.id.content),"No Passengers added",Snackbar.LENGTH_SHORT).show();
 
                 break;
 
@@ -165,6 +161,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                         switch (i){
                             case 1:
                                 bClass.setText("Class: AC 1A");
+                                baseclass="seat1A";
                                 bFare.setText("Fare: "+trains1.getClass1A());
                                 //to get avalable seats to generate seat no and reduce the no of seats after booking
                                 availableSeats=trains1.getSeat1A();
@@ -173,6 +170,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                                 break;
                             case 2:
                                 bClass.setText("Class: AC 2A");
+                                baseclass="seat2A";
                                 bFare.setText("Fare: "+trains1.getClass2A());
                                 //to get avalable seats to generate seat no and reduce the no of seats after
                                 availableSeats=trains1.getSeat2A();
@@ -181,6 +179,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                                 break;
                             case 3:
                                 bClass.setText("Class: AC 3A");
+                                baseclass="seat3A";
                                 bFare.setText("Fare: "+trains1.getClass3A());
                                 //to get avalable seats to generate seat no and reduce the no of seats after
                                 availableSeats=trains1.getSeat3A();
@@ -188,6 +187,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                                 break;
                             case 4:
                                 bClass.setText("Class: Sleeper");
+                                baseclass="seatSL";
                                 bFare.setText("Fare: "+trains1.getClassSL());
                                 //to get avalable seats to generate seat no and reduce the no of seats after
                                 availableSeats=trains1.getSeatSL();
@@ -196,6 +196,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                                 break;
                             case 5:
                                 bClass.setText("Class: CC");
+                                baseclass="seatCC";
                                 bFare.setText("Fare: "+trains1.getClassCC());
                                 //to get avalable seats to generate seat no and reduce the no of seats after
                                 availableSeats=trains1.getSeatCC();
@@ -204,6 +205,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                                 break;
                                 default:
                                     bClass.setText("Class: N/A");
+                                    baseclass="";
                                     bFare.setText("Fare: N/A");
                                     //to get avalable seats to generate seat no and reduce the no of seats after
                                     availableSeats=0;
@@ -420,16 +422,25 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                 updateFareofClass="N/A";
                 break;
         }
-        for(int i=1;i<=pArrayList.size();i++){
-            seatNo+=travelClass+String.valueOf(availableSeats)+"\n";
-            availableSeats=availableSeats-i;
+        if(availableSeats<pArrayList.size()){
+            for(int i=1;i<=pArrayList.size();i++){
+                seatNo+="WL "+i+"\n";
+            }
+        }
+        else{
+            for(int i=1;i<=pArrayList.size();i++){
+                seatNo+=travelClass+String.valueOf(availableSeats)+"\n";
+                availableSeats=availableSeats-1;
+            }
         }
 
+        //calculation of total fare
         int totalFare=(Integer.parseInt(sFare))*(pArrayList.size());
+
         String pnr = generatePNR();
         ticket=new Ticket(bTrainNameNumber.getText().toString(),TrainSearchActivity.source,TrainSearchActivity.destination,
-                bClass.getText().toString(),bTime.getText().toString(),String.valueOf(totalFare).toString()
-                ,getDate(),pArrayList,seatNo,pnr);
+                bClass.getText().toString(),bTime.getText().toString(),String.valueOf(totalFare)
+                ,getDate(),pArrayList,seatNo,pnr,trainNumber,baseclass);
         databaseReference.child("Ticket").child(userUID).child(pnr).setValue(ticket)
         .addOnSuccessListener(aVoid ->{
                 updateSeatAvalabilty(availableSeats,trainNumber,updateFareofClass);

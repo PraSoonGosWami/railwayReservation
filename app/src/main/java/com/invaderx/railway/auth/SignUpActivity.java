@@ -27,7 +27,6 @@ import br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ProgressBar progressBar;
     EditText editTextEmail;
     EditText editTextPassword;
     EditText editTextName;
@@ -44,7 +43,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
-        progressBar = findViewById(R.id.progressbar);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -101,7 +99,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     signup.dispose();
                     //Adding user name
@@ -115,12 +112,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     finish();
 
                 } else {
-                    signup.revertAnimation(new OnAnimationEndListener() {
-                        @Override
-                        public void onAnimationEnd() {
-                            signup.setFinalCornerRadius(200f);
-                            signup.setInitialCornerRadius(200f);
-                        }
+                    signup.revertAnimation(() -> {
+                        signup.setFinalCornerRadius(200f);
+                        signup.setInitialCornerRadius(200f);
                     });
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                         Toast.makeText(getApplicationContext(), "You are already registered", Toast.LENGTH_SHORT).show();
