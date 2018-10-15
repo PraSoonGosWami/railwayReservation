@@ -11,43 +11,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".auth.LoginActivity"
+        <activity
+            android:name=".auth.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".auth.SignUpActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-
-            />
         <activity
+            android:name=".auth.SignUpActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activity.TrainResponseActivity"
-            android:parentActivityName=".activity.TrainSearchActivity" />
+            android:parentActivityName=".activity.TrainSearchActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".activity.TrainSearchActivity"
             android:label="Search Trains"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan|adjustResize"
-            />
+            android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
-            android:screenOrientation="portrait"
-            android:label="Book Tickets"
             android:name=".activity.BookingActivity"
+            android:label="Book Tickets"
             android:parentActivityName=".activity.TrainResponseActivity"
-            />
-        <activity android:name=".activity.MyBookings"
-            android:screenOrientation="portrait"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MyBookings"
             android:label="My Bookings"
-            android:parentActivityName=".activity.TrainSearchActivity"></activity>
+            android:parentActivityName=".activity.TrainSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.ProfileActivity"
+            android:label="My Profile"
+            android:parentActivityName=".activity.TrainSearchActivity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
     </application>
 
 </manifest>

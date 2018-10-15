@@ -43,20 +43,20 @@ import static maes.tech.intentanim.CustomIntent.customType;
 
 public class BookingActivity extends AppCompatActivity implements View.OnClickListener{
 
-    TextView bTrainNameNumber,bSrcDest,bTime,bClass,bFare;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
-    ProgressBar loader;
-    LinearLayout passengers,noPassengersMessage;
-    Button addPassengers,makePayment;
-    ListView passengersList;
-    ArrayList<Passengers> pArrayList = new ArrayList<>();
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
-    String selectedGender,userUID,trainNumber;
-    int i , availableSeats ,trainClass;
-    String sFare,travelClass,updateFareofClass;
-    Ticket ticket;
+    private TextView bTrainNameNumber,bSrcDest,bTime,bClass,bFare;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private ProgressBar loader;
+    private LinearLayout passengers,noPassengersMessage;
+    private Button addPassengers,makePayment;
+    private ListView passengersList;
+    private ArrayList<Passengers> pArrayList = new ArrayList<>();
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    private String selectedGender,userUID,trainNumber;
+    private int i , availableSeats ,trainClass;
+    private String sFare,travelClass,updateFareofClass;
+    private Ticket ticket;
     private String baseclass = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -286,6 +286,10 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
             else if(TextUtils.isEmpty(passAge.getText().toString())|| passAge.getText().toString().equals(""))
                 passAge.setError("Please enter age");
 
+            else if(Integer.parseInt(passAge.getText().toString())<5)
+                passAge.setError("Age must be greater than 5");
+
+
             else {
                 pArrayList.add(new Passengers(passName.getText().toString(),
                         Integer.parseInt(passAge.getText().toString()),
@@ -377,6 +381,9 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                         passName.setError("Please enter a name");
                     else if(TextUtils.isEmpty(passAge.getText().toString())|| passAge.getText().toString().equals(""))
                         passAge.setError("Please enter age");
+
+                    else if(Integer.parseInt(passAge.getText().toString())<5)
+                        passAge.setError("Age must be greater than 5");
 
                     else {
                         pArrayList.set(positon,(new Passengers(passName.getText().toString(),

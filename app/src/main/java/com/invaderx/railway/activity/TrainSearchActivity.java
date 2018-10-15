@@ -20,6 +20,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -160,6 +162,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         return super.onOptionsItemSelected(item);
 
     }
+
     private ArrayList<String> getStationList(){
 
         ProgressDialog dialog = ProgressDialog.show(this, "Sit back and relax",
@@ -225,10 +228,16 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
     public void getUsername(){
         View view = navigationView.getHeaderView(0);
         TextView username = view.findViewById(R.id.username);
+        ImageView imageView = view.findViewById(R.id.imageView);
+        LinearLayout profileClick =view.findViewById(R.id.profileClick);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String name = user.getDisplayName();
             Log.v("Username",name);
+            imageView.setImageResource(R.drawable.me);
+            profileClick.setOnClickListener(v->{
+                startActivity(new Intent(this,ProfileActivity.class));
+            });
 
             username.setText("Welcome\n" + name);
         } else {
