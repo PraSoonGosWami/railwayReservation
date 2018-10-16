@@ -13,14 +13,18 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.invaderx.railway.R;
 import com.invaderx.railway.activity.TrainSearchActivity;
+import com.invaderx.railway.models.UserProfile;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 import br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener;
@@ -31,6 +35,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     EditText editTextPassword;
     EditText editTextName;
     CircularProgressButton signup;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private FirebaseUser user;
     String name;
 
     private FirebaseAuth mAuth;
@@ -43,6 +50,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
+
+        //database references
+        firebaseDatabase=FirebaseDatabase.getInstance();
+        databaseReference=firebaseDatabase.getReference();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -102,11 +113,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 if (task.isSuccessful()) {
                     signup.dispose();
                     //Adding user name
-                    FirebaseUser user = mAuth.getCurrentUser();
+                    user = mAuth.getCurrentUser();
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                             .setDisplayName(name).build();
                     user.updateProfile(profileUpdates);
 
+                    userDeatails(user);
                     //starting the train search activity after successful auth
                     startActivity(new Intent(SignUpActivity.this, TrainSearchActivity.class));
                     finish();
@@ -184,6 +196,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         editTextName.setTranslationX(1000f);
         signup.setTranslationX(1000f);
         viewAnimator();
+    }
+
+    public void userDeatails(FirebaseUser firebaseUser){
+        UserProfile userProfile=new UserProfile(firebaseUser.getUid(),"0",0,"0","0","0","null");
+        databaseReference.child("UserProfile").child(firebaseUser.getUid()).setValue(userProfile)
+                .addOnSuccessListener(aVoid -> Toast.makeText(SignUpActivity.this, "Welcome "+firebaseUser.getDisplayName(), Toast.LENGTH_SHORT).show());
     }
 }
 
