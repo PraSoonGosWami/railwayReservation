@@ -42,10 +42,11 @@ public class PassengersAdapter extends ArrayAdapter<Passengers> {
         passSex=view.findViewById(R.id.passSex);
         deletePassengers=view.findViewById(R.id.deletePassengers);
         deletePassengers.setTag(position);
+        deletePassengers.setEnabled(true);
 
         //deleting the selected passenger with alert dialog box
         deletePassengers.setOnClickListener(view1 -> {
-
+            deletePassengers.setEnabled(false);
             new LovelyStandardDialog(getContext(), LovelyStandardDialog.ButtonLayout.VERTICAL)
                     .setTopColorRes(android.R.color.holo_red_dark)
                     .setButtonsColorRes(android.R.color.black)
@@ -57,11 +58,13 @@ public class PassengersAdapter extends ArrayAdapter<Passengers> {
                         objects.remove(index.intValue());
                         notifyDataSetChanged();
                         Toast.makeText(getContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                        deletePassengers.setEnabled(true);
 
                     })
-                    .setNegativeButton(android.R.string.no, null)
+                    .setNegativeButton(android.R.string.no, m->{
+                        deletePassengers.setEnabled(true);
+                    })
                     .show();
-
         });
 
         if(context instanceof MyBookings){

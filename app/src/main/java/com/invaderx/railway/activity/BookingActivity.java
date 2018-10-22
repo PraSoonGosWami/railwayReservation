@@ -80,6 +80,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         passengersList=findViewById(R.id.passengersList);
         addPassengers=findViewById(R.id.addPassengers);
         addPassengers.setOnClickListener(this);
+        addPassengers.setEnabled(true);
         makePayment=findViewById(R.id.makePayment);
         makePayment.setOnClickListener(this);
         noPassengersMessage=findViewById(R.id.noPassengerMessage);
@@ -104,6 +105,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         passengersList.setOnItemClickListener((adapterView, view, i, l) ->
                 customUpdateDialog(i));
 
+
         //setting adapter
         passengersList.setAdapter(new PassengersAdapter(this,R.layout.passeneger_model,pArrayList));
 
@@ -124,6 +126,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         switch (view.getId()){
             case R.id.addPassengers:
                 cusotmEntryDialog();
+                addPassengers.setEnabled(false);
                 break;
             case R.id.makePayment:
                 if (pArrayList.size()>0)
@@ -278,8 +281,10 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         .setIcon(R.drawable.multiple_users32)
         .setListener(R.id.cancel, v -> {
             lovelyCustomDialog.dismiss();
+            addPassengers.setEnabled(true);
         })
         .setListener(R.id.addP, v -> {
+            addPassengers.setEnabled(true);
 
             if(TextUtils.isEmpty(passName.getText().toString())|| passName.getText().toString().equals(""))
                 passName.setError("Please enter a name");
@@ -299,6 +304,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
             }
         })
         .show();
+        addPassengers.setEnabled(true);
     }
 
     //custom popup dialog to update passengers

@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,6 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private String phoneNumer,home,upi,card,pay;
     private int wallet;
+    private LinearLayout walletLayout;
 
 
     @Override
@@ -70,7 +72,9 @@ public class ProfileActivity extends AppCompatActivity {
         debitCard=findViewById(R.id.debitCard);
         paytm=findViewById(R.id.paytm);
         editProfileDetails=findViewById(R.id.editProfileDetails);
+        walletLayout=findViewById(R.id.walletLayout);
 
+        walletLayout.setEnabled(true);
 
         //database references
         firebaseDatabase=FirebaseDatabase.getInstance();
@@ -96,8 +100,9 @@ public class ProfileActivity extends AppCompatActivity {
             editUserDetails(user.getUid());
         });
 
-        walletAmount.setOnClickListener(v -> {
+        walletLayout.setOnClickListener(v -> {
             addMoneyWallet(user.getUid());
+            walletLayout.setEnabled(false);
         });
     }
 
@@ -275,9 +280,62 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void addMoneyWallet(String uid){
-        databaseReference.child("UserProfile").child(uid).child("wallet").setValue(200+wallet)
-                .addOnSuccessListener(v->{
-                    Toast.makeText(ProfileActivity.this, "Money Added Successfully", Toast.LENGTH_SHORT).show();
-                });
+
+        walletLayout.setEnabled(true);
+
+        EditText refillAmount;
+        ImageView cancelRefill;
+        FloatingActionButton doneFillup;
+
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View inflatedView = layoutInflater.inflate(R.layout.wallet_add_popup, null,false);
+
+        refillAmount=inflatedView.findViewById(R.id.refillAmount);
+        cancelRefill=inflatedView.findViewById(R.id.cancelRefill);
+        doneFillup=inflatedView.findViewById(R.id.doneFillup);
+
+
+        // get device size
+        Display display = getWindowManager().getDefaultDisplay();
+        final Point size = new Point();
+        display.getSize(size);
+
+        //mDeviceHeight = size.y;
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        int width = displayMetrics.widthPixels;
+        int height = displayMetrics.heightPixels;
+
+        // set height depends on the device size
+        popWindow = new PopupWindow(inflatedView, width,height-60, true );
+        popWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+        popWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+
+        popWindow.setAnimationStyle(R.style.PopupAnimation);
+
+        // show the popup at bottom of the screen and set some margin at bottom ie,
+        popWindow.showAtLocation(inflatedView, Gravity.BOTTOM, 0,100);
+
+
+        cancelRefill.setOnClickListener(v -> {
+            popWindow.dismiss();
+            walletLayout.setEnabled(true);
+        });
+
+        doneFillup.setOnClickListener(v -> {
+            if(refillAmount.getText().toString().isEmpty())
+                refillAmount.setError("Enter a valid amount");
+            else {
+                int amount = Integer.parseInt(refillAmount.getText().toString());
+                databaseReference.child("UserProfile").child(uid).child("wallet").setValue(amount+wallet)
+                        .addOnSuccessListener(m->{
+                            popWindow.dismiss();
+                            Toast.makeText(ProfileActivity.this, "Money Added Successfully", Toast.LENGTH_SHORT).show();
+                        });
+            }
+            walletLayout.setEnabled(true);
+
+        });
+
     }
+
 }

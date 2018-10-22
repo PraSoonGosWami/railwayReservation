@@ -169,6 +169,8 @@ public class TrainsAdapter extends RecyclerView.Adapter<TrainsAdapter.ViewHolder
             });
 
         }
+
+
         final boolean isExpanded = position==mExpandedPosition;
         holder.visView.setVisibility(isExpanded?View.VISIBLE:View.GONE);
         holder.itemView.setActivated(isExpanded);
@@ -180,6 +182,8 @@ public class TrainsAdapter extends RecyclerView.Adapter<TrainsAdapter.ViewHolder
                 notifyDataSetChanged();
             }
         });
+
+
         //book
         holder.book.setOnClickListener(v->{
             String trainNumber = list.gettNumber();
@@ -223,4 +227,5 @@ public class TrainsAdapter extends RecyclerView.Adapter<TrainsAdapter.ViewHolder
         }
 
     }
+
 }

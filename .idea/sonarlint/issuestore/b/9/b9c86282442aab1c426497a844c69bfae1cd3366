@@ -1,0 +1,48 @@
+
+Csquid:S1659/"'Declare "basicName" on a separate line.(ğøÙıÿÿÿÿ
+Asquid:S1659/"%Declare "phoneNo" on a separate line.(ğøÙıÿÿÿÿ
+Fsquid:S1659/"*Declare "profileEmail" on a separate line.(ğøÙıÿÿÿÿ
+Asquid:S1659/"%Declare "address" on a separate line.(ğøÙıÿÿÿÿ
+Fsquid:S1659/"*Declare "walletAmount" on a separate line.(ğøÙıÿÿÿÿ
+Asquid:S1659/"%Declare "phonepe" on a separate line.(ğøÙıÿÿÿÿ
+Csquid:S1659/"'Declare "debitCard" on a separate line.(ğøÙıÿÿÿÿ
+?squid:S1659/"#Declare "paytm" on a separate line.(ğøÙıÿÿÿÿ
+9squid:S16594""Declare "home" on a separate line.(ë˜ã
+8squid:S16594"!Declare "upi" on a separate line.(ë˜ã
+9squid:S16594""Declare "card" on a separate line.(ë˜ã
+8squid:S16594"!Declare "pay" on a separate line.(ë˜ã
+Esquid:S1659r")Declare "editAddress" on a separate line.(ğÊØÿÿÿÿÿ
+Esquid:S1659r")Declare "editPhonepe" on a separate line.(ğÊØÿÿÿÿÿ
+Gsquid:S1659r"+Declare "editDebitCard" on a separate line.(ğÊØÿÿÿÿÿ
+Csquid:S1659r"'Declare "editPaytm" on a separate line.(ğÊØÿÿÿÿÿ
+fsquid:S1192œ"IDefine a constant instead of duplicating this literal "Link UPI" 3 times.(²×¢Œùÿÿÿÿ
+dsquid:S1192Ò"LDefine a constant instead of duplicating this literal "UserProfile" 3 times.(†İä¶
+nsquid:S1192š"QDefine a constant instead of duplicating this literal "No Address added" 3 times.(ÔĞÇûşÿÿÿÿ
+nsquid:S1192˜"VDefine a constant instead of duplicating this literal "No Phone Number Added" 4 times.(€Œï®
+csquid:S1192 "KDefine a constant instead of duplicating this literal "Link Paytm" 4 times.(ñÅÖµ
+tsquid:S1192"WDefine a constant instead of duplicating this literal "Link Debit/Credit Card" 4 times.(ºˆù§úÿÿÿÿ
+vsquid:S1450."_Remove the "profileImageView" field and declare it as a local variable in the relevant methods.(òí¾è
+zsquid:S1450/"^Remove the "profileUsername" field and declare it as a local variable in the relevant methods.(ğøÙıÿÿÿÿ
+tsquid:S1450/"XRemove the "basicName" field and declare it as a local variable in the relevant methods.(ğøÙıÿÿÿÿ
+wsquid:S1450/"[Remove the "profileEmail" field and declare it as a local variable in the relevant methods.(ğøÙıÿÿÿÿ
+}squid:S14500"aRemove the "editProfileDetails" field and declare it as a local variable in the relevant methods.(èŸåóûÿÿÿÿ
+tsquid:S14501"XRemove the "popWindow" field and declare it as a local variable in the relevant methods.(»ãÌ¦ıÿÿÿÿ
+vsquid:S14502"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»
+hsquid:CommentedOutCodeLine…"<This block of commented-out lines of code should be removed.(Á»¹ùúÿÿÿÿ
+nsquid:S3776o"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(…îà¼ÿÿÿÿÿ
+jsquid:S3776à"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(…şÿÊ
+asquid:S2259ë"JA "NullPointerException" could be thrown; "userProfile1" is nullable here.(­¤§~
+Hsquid:S1602_",Remove useless curly braces around statement(‡Ó›»ÿÿÿÿÿ
+Hsquid:S1602c",Remove useless curly braces around statement(íü©èüÿÿÿÿ
+Isquid:S1602”",Remove useless curly braces around statement(§‚şıùÿÿÿÿ
+Dsquid:S1602—",Remove useless curly braces around statement(Ì‡‘´
+™squid:S1186‘"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(³ğÄá
+Xsquid:UselessImportCheck)"4Remove this unused import 'java.lang.reflect.Array'.(‡¡É˜
+Tsquid:UselessImportCheck*"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
+ysquid:UselessImportCheck'"PRemove this unused import 'com.yarolegovich.lovelydialog.LovelyTextInputDialog'.(Æºûÿÿÿÿÿ
+Wsquid:UselessImportCheck
+"3Remove this unused import 'android.text.InputType'.(€¨“§
+\squid:UselessImportCheck"3Remove this unused import 'android.text.TextUtils'.(û˜½Õøÿÿÿÿ
+vsquid:UselessImportCheck&"MRemove this unused import 'com.yarolegovich.lovelydialog.LovelyChoiceDialog'.(ÀÔÛãıÿÿÿÿ
+asquid:UselessImportCheck"8Remove this unused import 'android.widget.ArrayAdapter'.( €ŠÑÿÿÿÿÿ
+osquid:UselessImportCheck"KRemove this unused import 'com.google.android.gms.tasks.OnSuccessListener'.(íå¡
