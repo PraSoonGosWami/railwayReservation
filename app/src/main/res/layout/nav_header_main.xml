@@ -4,11 +4,11 @@
     android:id="@+id/profileClick"
     android:layout_width="match_parent"
     android:layout_height="220dp"
-    android:background="@color/colorWhite"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingLeft="16dp"
     android:paddingBottom="16dp"
+    android:background="?android:attr/selectableItemBackground"
     android:paddingRight="16dp"
     android:focusable="true">
 

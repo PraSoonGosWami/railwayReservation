@@ -20,6 +20,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+    buildToolsVersion '28.0.3'
 }
 
 dependencies {
@@ -38,14 +39,10 @@ dependencies {
     implementation 'com.github.RupinSahu:CardDrawer:-SNAPSHOT'
     //animated button
     implementation 'br.com.simplepass:loading-button-android:1.14.0'
-    //moving image view
-    implementation 'com.flaviofaria:kenburnsview:1.0.7'
     //search dialog
     implementation 'com.github.mirrajabi:search-dialog:1.2.2'
     //lottie
-    implementation "com.airbnb.android:lottie:2.6.1"
+    implementation 'com.airbnb.android:lottie:2.6.1'
     implementation 'com.github.hajiyevelnur92:intentanimation:1.0'
-
-
 }
 apply plugin: 'com.google.gms.google-services'
