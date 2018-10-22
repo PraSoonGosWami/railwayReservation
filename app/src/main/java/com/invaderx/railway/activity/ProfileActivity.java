@@ -97,7 +97,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         walletAmount.setOnClickListener(v -> {
-            //addMoneyWallet(user.getUid());
+            addMoneyWallet(user.getUid());
         });
     }
 
@@ -270,6 +270,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    public void uploadUserImage(String uid){
+
+    }
 
     public void addMoneyWallet(String uid){
         databaseReference.child("UserProfile").child(uid).child("wallet").setValue(200+wallet)
