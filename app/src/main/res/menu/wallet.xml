@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.ProfileActivity">
+
+    <item
+        android:id="@+id/editImage"
+        android:icon="@drawable/edit"
+        app:showAsAction="never"
+        android:title="Change Photo"/>
+
+</menu>
