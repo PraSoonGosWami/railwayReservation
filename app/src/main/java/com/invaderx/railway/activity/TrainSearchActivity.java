@@ -1,6 +1,7 @@
 package com.invaderx.railway.activity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -44,7 +46,10 @@ import com.invaderx.railway.models.Stations;
 import com.rupins.drawercardbehaviour.CardDrawerLayout;
 import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
@@ -63,6 +68,9 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     ArrayList<String>station =new ArrayList<>();
+    private int mYear, mMonth, mDay;
+    private TextView dateSelecter;
+    public static String day,date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,10 +81,16 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         lsrc=findViewById(R.id.lsrc);
         ldest=findViewById(R.id.ldesc);
         searchButton=findViewById(R.id.searchButton);
-
+        day=getToday();
+        date=getDate();
         //firebase Database references
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
+
+        dateSelecter=findViewById(R.id.dateSelect);
+        dateSelecter.setOnClickListener(v -> {
+            datePicker();
+        });
 
         //onClick for search Button
         searchButton.setOnClickListener(v->{
@@ -89,9 +103,11 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
                 ldest.setError("Source and destination can't  be same");
 
             else {
+
                 source = lsrc.getText().toString();
                 destination = ldest.getText().toString();
-                startActivity(new Intent(this, TrainResponseActivity.class));
+                Intent intent = new Intent(this,TrainResponseActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -168,6 +184,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
 
     }
 
+    //array for staions
     private ArrayList<String> getStationList(){
 
         ProgressDialog dialog = ProgressDialog.show(this, "Sit back and relax",
@@ -197,6 +214,8 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         Log.v("station",String.valueOf(station.size()));
         return station;
     }
+
+    //search box for stations
     private ArrayList<Stations> stationList(ArrayList<String> stn){
         ArrayList<Stations> list = new ArrayList<>();
 
@@ -206,6 +225,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         return list;
     }
 
+    //logout function
     public void logout() {
         FirebaseAuth.getInstance().signOut();
         TrainSearchActivity.searchActivity.finish();
@@ -213,6 +233,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         startActivity(new Intent(this, LoginActivity.class));
     }
 
+    //pop up logout confirmatio dialog
     public void logoutDialog(){
         new LovelyStandardDialog(this, LovelyStandardDialog.ButtonLayout.VERTICAL)
                 .setTopColorRes(android.R.color.holo_red_dark)
@@ -230,6 +251,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
                 .show();
     }
 
+    //gets user name and details
     public void getUsername(){
         View view = navigationView.getHeaderView(0);
         TextView username = view.findViewById(R.id.username);
@@ -238,7 +260,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String name = user.getDisplayName();
-            Log.v("Username",name);
+           Log.v("Username",name);
             getImage(user.getUid(),imageView);
             profileClick.setOnClickListener(v->{
                 startActivity(new Intent(this,ProfileActivity.class));
@@ -272,5 +294,89 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
                     imageView.setImageResource(R.drawable.engine);
                 });
 
+    }
+
+    //date picker
+    public void datePicker(){
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year, monthOfYear, dayOfMonth) -> {
+
+
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.MONTH, monthOfYear);
+            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            cal.set(Calendar.YEAR, year);
+            java.util.Date myDate = cal.getTime();
+            date=new SimpleDateFormat("dd-MMM-yyyy").format(myDate);
+            dateSelecter.setText(date);
+            day=getDayofWeek(cal);
+            Toast.makeText(searchActivity, "Day:"+day, Toast.LENGTH_SHORT).show();
+
+
+        },mYear, mMonth, mDay);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
+        datePickerDialog.show();
+
+    }
+
+    //getting day for seaching trains on selected Date
+    public String getDayofWeek(Calendar calendar){
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+        switch (day) {
+            case Calendar.SUNDAY:
+                return "dSun";
+            case Calendar.MONDAY:
+                return "dMon";
+            case Calendar.TUESDAY:
+                return "dTue";
+            case Calendar.WEDNESDAY:
+                return "dWed";
+            case Calendar.THURSDAY:
+                return "dThur";
+            case Calendar.FRIDAY:
+                return "dFri";
+            case Calendar.SATURDAY:
+                return "dSat";
+        }
+        return "null";
+    }
+
+    //getting current day for seaching trains on today's date
+    public String getToday(){
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+        switch (day) {
+            case Calendar.SUNDAY:
+                return "dSun";
+            case Calendar.MONDAY:
+                return "dMon";
+            case Calendar.TUESDAY:
+                return "dTue";
+            case Calendar.WEDNESDAY:
+                return "dWed";
+            case Calendar.THURSDAY:
+                return "dThur";
+            case Calendar.FRIDAY:
+                return "dFri";
+            case Calendar.SATURDAY:
+                return "dSat";
+        }
+        return "null";
+    }
+
+    //get current date
+    public String getDate(){
+        java.util.Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c);
+        return formattedDate;
     }
 }

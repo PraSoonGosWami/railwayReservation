@@ -1,0 +1,35 @@
+
+esquid:S2184“"FCast one of the operands of this multiplication operation to a "long".(®‹½Ğ8âı¢‘ê,
+]"squid:SwitchLastCaseIsDefaultCheck¥""Add a default case to this switch.(øå´¡ÿÿÿÿÿ8âı¢‘ê,
+Gsquid:S1659G"$Declare "mMonth" on a separate line.(İ—Ûéşÿÿÿÿ8âı¢‘ê,
+Esquid:S1659G""Declare "mDay" on a separate line.(İ—Ûéşÿÿÿÿ8âı¢‘ê,
+Fsquid:S1659N"#Declare "ldest" on a separate line.(”Ê¦§ûÿÿÿÿ8âı¢‘ê,
+wsquid:S1450G"TRemove the "mYear" field and declare it as a local variable in the relevant methods.(İ—Ûéşÿÿÿÿ8âı¢‘ê,
+xsquid:S1450G"URemove the "mMonth" field and declare it as a local variable in the relevant methods.(İ—Ûéşÿÿÿÿ8âı¢‘ê,
+vsquid:S1450G"SRemove the "mDay" field and declare it as a local variable in the relevant methods.(İ—Ûéşÿÿÿÿ8âı¢‘ê,
+~squid:S1450H"[Remove the "dateSelecter" field and declare it as a local variable in the relevant methods.(±ßÌüÿÿÿÿ8âı¢‘ê,
+Jsquid:S1444@",Make this "public static source" field final(£Ğş³8âı¢‘ê,
+Osquid:S1444A"1Make this "public static destination" field final(Äğı¸8âı¢‘ê,
+Wsquid:S1444C"4Make this "public static searchActivity" field final(µ±ÀÇûÿÿÿÿ8âı¢‘ê,
+osquid:S1301¥"KReplace this "switch" statement by "if" statements to increase readability.(øå´¡ÿÿÿÿÿ8âı¢‘ê,
+osquid:CommentedOutCodeLine°"<This block of commented-out lines of code should be removed.(éóÇşÿÿÿÿ8âı¢‘ê,
+Ysquid:S2696O"6Make the enclosing method "static" or remove this set.(÷ıÕŞúÿÿÿÿ8âı¢‘ê,
+Ysquid:S2696h"6Make the enclosing method "static" or remove this set.(úêş¨şÿÿÿÿ8âı¢‘ê,
+Ysquid:S2696i"6Make the enclosing method "static" or remove this set.(Ø¶Ù‡ùÿÿÿÿ8âı¢‘ê,
+‡"squid:ClassVariableVisibilityCheck@"RMake source a static final constant or non-public and provide accessors if needed.(£Ğş³8âı¢‘ê,
+Œ"squid:ClassVariableVisibilityCheckA"WMake destination a static final constant or non-public and provide accessors if needed.(Äğı¸8âı¢‘ê,
+”"squid:ClassVariableVisibilityCheckC"ZMake searchActivity a static final constant or non-public and provide accessors if needed.(µ±ÀÇûÿÿÿÿ8âı¢‘ê,
+Jsquid:S1602Y",Remove useless curly braces around statement(èØÄ³8âı¢‘ê,
+Ksquid:S1602‚",Remove useless curly braces around statement(‰¡¯8âı¢‘ê,
+Ksquid:S1602Š",Remove useless curly braces around statement(ÖÃ‚8âı¢‘ê,
+Psquid:S1602…",Remove useless curly braces around statement(’¬Ÿüÿÿÿÿ8âı¢‘ê,
+Ksquid:S1602 ",Remove useless curly braces around statement(ôİÄ¥8âı¢‘ê,
+Psquid:S1602®",Remove useless curly braces around statement(€Š¶³øÿÿÿÿ8âı¢‘ê,
+¥squid:S1186Î"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8âı¢‘ê,
+Gsquid:S1185²"(Remove this method to simply inherit it.(ñ”Ò8âı¢‘ê,
+fsquid:S1858†"B"getTitle" returns a string, there's no need to call "toString()".(Ê¶”¸úÿÿÿÿ8âı¢‘ê,
+fsquid:S1858"B"getTitle" returns a string, there's no need to call "toString()".(û÷±÷ûÿÿÿÿ8âı¢‘ê,
+fsquid:UselessImportCheck"6Remove this unused import 'android.widget.DatePicker'.(µö—şÿÿÿÿ8âı¢‘ê,
+zsquid:UselessImportCheck"JRemove this unused import 'android.support.design.widget.TextInputLayout'.(±•Ëñüÿÿÿÿ8âı¢‘ê,
+‚squid:UselessImportCheck7"RRemove this unused import 'ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat'.(ÜŒ„íÿÿÿÿÿ8âı¢‘ê,
+csquid:UselessImportCheck"8Remove this unused import 'android.view.LayoutInflater'.(À¯ÑÇ8âı¢‘ê,
