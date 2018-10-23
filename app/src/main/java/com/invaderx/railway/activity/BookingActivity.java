@@ -497,19 +497,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
             databaseReference.child("Trains").child(trainNumber).child(classSeat).setValue(newAvailbaeSeat)
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(BookingActivity.this, "Ticket generated Successfully", Toast.LENGTH_SHORT).show();
-                        //finishing booking and TrainResponseActivity
-                        finish();
-                        TrainResponseActivity.trainResponse.finish();
                     });
-    }
-
-    //updates wallet amount after cancellation
-    public void updateWallet(int bookedAmount){
-        databaseReference.child("UserProfile").child(userUID).child("wallet").setValue(getAmount+bookedAmount)
-                .addOnSuccessListener(m->{
-                    Snackbar.make(findViewById(android.R.id.content), "Cancel Successful\nMoney refunded to wallet", Snackbar.LENGTH_LONG).show();
-
-                });
     }
 
     //gets wallet amount
@@ -536,7 +524,6 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     //opens payment gateway
-
     public void paymentGateway(){
 
         ImageView cancelPayment;
@@ -699,7 +686,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-
+    //updates wallet amount after cancellation
     public void updateWallet(){
         databaseReference.child("UserProfile").child(userUID).child("wallet").setValue(wallet-(Integer.parseInt(sFare))*(pArrayList.size()));
 

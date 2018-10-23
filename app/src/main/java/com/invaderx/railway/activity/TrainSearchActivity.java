@@ -3,6 +3,8 @@ package com.invaderx.railway.activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -13,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -33,6 +36,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.invaderx.railway.R;
 import com.invaderx.railway.auth.LoginActivity;
 import com.invaderx.railway.models.Stations;
@@ -234,7 +239,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         if (user != null) {
             String name = user.getDisplayName();
             Log.v("Username",name);
-            imageView.setImageResource(R.drawable.me);
+            getImage(user.getUid(),imageView);
             profileClick.setOnClickListener(v->{
                 startActivity(new Intent(this,ProfileActivity.class));
             });
@@ -243,5 +248,29 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         } else {
             username.setText("No user name");
         }
+    }
+
+    //get Image
+    public void getImage(String uid,ImageView imageView){
+        StorageReference mImageRef =
+                FirebaseStorage.getInstance().getReference(uid+"/profile.jpg");
+        final long ONE_MEGABYTE = 1024 * 1024*10;
+        mImageRef.getBytes(ONE_MEGABYTE)
+                .addOnSuccessListener(bytes -> {
+                    Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    DisplayMetrics dm = new DisplayMetrics();
+                    getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+                    imageView.setMinimumHeight(dm.heightPixels);
+                    imageView.setMinimumWidth(dm.widthPixels);
+                    imageView.setImageBitmap(bm);
+
+                })
+
+                .addOnFailureListener(exception -> {
+                    // Handle any errors
+                    imageView.setImageResource(R.drawable.engine);
+                });
+
     }
 }

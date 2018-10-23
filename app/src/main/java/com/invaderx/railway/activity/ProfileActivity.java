@@ -1,7 +1,13 @@
 package com.invaderx.railway.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +22,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -26,6 +33,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,11 +42,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.invaderx.railway.R;
 import com.invaderx.railway.models.UserProfile;
 import com.yarolegovich.lovelydialog.LovelyChoiceDialog;
 import com.yarolegovich.lovelydialog.LovelyTextInputDialog;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -53,6 +66,13 @@ public class ProfileActivity extends AppCompatActivity {
     private String phoneNumer,home,upi,card,pay;
     private int wallet;
     private LinearLayout walletLayout;
+    private FirebaseUser user;
+    private FirebaseStorage firebaseStorage;
+    private StorageReference storageReference;
+    private static final int PICK_IMAGE_REQUEST = 234;
+    private Uri filePath;
+
+
 
 
     @Override
@@ -60,7 +80,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setElevation(0);
         setContentView(R.layout.activity_profile);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user= FirebaseAuth.getInstance().getCurrentUser();
         profileImageView=findViewById(R.id.profileImageView);
         profileUsername=findViewById(R.id.profileUsername);
         basicName=findViewById(R.id.basicName);
@@ -80,6 +100,10 @@ public class ProfileActivity extends AppCompatActivity {
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
 
+        firebaseStorage=FirebaseStorage.getInstance();
+        storageReference=firebaseStorage.getReference();
+
+
 
 
 
@@ -87,11 +111,11 @@ public class ProfileActivity extends AppCompatActivity {
             String name = user.getDisplayName();
             String email = user.getEmail();
             Log.v("Username",name);
-            profileImageView.setImageResource(R.drawable.me);
             profileUsername.setText(name);
             basicName.setText(name);
             profileEmail.setText(email);
             getUserDetails(user.getUid());
+            getImage();
         } else {
             profileUsername.setText("No user name");
         }
@@ -113,6 +137,14 @@ public class ProfileActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.editImage)
+            uploadUserImage();
+        return true;
+    }
+
+    //popup for edititng user dettails
     public void editUserDetails(String uid){
 
         ImageView cancelEdit;
@@ -226,6 +258,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    //gets user details
     public void getUserDetails(String uid){
         databaseReference.child("UserProfile").orderByChild("uid").equalTo(uid)
                 .addValueEventListener(new ValueEventListener() {
@@ -275,10 +308,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    public void uploadUserImage(String uid){
-
-    }
-
+    //adds money to wallet
     public void addMoneyWallet(String uid){
 
         walletLayout.setEnabled(true);
@@ -337,5 +367,97 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
     }
+
+    //intent for image choose
+    public void uploadUserImage(){
+        // Intent to photo picker
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+
+    }
+
+    //handling the image chooser activity result
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            filePath = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                uploadFile();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //uploads image to database
+    private void uploadFile() {
+        //if there is a file to upload
+        if (filePath != null) {
+            //displaying a progress dialog while upload is going on
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading");
+            progressDialog.show();
+
+            StorageReference riversRef = storageReference.child(user.getUid()+"/profile.jpg");
+            riversRef.putFile(filePath)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        //if the upload is successfull
+                        //hiding the progress dialog
+                        progressDialog.dismiss();
+                        getImage();
+                        Toast.makeText(getApplicationContext(), "Profile Photo Updated", Toast.LENGTH_LONG).show();
+                    })
+                    .addOnFailureListener(exception -> {
+                        //if the upload is not successfull
+                        //hiding the progress dialog
+                        progressDialog.dismiss();
+
+                        //and displaying error message
+                        Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+                    })
+                    .addOnProgressListener(taskSnapshot -> {
+                        //calculating progress percentage
+                        double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+
+                        //displaying percentage in progress dialog
+                        progressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
+                    });
+        }
+        //if there is not any file
+        else {
+            Toast.makeText(this, "Error Please try again", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //get Image
+    public void getImage(){
+        StorageReference mImageRef =
+                FirebaseStorage.getInstance().getReference(user.getUid()+"/profile.jpg");
+        final long ONE_MEGABYTE = 1024 * 1024*10;
+        mImageRef.getBytes(ONE_MEGABYTE)
+                .addOnSuccessListener(bytes -> {
+                    Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    DisplayMetrics dm = new DisplayMetrics();
+                    getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+                    profileImageView.setMinimumHeight(dm.heightPixels);
+                    profileImageView.setMinimumWidth(dm.widthPixels);
+                    profileImageView.setImageBitmap(bm);
+
+                })
+
+                .addOnFailureListener(exception -> {
+                    // Handle any errors
+                    profileImageView.setImageResource(R.drawable.engine);
+                });
+
+    }
+
+
 
 }
