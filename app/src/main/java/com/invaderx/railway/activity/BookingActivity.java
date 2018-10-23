@@ -1,23 +1,33 @@
 package com.invaderx.railway.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +43,7 @@ import com.invaderx.railway.adapters.PassengersAdapter;
 import com.invaderx.railway.models.Passengers;
 import com.invaderx.railway.models.Ticket;
 import com.invaderx.railway.models.Trains;
+import com.invaderx.railway.models.UserProfile;
 import com.yarolegovich.lovelydialog.LovelyCustomDialog;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,7 +68,10 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     private int i , availableSeats ,trainClass;
     private String sFare,travelClass,updateFareofClass;
     private Ticket ticket;
+    private PopupWindow popWindow;
     private String baseclass = "";
+    private int getAmount=0;
+    private int totalFare=0, wallet=0,flag=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,6 +133,8 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         loader.setVisibility(View.VISIBLE);
         getCurrentTraindata(trainNumber,trainClass);
 
+        getWalletAmount();
+
 
     }
     @Override
@@ -130,7 +146,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.makePayment:
                 if (pArrayList.size()>0)
-                    doPayment();
+                    paymentGateway();
                 else
                     Snackbar.make(findViewById(android.R.id.content),"No Passengers added",Snackbar.LENGTH_SHORT).show();
 
@@ -406,8 +422,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     //confirms booking and generates ticket in database
-    public void doPayment(){
-        makePayment.setEnabled(false);
+    public void Payment(){
         String seatNo ="";
         switch (trainClass){
             case 1:
@@ -448,7 +463,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         //calculation of total fare
-        int totalFare=(Integer.parseInt(sFare))*(pArrayList.size());
+        totalFare=(Integer.parseInt(sFare))*(pArrayList.size());
 
         String pnr = generatePNR();
         ticket=new Ticket(bTrainNameNumber.getText().toString(),TrainSearchActivity.source,TrainSearchActivity.destination,
@@ -487,5 +502,208 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                         TrainResponseActivity.trainResponse.finish();
                     });
     }
+
+    //updates wallet amount after cancellation
+    public void updateWallet(int bookedAmount){
+        databaseReference.child("UserProfile").child(userUID).child("wallet").setValue(getAmount+bookedAmount)
+                .addOnSuccessListener(m->{
+                    Snackbar.make(findViewById(android.R.id.content), "Cancel Successful\nMoney refunded to wallet", Snackbar.LENGTH_LONG).show();
+
+                });
+    }
+
+    //gets wallet amount
+    public void getWalletAmount(){
+        databaseReference.child("UserProfile").orderByChild("uid").equalTo(userUID)
+                .addValueEventListener(new ValueEventListener() {
+                    UserProfile userProfile = null;
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            for(DataSnapshot data : dataSnapshot.getChildren()){
+                                userProfile=data.getValue(UserProfile.class);
+                            }
+                            getAmount=userProfile.getWallet();
+                        }
+                        Log.e("Wallet",""+getAmount);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+    //opens payment gateway
+
+    public void paymentGateway(){
+
+        ImageView cancelPayment;
+        RelativeLayout hidable,showable;
+        LinearLayout walletClick,upiClick,cardClick,paytmClick,allDoneLayout;
+        TextView paymentWallet,upiPayment,debitCardPayment,paytmPayment,total,selectedPayment,date;
+        Button doPayment,allDone;
+
+
+        LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View inflatedView = layoutInflater.inflate(R.layout.payment_popup, null,false);
+
+        cancelPayment=inflatedView.findViewById(R.id.cancelPayment);
+        hidable=inflatedView.findViewById(R.id.hidable);
+        showable=inflatedView.findViewById(R.id.showable);
+        walletClick=inflatedView.findViewById(R.id.walletClick);
+        upiClick=inflatedView.findViewById(R.id.upiClick);
+        cardClick=inflatedView.findViewById(R.id.cardClick);
+        paytmClick=inflatedView.findViewById(R.id.paytmClick);
+        allDoneLayout=inflatedView.findViewById(R.id.allDoneLayout);
+        paymentWallet=inflatedView.findViewById(R.id.paymentWallet);
+        upiPayment=inflatedView.findViewById(R.id.upiPayment);
+        debitCardPayment=inflatedView.findViewById(R.id.debitCardPayment);
+        paytmPayment=inflatedView.findViewById(R.id.paytmPayment);
+        total=inflatedView.findViewById(R.id.totalFare);
+        selectedPayment=inflatedView.findViewById(R.id.selectedPayment);
+        date=inflatedView.findViewById(R.id.date);
+        doPayment=inflatedView.findViewById(R.id.doPayment);
+        allDone=inflatedView.findViewById(R.id.allDone);
+
+        // get device size
+        Display display = getWindowManager().getDefaultDisplay();
+        final Point size = new Point();
+        display.getSize(size);
+
+        //mDeviceHeight = size.y;
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        int width = displayMetrics.widthPixels;
+        int height = displayMetrics.heightPixels;
+
+        // set height depends on the device size
+        popWindow = new PopupWindow(inflatedView, width,height-60, true );
+        popWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+        popWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+
+        popWindow.setAnimationStyle(R.style.PopupAnimation);
+
+        // show the popup at bottom of the screen and set some margin at bottom ie,
+        popWindow.showAtLocation(inflatedView, Gravity.BOTTOM, 0,100);
+
+        total.setText("Total Fare: "+(Integer.parseInt(sFare))*(pArrayList.size()));
+        date.setText("Date: "+getDate());
+        cancelPayment.setOnClickListener(v->{
+            popWindow.dismiss();
+            hidable.setVisibility(View.VISIBLE);
+            showable.setVisibility(View.INVISIBLE);
+            allDoneLayout.setVisibility(View.INVISIBLE);
+        });
+
+        //getting payment details--------------------------------------------------------------------------------------
+        databaseReference.child("UserProfile").orderByChild("uid").equalTo(userUID)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        UserProfile userProfile1 = null;
+                        if(dataSnapshot.exists()){
+                            for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                                userProfile1=dataSnapshot1.getValue(UserProfile.class);
+                            }
+
+                            if(userProfile1.getUpi().equals("0"))
+                                upiPayment.setText("Link UPI");
+                            else
+                                upiPayment.setText(userProfile1.getUpi());
+                            if(userProfile1.getCard().equals("0"))
+                                debitCardPayment.setText("Link Debit/Credit Card");
+                            else
+                                debitCardPayment.setText(userProfile1.getCard());
+                            if(userProfile1.getPaytm().equals("0"))
+                                paytmPayment.setText("Link Paytm");
+                            else
+                                paytmPayment.setText(userProfile1.getPaytm());
+                            paymentWallet.setText("₹"+userProfile1.getWallet());
+                            wallet=userProfile1.getWallet();
+                        }
+                        else {
+                            Snackbar.make(findViewById(android.R.id.content), "Something went wrong", Snackbar.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Snackbar.make(findViewById(android.R.id.content), ""+databaseError.getMessage(), Snackbar.LENGTH_LONG).show();
+
+                    }
+                });
+        //-----------------------------------------------------------------------------------------------------------------
+
+        walletClick.setOnClickListener(v -> {
+            if(wallet<(Integer.parseInt(sFare))*(pArrayList.size()))
+                Toast.makeText(this, "Insufficient Amount\n Refill your wallet in profile section", Toast.LENGTH_SHORT).show();
+            else{
+                hidable.setVisibility(View.INVISIBLE);
+                showable.setVisibility(View.VISIBLE);
+                selectedPayment.setText("Railway wallet ("+paymentWallet.getText().toString()+")");
+                flag = 1;
+            }
+
+        });
+        upiClick.setOnClickListener(v -> {
+            if(upiPayment.getText().toString().equals("Link UPI"))
+                Toast.makeText(this, "UPI not Linked please link it in profile section", Toast.LENGTH_SHORT).show();
+            else {
+                hidable.setVisibility(View.INVISIBLE);
+                showable.setVisibility(View.VISIBLE);
+                selectedPayment.setText("UPI Id  ("+upiPayment.getText().toString()+")");
+            }
+
+
+        });
+        cardClick.setOnClickListener(v -> {
+            if(debitCardPayment.getText().toString().equals("Link Debit/Credit Card"))
+                Toast.makeText(this, "Debitt/Credit Card not Linked please link it in profile section", Toast.LENGTH_SHORT).show();
+            else {
+                hidable.setVisibility(View.INVISIBLE);
+                showable.setVisibility(View.VISIBLE);
+                selectedPayment.setText("Debit/Credit Card  ("+debitCardPayment.getText().toString()+")");
+            }
+
+        });
+        paytmClick.setOnClickListener(v -> {
+            if(paytmPayment.getText().toString().equals("Link Paytm"))
+                Toast.makeText(this, "Paytm not Linked please link it in profile section", Toast.LENGTH_SHORT).show();
+            else {
+                hidable.setVisibility(View.INVISIBLE);
+                showable.setVisibility(View.VISIBLE);
+                selectedPayment.setText("Paytm Number ("+paytmPayment.getText().toString()+")");
+            }
+
+        });
+
+        doPayment.setOnClickListener(v -> {
+            hidable.setVisibility(View.INVISIBLE);
+            showable.setVisibility(View.INVISIBLE);
+            allDoneLayout.setVisibility(View.VISIBLE);
+            Payment();
+            if(flag == 1){
+                flag=0;
+                updateWallet();
+            }
+        });
+
+        allDone.setOnClickListener(v -> {
+            hidable.setVisibility(View.VISIBLE);
+            showable.setVisibility(View.INVISIBLE);
+            allDoneLayout.setVisibility(View.INVISIBLE);
+            finish();
+            TrainResponseActivity.trainResponse.finish();
+        });
+
+    }
+
+
+    public void updateWallet(){
+        databaseReference.child("UserProfile").child(userUID).child("wallet").setValue(wallet-(Integer.parseInt(sFare))*(pArrayList.size()));
+
+    }
+
 
 }

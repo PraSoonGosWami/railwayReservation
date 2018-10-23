@@ -174,7 +174,7 @@
         android:id="@+id/makePayment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Make Payment"
+        android:text="Proceed"
         android:layout_alignParentBottom="true"
         android:textColor="@android:color/white"
         android:background="@color/colorPrimaryDark"/>

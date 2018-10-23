@@ -40,6 +40,7 @@ import com.invaderx.railway.adapters.TicketAdapter;
 import com.invaderx.railway.models.Passengers;
 import com.invaderx.railway.models.Ticket;
 import com.invaderx.railway.models.Trains;
+import com.invaderx.railway.models.UserProfile;
 import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
 
@@ -65,6 +66,8 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
     private PopupWindow popWindow;
     private String PNR,seatAlloted,freshSeats="",trainNumber="",currentclass="";
     private int fare = 0,i=0;
+    private int getAmount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +105,8 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
         View view = inflater.inflate(R.layout.passeneger_model,null);
         Button deletePassengers = view.findViewById(R.id.deletePassengers);
         deletePassengers.setVisibility(View.INVISIBLE);
+
+        getWalletAmount();
 
 
 
@@ -269,6 +274,7 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
                             .addOnSuccessListener(aVoid -> {
 
                                 updateSeatAvalabilty(passList.size());
+                                updateWallet(fare);
                                 popWindow.dismiss();
 
                             });
@@ -305,10 +311,10 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
 
                                 //updates fare of ticket
                                 String newFare = String.valueOf(fare-(fare/n));
+                                updateWallet(fare/n);
                                 databaseReference.child("Ticket").child(userUID).child(PNR).child("fare").setValue(newFare)
                                         .addOnSuccessListener(m->{
                                             updateSeatAvalabilty(1);
-                                            Toast.makeText(this, "Cancel Successful", Toast.LENGTH_SHORT).show();
                                         });
 
 
@@ -326,11 +332,7 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
 
         int s = i + cancelledSeats;
         Log.i("SEATS",String.valueOf(s)+"\t"+i+"\t"+cancelledSeats);
-        databaseReference.child("Trains").child(trainNumber).child(currentclass).setValue(s)
-                .addOnSuccessListener(v -> {
-                    Snackbar.make(findViewById(android.R.id.content), "Cancel Successful\nRefund will be made within 42 hours", Snackbar.LENGTH_LONG).show();
-
-                });
+        databaseReference.child("Trains").child(trainNumber).child(currentclass).setValue(s);
     }
 
     //gets current available seats
@@ -376,5 +378,38 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
                     }
                 });
 
+    }
+
+    //updates wallet amount after cancellation
+    public void updateWallet(int cancelledAmount){
+        databaseReference.child("UserProfile").child(userUID).child("wallet").setValue(getAmount+cancelledAmount)
+                .addOnSuccessListener(m->{
+                    popWindow.dismiss();
+                    Snackbar.make(findViewById(android.R.id.content), "Cancel Successful\nMoney refunded to wallet", Snackbar.LENGTH_LONG).show();
+
+                });
+    }
+
+    //gets wallet amount
+    public void getWalletAmount(){
+        databaseReference.child("UserProfile").orderByChild("uid").equalTo(userUID)
+                .addValueEventListener(new ValueEventListener() {
+                    UserProfile userProfile = null;
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            for(DataSnapshot data : dataSnapshot.getChildren()){
+                                userProfile=data.getValue(UserProfile.class);
+                            }
+                            getAmount=userProfile.getWallet();
+                        }
+                        Log.e("Wallet",""+getAmount);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
     }
 }
