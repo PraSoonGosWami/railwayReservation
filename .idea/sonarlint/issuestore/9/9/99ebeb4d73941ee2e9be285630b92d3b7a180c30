@@ -1,39 +1,0 @@
-
-@squid:S1643¹"Use a StringBuilder instead.(‡ְ˜םתÿÿÿÿ8ü…המי,
-;squid:S1643¾"Use a StringBuilder instead.(û׳‹8ü…המי,
-W"squid:SwitchLastCaseIsDefaultCheck~""Add a default case to this switch.(÷ײ8ü…המי,
-]"squid:SwitchLastCaseIsDefaultCheckא""Add a default case to this switch.(¼ףÛüÿÿÿÿ8ü…המי,
-Dsquid:S1659."&Declare "bSrcDest" on a separate line.(ָÝי‰8ü…המי,
-Asquid:S1659."#Declare "bTime" on a separate line.(ָÝי‰8ü…המי,
-Bsquid:S1659."$Declare "bClass" on a separate line.(ָÝי‰8ü…המי,
-Asquid:S1659."#Declare "bFare" on a separate line.(ָÝי‰8ü…המי,
-Tsquid:S16592"1Declare "noPassengersMessage" on a separate line.(װ¸§שÿÿÿÿ8ü…המי,
-Gsquid:S16593")Declare "makePayment" on a separate line.(—ֻ†8ü…המי,
-Csquid:S16598"%Declare "userUID" on a separate line.(ל’כז8ü…המי,
-Gsquid:S16598")Declare "trainNumber" on a separate line.(ל’כז8ü…המי,
-Jsquid:S16599",Declare "availableSeats" on a separate line.(¢™8ü…המי,
-Fsquid:S16599"(Declare "trainClass" on a separate line.(¢™8ü…המי,
-Gsquid:S1659:")Declare "travelClass" on a separate line.(קÊ²כ8ü…המי,
-Msquid:S1659:"/Declare "updateFareofClass" on a separate line.(קÊ²כ8ü…המי,
-Dsquid:S1659י"%Declare "passAge" on a separate line.(װüז8ü…המי,
-Dsquid:S1659»"%Declare "passAge" on a separate line.(װüז8ü…המי,
-esquid:S1192©"GDefine a constant instead of duplicating this literal "Fare: " 5 times.( גy8ü…המי,
-}squid:S1450/"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­ױנ»8ü…המי,
-ysquid:S14506"[Remove the "firebaseAuth" field and declare it as a local variable in the relevant methods.(“ר8ü…המי,
-xsquid:S14507"[Remove the "firebaseUser" field and declare it as a local variable in the relevant methods.(©™8ü…המי,
-nsquid:S14509"PRemove the "i" field and declare it as a local variable in the relevant methods.(¢™8ü…המי,
-xsquid:S1450:"ZRemove the "travelClass" field and declare it as a local variable in the relevant methods.(קÊ²כ8ü…המי,
-~squid:S1450:"`Remove the "updateFareofClass" field and declare it as a local variable in the relevant methods.(קÊ²כ8ü…המי,
-ssquid:S1450;"URemove the "ticket" field and declare it as a local variable in the relevant methods.(ָ½י8ü…המי,
-isquid:S1301~"KReplace this "switch" statement by "if" statements to increase readability.(÷ײ8ü…המי,
-\
-squid:S106Ú"9Replace this use of System.out or System.err by a logger.(÷ג‎ÿÿÿÿ8ü…המי,
-„squid:S1488Ý"eImmediately return this expression instead of assigning it to the temporary variable "formattedDate".(´צ÷Ú8ü…המי,
-]squid:HiddenFieldChecki"5Rename "i" which hides the field declared at line 57.(ט'8ü…המי,
-_squid:HiddenFieldCheck¸"5Rename "i" which hides the field declared at line 57.(µ£­¸8ü…המי,
-_squid:HiddenFieldCheck½"5Rename "i" which hides the field declared at line 57.(µ£­¸8ü…המי,
-dsquid:S2259¢"EA "NullPointerException" could be thrown; "trains1" is nullable here.(ב»Þ8ü…המי,
-Psquid:S1602‏",Remove useless curly braces around statement(­‏ב­‎ÿÿÿÿ8ü…המי,
-Ksquid:S1602ֻ",Remove useless curly braces around statement(§ְַ8ü…המי,
-asquid:S1155c">Use isEmpty() to check whether the collection is empty or not.(‚¨¨ÿÿÿÿÿ8ü…המי,
-]squid:S1155„">Use isEmpty() to check whether the collection is empty or not.(®†8ü…המי,
