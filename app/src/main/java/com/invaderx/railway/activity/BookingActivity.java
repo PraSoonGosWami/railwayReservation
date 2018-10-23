@@ -468,7 +468,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         String pnr = generatePNR();
         ticket=new Ticket(bTrainNameNumber.getText().toString(),TrainSearchActivity.source,TrainSearchActivity.destination,
                 bClass.getText().toString(),bTime.getText().toString(),String.valueOf(totalFare)
-                ,getDate(),pArrayList,seatNo,pnr,trainNumber,baseclass);
+                ,TrainSearchActivity.date,pArrayList,seatNo,pnr,trainNumber,baseclass);
         databaseReference.child("Ticket").child(userUID).child(pnr).setValue(ticket)
         .addOnSuccessListener(aVoid ->{
                 updateSeatAvalabilty(availableSeats,trainNumber,updateFareofClass);
@@ -480,16 +480,6 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     public String generatePNR(){
         long number = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
         return String.valueOf(number);
-    }
-
-    //get current date
-    public String getDate(){
-        Date c = Calendar.getInstance().getTime();
-        System.out.println("Current time => " + c);
-
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-        String formattedDate = df.format(c);
-        return formattedDate;
     }
 
     //updates the seat avalabilty after payment of the ticket
@@ -575,7 +565,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         popWindow.showAtLocation(inflatedView, Gravity.BOTTOM, 0,100);
 
         total.setText("Total Fare: "+(Integer.parseInt(sFare))*(pArrayList.size()));
-        date.setText("Date: "+getDate());
+        date.setText("Date: "+TrainSearchActivity.date);
         cancelPayment.setOnClickListener(v->{
             popWindow.dismiss();
             hidable.setVisibility(View.VISIBLE);

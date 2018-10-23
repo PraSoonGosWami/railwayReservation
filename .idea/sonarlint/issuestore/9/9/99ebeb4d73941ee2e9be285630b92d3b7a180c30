@@ -1,39 +1,63 @@
 
-@squid:S1643¹"Use a StringBuilder instead.(‡À˜íúÿÿÿÿ8ü…äîé,
-;squid:S1643¾"Use a StringBuilder instead.(û×‹8ü…äîé,
-W"squid:SwitchLastCaseIsDefaultCheck~""Add a default case to this switch.(ºÖ8ü…äîé,
-]"squid:SwitchLastCaseIsDefaultCheckà""Add a default case to this switch.(¼œóÛüÿÿÿÿ8ü…äîé,
-Dsquid:S1659."&Declare "bSrcDest" on a separate line.(Èİé‰8ü…äîé,
-Asquid:S1659."#Declare "bTime" on a separate line.(Èİé‰8ü…äîé,
-Bsquid:S1659."$Declare "bClass" on a separate line.(Èİé‰8ü…äîé,
-Asquid:S1659."#Declare "bFare" on a separate line.(Èİé‰8ü…äîé,
-Tsquid:S16592"1Declare "noPassengersMessage" on a separate line.(Ô¸œ§ùÿÿÿÿ8ü…äîé,
-Gsquid:S16593")Declare "makePayment" on a separate line.(—Ë†8ü…äîé,
-Csquid:S16598"%Declare "userUID" on a separate line.(ì’ëæ8ü…äîé,
-Gsquid:S16598")Declare "trainNumber" on a separate line.(ì’ëæ8ü…äîé,
-Jsquid:S16599",Declare "availableSeats" on a separate line.(¢™8ü…äîé,
-Fsquid:S16599"(Declare "trainClass" on a separate line.(¢™8ü…äîé,
-Gsquid:S1659:")Declare "travelClass" on a separate line.(÷Ê²ë8ü…äîé,
-Msquid:S1659:"/Declare "updateFareofClass" on a separate line.(÷Ê²ë8ü…äîé,
-Dsquid:S1659é"%Declare "passAge" on a separate line.(Ôüæ8ü…äîé,
-Dsquid:S1659»"%Declare "passAge" on a separate line.(Ôüæ8ü…äîé,
-esquid:S1192©"GDefine a constant instead of duplicating this literal "Fare: " 5 times.( œây8ü…äîé,
-}squid:S1450/"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8ü…äîé,
-ysquid:S14506"[Remove the "firebaseAuth" field and declare it as a local variable in the relevant methods.(“ø8ü…äîé,
-xsquid:S14507"[Remove the "firebaseUser" field and declare it as a local variable in the relevant methods.(©™Š8ü…äîé,
-nsquid:S14509"PRemove the "i" field and declare it as a local variable in the relevant methods.(¢™8ü…äîé,
-xsquid:S1450:"ZRemove the "travelClass" field and declare it as a local variable in the relevant methods.(÷Ê²ë8ü…äîé,
-~squid:S1450:"`Remove the "updateFareofClass" field and declare it as a local variable in the relevant methods.(÷Ê²ë8ü…äîé,
-ssquid:S1450;"URemove the "ticket" field and declare it as a local variable in the relevant methods.(È½é8ü…äîé,
-isquid:S1301~"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ8ü…äîé,
-\
-squid:S106Ú"9Replace this use of System.out or System.err by a logger.(ºŸâıÿÿÿÿ8ü…äîé,
-„squid:S1488İ"eImmediately return this expression instead of assigning it to the temporary variable "formattedDate".(´öºÚ8ü…äîé,
-]squid:HiddenFieldChecki"5Rename "i" which hides the field declared at line 57.(èŠ'8ü…äîé,
-_squid:HiddenFieldCheck¸"5Rename "i" which hides the field declared at line 57.(µ£­¸8ü…äîé,
-_squid:HiddenFieldCheck½"5Rename "i" which hides the field declared at line 57.(µ£­¸8ü…äîé,
-dsquid:S2259¢"EA "NullPointerException" could be thrown; "trains1" is nullable here.(á»Ş8ü…äîé,
-Psquid:S1602ş",Remove useless curly braces around statement(­şá­ıÿÿÿÿ8ü…äîé,
-Ksquid:S1602Ë",Remove useless curly braces around statement(§ÀÇ8ü…äîé,
-asquid:S1155c">Use isEmpty() to check whether the collection is empty or not.(‚¨¨ÿÿÿÿÿ8ü…äîé,
-]squid:S1155„">Use isEmpty() to check whether the collection is empty or not.(®†Š8ü…äîé,
+=squid:S1643"Use a StringBuilder instead.(‡À˜íúÿÿÿÿ8İ«üê,
+8squid:S1643"Use a StringBuilder instead.(û×‹8İ«üê,
+U"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(ºÖ8İ«üê,
+Z"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(¼œóÛüÿÿÿÿ8İ«üê,
+Bsquid:S1659"&Declare "bSrcDest" on a separate line.(Èİé‰8İ«üê,
+?squid:S1659"#Declare "bTime" on a separate line.(Èİé‰8İ«üê,
+@squid:S1659"$Declare "bClass" on a separate line.(Èİé‰8İ«üê,
+?squid:S1659"#Declare "bFare" on a separate line.(Èİé‰8İ«üê,
+Rsquid:S1659"1Declare "noPassengersMessage" on a separate line.(Ô¸œ§ùÿÿÿÿ8İ«üê,
+Esquid:S1659")Declare "makePayment" on a separate line.(—Ë†8İ«üê,
+Asquid:S1659"%Declare "userUID" on a separate line.(ì’ëæ8İ«üê,
+Esquid:S1659")Declare "trainNumber" on a separate line.(ì’ëæ8İ«üê,
+Hsquid:S1659",Declare "availableSeats" on a separate line.(¢™8İ«üê,
+Dsquid:S1659"(Declare "trainClass" on a separate line.(¢™8İ«üê,
+Esquid:S1659")Declare "travelClass" on a separate line.(÷Ê²ë8İ«üê,
+Ksquid:S1659"/Declare "updateFareofClass" on a separate line.(÷Ê²ë8İ«üê,
+@squid:S1659"$Declare "wallet" on a separate line.(Úæåï8İ«üê,
+>squid:S1659""Declare "flag" on a separate line.(Úæåï8İ«üê,
+Asquid:S1659"%Declare "passAge" on a separate line.(Ôüæ8İ«üê,
+Asquid:S1659"%Declare "passAge" on a separate line.(Ôüæ8İ«üê,
+Bsquid:S1659"&Declare "showable" on a separate line.(Öáş 8İ«üê,
+Bsquid:S1659"&Declare "upiClick" on a separate line.(–İÚ‘8İ«üê,
+Csquid:S1659"'Declare "cardClick" on a separate line.(–İÚ‘8İ«üê,
+Dsquid:S1659"(Declare "paytmClick" on a separate line.(–İÚ‘8İ«üê,
+Gsquid:S1659"+Declare "allDoneLayout" on a separate line.(–İÚ‘8İ«üê,
+Isquid:S1659"(Declare "upiPayment" on a separate line.(¼¸ÙÂüÿÿÿÿ8İ«üê,
+Osquid:S1659".Declare "debitCardPayment" on a separate line.(¼¸ÙÂüÿÿÿÿ8İ«üê,
+Ksquid:S1659"*Declare "paytmPayment" on a separate line.(¼¸ÙÂüÿÿÿÿ8İ«üê,
+Dsquid:S1659"#Declare "total" on a separate line.(¼¸ÙÂüÿÿÿÿ8İ«üê,
+Nsquid:S1659"-Declare "selectedPayment" on a separate line.(¼¸ÙÂüÿÿÿÿ8İ«üê,
+Csquid:S1659""Declare "date" on a separate line.(¼¸ÙÂüÿÿÿÿ8İ«üê,
+@squid:S1659"%Declare "allDone" on a separate line.(£·Ï%8İ«üê,
+bsquid:S1192"GDefine a constant instead of duplicating this literal "Fare: " 5 times.( œây8İ«üê,
+msquid:S1192"LDefine a constant instead of duplicating this literal "UserProfile" 3 times.(Ù¡¸äıÿÿÿÿ8İ«üê,
+{squid:S1450"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8İ«üê,
+vsquid:S1450"ZRemove the "makePayment" field and declare it as a local variable in the relevant methods.(—Ë†8İ«üê,
+wsquid:S1450"[Remove the "firebaseAuth" field and declare it as a local variable in the relevant methods.(“ø8İ«üê,
+vsquid:S1450"[Remove the "firebaseUser" field and declare it as a local variable in the relevant methods.(©™Š8İ«üê,
+lsquid:S1450"PRemove the "i" field and declare it as a local variable in the relevant methods.(¢™8İ«üê,
+vsquid:S1450"ZRemove the "travelClass" field and declare it as a local variable in the relevant methods.(÷Ê²ë8İ«üê,
+|squid:S1450"`Remove the "updateFareofClass" field and declare it as a local variable in the relevant methods.(÷Ê²ë8İ«üê,
+qsquid:S1450"URemove the "ticket" field and declare it as a local variable in the relevant methods.(È½é8İ«üê,
+ysquid:S1450"XRemove the "popWindow" field and declare it as a local variable in the relevant methods.(»ãÌ¦ıÿÿÿÿ8İ«üê,
+tsquid:S1450"XRemove the "totalFare" field and declare it as a local variable in the relevant methods.(Úæåï8İ«üê,
+gsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ8İ«üê,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Á»¹ùúÿÿÿÿ8İ«üê,
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(ºŸâıÿÿÿÿ8İ«üê,
+squid:S1488"eImmediately return this expression instead of assigning it to the temporary variable "formattedDate".(´öºÚ8İ«üê,
+[squid:HiddenFieldCheck"5Rename "i" which hides the field declared at line 68.(èŠ'8İ«üê,
+\squid:HiddenFieldCheck"5Rename "i" which hides the field declared at line 68.(µ£­¸8İ«üê,
+\squid:HiddenFieldCheck"5Rename "i" which hides the field declared at line 68.(µ£­¸8İ«üê,
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(ªìÉıÿÿÿÿ8İ«üê,
+ksquid:S2259"JA "NullPointerException" could be thrown; "userProfile1" is nullable here.(Œ€Ûüÿÿÿÿ8İ«üê,
+asquid:S2259"EA "NullPointerException" could be thrown; "trains1" is nullable here.(á»Ş8İ«üê,
+Msquid:S1602",Remove useless curly braces around statement(­şá­ıÿÿÿÿ8İ«üê,
+Hsquid:S1602",Remove useless curly braces around statement(§ÀÇ8İ«üê,
+Hsquid:S1602",Remove useless curly braces around statement(§ÀÇ8İ«üê,
+¢squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8İ«üê,
+xsquid:UselessImportCheck"ORemove this unused import 'android.support.design.widget.FloatingActionButton'.(„Ÿ¹¼8İ«üê,
+_squid:S1155">Use isEmpty() to check whether the collection is empty or not.(‚¨¨ÿÿÿÿÿ8İ«üê,
+Zsquid:S1155">Use isEmpty() to check whether the collection is empty or not.(®†Š8İ«üê,

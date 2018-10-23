@@ -51,6 +51,7 @@
             android:layout_marginLeft="32dp"
             android:scaleX=".8"
             android:scaleY=".8"
+            android:scaleType="centerCrop"
             android:src="@drawable/edit"
             android:layout_gravity="center_vertical"
             />

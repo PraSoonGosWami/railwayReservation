@@ -1,6 +1,7 @@
 package com.invaderx.railway.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -51,11 +52,9 @@ public class TrainResponseActivity extends AppCompatActivity{
         customType(TrainResponseActivity.this,"fadein-to-fadeout");
         //getting reference of this activity for finishing it after successful payment
         trainResponse=this;
-
         setTitle(TrainSearchActivity.source.toUpperCase()+" → "+TrainSearchActivity.destination.toUpperCase());
-        getSupportActionBar().setSubtitle(getDate());
+        getSupportActionBar().setSubtitle(TrainSearchActivity.date);
         getSupportActionBar().setElevation(0);
-
         //binding views
         recyclerView=findViewById(R.id.searchRecyclerView);
         trainsAdapter=new TrainsAdapter(trains,this,recyclerView);
@@ -76,8 +75,7 @@ public class TrainResponseActivity extends AppCompatActivity{
     }
     //get search data
     public void data(){
-        String day = getToday();
-        databaseReference.child("Trains").orderByChild(day).equalTo(1)
+        databaseReference.child("Trains").orderByChild(TrainSearchActivity.day).equalTo(1)
                 .addValueEventListener(new ValueEventListener() {
 
                     @Override
@@ -121,61 +119,7 @@ public class TrainResponseActivity extends AppCompatActivity{
                 });
     }
 
-    //checks if there is internet connection
-    public void noInternet(){
-        DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
-        connectedRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                boolean connected = snapshot.getValue(Boolean.class);
-                if (!connected) {
-                   // progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(TrainResponseActivity.this, "Not connected", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                   // progressBar.setVisibility(View.VISIBLE);
-                }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-            }
-        });
-    }
-
-    //getting current day for seaching trains on today's date
-    public String getToday(){
-        Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
-
-        switch (day) {
-            case Calendar.SUNDAY:
-                return "dSun";
-            case Calendar.MONDAY:
-                return "dMon";
-            case Calendar.TUESDAY:
-                return "dTue";
-            case Calendar.WEDNESDAY:
-                return "dWed";
-            case Calendar.THURSDAY:
-                return "dThur";
-            case Calendar.FRIDAY:
-                return "dFri";
-            case Calendar.SATURDAY:
-                return "dSat";
-        }
-        return "null";
-    }
-
-    //get current date
-    public String getDate(){
-        Date c = Calendar.getInstance().getTime();
-        System.out.println("Current time => " + c);
-
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-        String formattedDate = df.format(c);
-        return formattedDate;
-    }
 
 
 }

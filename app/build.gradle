@@ -44,6 +44,8 @@ dependencies {
     implementation 'com.github.mirrajabi:search-dialog:1.2.2'
     //lottie
     implementation 'com.airbnb.android:lottie:2.6.1'
+    //intent animation
     implementation 'com.github.hajiyevelnur92:intentanimation:1.0'
+
 }
 apply plugin: 'com.google.gms.google-services'
