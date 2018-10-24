@@ -45,3 +45,5 @@ Japp/src/main/java/com/invaderx/railway/activity/TrainResponseActivity.java,c/c
 +app/src/main/res/layout/content_default.xml,a/c/accb222cb00be2d15bf3bec53ac3b566a0f36ebe
 x
 Happ/src/main/java/com/invaderx/railway/activity/TrainSearchActivity.java,c/2/c235fbd774d9b724404b722e8898869728691b78
+r
+Bapp/src/main/java/com/invaderx/railway/adapters/TicketAdapter.java,a/1/a1db7089dfad832f891561d7d3ea6a479a955dc9
