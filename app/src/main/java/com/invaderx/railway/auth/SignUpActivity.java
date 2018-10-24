@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
@@ -119,8 +120,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     user.updateProfile(profileUpdates);
 
                     userDeatails(user);
-                    //starting the train search activity after successful auth
-                    startActivity(new Intent(SignUpActivity.this, TrainSearchActivity.class));
+                    //User Created
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     finish();
 
                 } else {
@@ -201,7 +203,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public void userDeatails(FirebaseUser firebaseUser){
         UserProfile userProfile=new UserProfile(firebaseUser.getUid(),"0",0,"0","0","0","null");
         databaseReference.child("UserProfile").child(firebaseUser.getUid()).setValue(userProfile)
-                .addOnSuccessListener(aVoid -> Toast.makeText(SignUpActivity.this, "Welcome "+firebaseUser.getDisplayName(), Toast.LENGTH_SHORT).show());
+                .addOnSuccessListener(aVoid -> Toast.makeText(SignUpActivity.this, "You are registered, Now Login", Toast.LENGTH_SHORT).show());
     }
 }
 
