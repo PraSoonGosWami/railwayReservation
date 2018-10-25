@@ -58,19 +58,20 @@ import ir.mirrajabi.searchdialog.core.SearchResultListener;
 import static maes.tech.intentanim.CustomIntent.customType;
 
 public class TrainSearchActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    FloatingActionButton searchButton;
-    Toolbar toolbar;
+    private FloatingActionButton searchButton,reverseButton;
+    private Toolbar toolbar;
     private CardDrawerLayout drawer;
     public static String source;
     public static String destination;
-    NavigationView navigationView;
+    private NavigationView navigationView;
     public static Activity searchActivity;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
-    ArrayList<String>station =new ArrayList<>();
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private ArrayList<String>station =new ArrayList<>();
     private int mYear, mMonth, mDay;
     private TextView dateSelecter;
     public static String day,date;
+    private String reverse = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +82,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         lsrc=findViewById(R.id.lsrc);
         ldest=findViewById(R.id.ldesc);
         searchButton=findViewById(R.id.searchButton);
+        reverseButton=findViewById(R.id.reverseButton);
         day=getToday();
         date=getDate();
         //firebase Database references
@@ -88,6 +90,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         databaseReference=firebaseDatabase.getReference();
 
         dateSelecter=findViewById(R.id.dateSelect);
+        dateSelecter.setText(getDate());
         dateSelecter.setOnClickListener(v -> {
             datePicker();
         });
@@ -109,6 +112,22 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
                 Intent intent = new Intent(this,TrainResponseActivity.class);
                 startActivity(intent);
             }
+        });
+
+        //onClick for reversing source destination
+        reverseButton.setOnClickListener(v -> {
+            if(lsrc.getText().toString().isEmpty())
+                lsrc.setError("No Stations Selected");
+            else if(ldest.getText().toString().isEmpty())
+                ldest.setError("No Stations Selected");
+            else {
+                reverse = lsrc.getText().toString();
+                lsrc.setText(ldest.getText().toString());
+                ldest.setText(reverse);
+                reverse="";
+            }
+
+
         });
 
         //side nav
@@ -303,7 +322,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year, monthOfYear, dayOfMonth) -> {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,(view, year, monthOfYear, dayOfMonth) -> {
 
 
             Calendar cal = Calendar.getInstance();
@@ -314,7 +333,6 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
             date=new SimpleDateFormat("dd-MMM-yyyy").format(myDate);
             dateSelecter.setText(date);
             day=getDayofWeek(cal);
-            Toast.makeText(searchActivity, "Day:"+day, Toast.LENGTH_SHORT).show();
 
 
         },mYear, mMonth, mDay);

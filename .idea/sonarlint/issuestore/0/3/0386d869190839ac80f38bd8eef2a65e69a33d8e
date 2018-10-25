@@ -1,38 +1,38 @@
 
-osquid:CommentedOutCodeLine·"<This block of commented-out lines of code should be removed.(Á»¹ùúÿÿÿÿ8Ü«üê,
-Psquid:S1602",Remove useless curly braces around statement(«Œá¦úÿÿÿÿ8Ü«üê,
-isquid:S2259é"EA "NullPointerException" could be thrown; "trains1" is nullable here.(™µ•·ÿÿÿÿÿ8Ü«üê,
-xsquid:S1450?"[Remove the "firebaseUser" field and declare it as a local variable in the relevant methods.(©™Š8Ü«üê,
-isquid:S2259ï"EA "NullPointerException" could be thrown; "trains1" is nullable here.(úşÉüÿÿÿÿ8Ü«üê,
-vsquid:S00117¡"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰®¡Áıÿÿÿÿ8Ü«üê,
-_squid:HiddenFieldCheck²"5Rename "i" which hides the field declared at line 68.(É¹›Ä8Ü«üê,
-dsquid:S2259Ñ"EA "NullPointerException" could be thrown; "ticket2" is nullable here.(—¶Õ8Ü«üê,
-nsquid:HiddenFieldCheck›"?Rename "progressBar" which hides the field declared at line 60.(ƒ¿öŞøÿÿÿÿ8Ü«üê,
-rsquid:S00116C"NRename this field "PNR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òÊıÿÿÿÿ8Ü«üê,
-esquid:S1192u"GDefine a constant instead of duplicating this literal "Ticket" 7 times.(ääÈà8Ü«üê,
-Csquid:S1659—"$Declare "exDate" on a separate line.(—ÔŸ8Ü«üê,
-Lsquid:S1659C")Declare "trainNumber" on a separate line.(òÊıÿÿÿÿ8Ü«üê,
-Msquid:S1659C"*Declare "currentclass" on a separate line.(òÊıÿÿÿÿ8Ü«üê,
-Dsquid:S1659—"%Declare "exClass" on a separate line.(—ÔŸ8Ü«üê,
-Lsquid:S1659C")Declare "seatAlloted" on a separate line.(òÊıÿÿÿÿ8Ü«üê,
-Csquid:S1659—"$Declare "exFare" on a separate line.(—ÔŸ8Ü«üê,
-Bsquid:S1659D"Declare "i" on a separate line.(¥û­ÿÿÿÿÿ8Ü«üê,
-Psquid:S1602ò",Remove useless curly braces around statement(¡Ä÷úÿÿÿÿ8Ü«üê,
-Esquid:S1659—"&Declare "exSeatNo" on a separate line.(—ÔŸ8Ü«üê,
-Fsquid:S1659—"'Declare "exSrcDest" on a separate line.(—ÔŸ8Ü«üê,
-ysquid:S1450>"[Remove the "firebaseAuth" field and declare it as a local variable in the relevant methods.(“ø8Ü«üê,
-Psquid:S1602¼",Remove useless curly braces around statement(Ÿ™Ìºıÿÿÿÿ8Ü«üê,
-¥squid:S1186ø"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8Ü«üê,
-X"squid:SwitchLastCaseIsDefaultChecká""Add a default case to this switch.(úÆšÔ8Ü«üê,
-dsquid:S2259ì"EA "NullPointerException" could be thrown; "trains1" is nullable here.(Ê§‹®8Ü«üê,
-isquid:S2259æ"EA "NullPointerException" could be thrown; "trains1" is nullable here.(½†Äåùÿÿÿÿ8Ü«üê,
-@squid:S1643³"Use a StringBuilder instead.(‘õ÷»ÿÿÿÿÿ8Ü«üê,
-Ksquid:S1659C"(Declare "freshSeats" on a separate line.(òÊıÿÿÿÿ8Ü«üê,
-]squid:S1155‚">Use isEmpty() to check whether the collection is empty or not.(•À8Ü«üê,
-}squid:S1450:"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8Ü«üê,
-dsquid:S2259ã"EA "NullPointerException" could be thrown; "trains1" is nullable here.(É—ıÆ8Ü«üê,
-usquid:S1450C"RRemove the "PNR" field and declare it as a local variable in the relevant methods.(òÊıÿÿÿÿ8Ü«üê,
-asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8Ü«üê,
-¥squid:S1186š"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8Ü«üê,
-Csquid:S1659—"$Declare "exTime" on a separate line.(—ÔŸ8Ü«üê,
-Ksquid:S1659—",Declare "exTrainNameNum" on a separate line.(—ÔŸ8Ü«üê,
+@squid:S1643³"Use a StringBuilder instead.(‘õ÷»ÿÿÿÿÿ8ÜÊ¹ê,
+X"squid:SwitchLastCaseIsDefaultChecká""Add a default case to this switch.(úÆšÔ8ÜÊ¹ê,
+Lsquid:S1659C")Declare "seatAlloted" on a separate line.(òÊıÿÿÿÿ8ÜÊ¹ê,
+Ksquid:S1659C"(Declare "freshSeats" on a separate line.(òÊıÿÿÿÿ8ÜÊ¹ê,
+Lsquid:S1659C")Declare "trainNumber" on a separate line.(òÊıÿÿÿÿ8ÜÊ¹ê,
+Msquid:S1659C"*Declare "currentclass" on a separate line.(òÊıÿÿÿÿ8ÜÊ¹ê,
+Bsquid:S1659D"Declare "i" on a separate line.(¥û­ÿÿÿÿÿ8ÜÊ¹ê,
+Esquid:S1659—"&Declare "exSeatNo" on a separate line.(—ÔŸ8ÜÊ¹ê,
+Dsquid:S1659—"%Declare "exClass" on a separate line.(—ÔŸ8ÜÊ¹ê,
+Ksquid:S1659—",Declare "exTrainNameNum" on a separate line.(—ÔŸ8ÜÊ¹ê,
+Fsquid:S1659—"'Declare "exSrcDest" on a separate line.(—ÔŸ8ÜÊ¹ê,
+Csquid:S1659—"$Declare "exDate" on a separate line.(—ÔŸ8ÜÊ¹ê,
+Csquid:S1659—"$Declare "exTime" on a separate line.(—ÔŸ8ÜÊ¹ê,
+Csquid:S1659—"$Declare "exFare" on a separate line.(—ÔŸ8ÜÊ¹ê,
+esquid:S1192u"GDefine a constant instead of duplicating this literal "Ticket" 7 times.(ääÈà8ÜÊ¹ê,
+}squid:S1450:"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8ÜÊ¹ê,
+ysquid:S1450>"[Remove the "firebaseAuth" field and declare it as a local variable in the relevant methods.(“ø8ÜÊ¹ê,
+xsquid:S1450?"[Remove the "firebaseUser" field and declare it as a local variable in the relevant methods.(©™Š8ÜÊ¹ê,
+usquid:S1450C"RRemove the "PNR" field and declare it as a local variable in the relevant methods.(òÊıÿÿÿÿ8ÜÊ¹ê,
+osquid:CommentedOutCodeLine·"<This block of commented-out lines of code should be removed.(Á»¹ùúÿÿÿÿ8ÜÊ¹ê,
+nsquid:HiddenFieldCheck›"?Rename "progressBar" which hides the field declared at line 60.(ƒ¿öŞøÿÿÿÿ8ÜÊ¹ê,
+_squid:HiddenFieldCheck²"5Rename "i" which hides the field declared at line 68.(É¹›Ä8ÜÊ¹ê,
+isquid:S2259ï"EA "NullPointerException" could be thrown; "trains1" is nullable here.(úşÉüÿÿÿÿ8ÜÊ¹ê,
+isquid:S2259æ"EA "NullPointerException" could be thrown; "trains1" is nullable here.(½†Äåùÿÿÿÿ8ÜÊ¹ê,
+dsquid:S2259Ñ"EA "NullPointerException" could be thrown; "ticket2" is nullable here.(—¶Õ8ÜÊ¹ê,
+dsquid:S2259ì"EA "NullPointerException" could be thrown; "trains1" is nullable here.(Ê§‹®8ÜÊ¹ê,
+dsquid:S2259ã"EA "NullPointerException" could be thrown; "trains1" is nullable here.(É—ıÆ8ÜÊ¹ê,
+isquid:S2259é"EA "NullPointerException" could be thrown; "trains1" is nullable here.(™µ•·ÿÿÿÿÿ8ÜÊ¹ê,
+Psquid:S1602ò",Remove useless curly braces around statement(¡Ä÷úÿÿÿÿ8ÜÊ¹ê,
+Psquid:S1602",Remove useless curly braces around statement(«Œá¦úÿÿÿÿ8ÜÊ¹ê,
+Psquid:S1602¼",Remove useless curly braces around statement(Ÿ™Ìºıÿÿÿÿ8ÜÊ¹ê,
+¥squid:S1186ø"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8ÜÊ¹ê,
+¥squid:S1186š"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8ÜÊ¹ê,
+rsquid:S00116C"NRename this field "PNR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òÊıÿÿÿÿ8ÜÊ¹ê,
+vsquid:S00117¡"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰®¡Áıÿÿÿÿ8ÜÊ¹ê,
+asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8ÜÊ¹ê,
+]squid:S1155‚">Use isEmpty() to check whether the collection is empty or not.(•À8ÜÊ¹ê,
