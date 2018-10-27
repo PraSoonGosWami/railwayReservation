@@ -51,7 +51,7 @@ import ir.mirrajabi.searchdialog.core.SearchResultListener;
 import static maes.tech.intentanim.CustomIntent.customType;
 
 public class TrainSearchActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private FloatingActionButton searchButton,reverseButton;
+    private FloatingActionButton searchButton, reverseButton;
     private Toolbar toolbar;
     private CardDrawerLayout drawer;
     public static String source;
@@ -60,7 +60,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
     public static Activity searchActivity;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private ArrayList<String>station =new ArrayList<>();
+    private ArrayList<String> station = new ArrayList<>();
     private int mYear, mMonth, mDay;
     private TextView dateSelecter;
     public static String day,date;
@@ -75,7 +75,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         lsrc=findViewById(R.id.lsrc);
         ldest=findViewById(R.id.ldesc);
         searchButton=findViewById(R.id.searchButton);
-        reverseButton=findViewById(R.id.reverseButton);
+        reverseButton = findViewById(R.id.reverseButton);
         day=getToday();
         date=getDate();
         //firebase Database references
@@ -109,15 +109,15 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
 
         //onClick for reversing source destination
         reverseButton.setOnClickListener(v -> {
-            if(lsrc.getText().toString().isEmpty())
+            if (lsrc.getText().toString().isEmpty())
                 lsrc.setError("No Stations Selected");
-            else if(ldest.getText().toString().isEmpty())
+            else if (ldest.getText().toString().isEmpty())
                 ldest.setError("No Stations Selected");
             else {
                 reverse = lsrc.getText().toString();
                 lsrc.setText(ldest.getText().toString());
                 ldest.setText(reverse);
-                reverse="";
+                reverse = "";
             }
 
 
@@ -315,7 +315,7 @@ public class TrainSearchActivity extends AppCompatActivity implements Navigation
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,(view, year, monthOfYear, dayOfMonth) -> {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme, (view, year, monthOfYear, dayOfMonth) -> {
 
 
             Calendar cal = Calendar.getInstance();

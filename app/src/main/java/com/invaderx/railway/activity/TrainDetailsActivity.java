@@ -17,6 +17,7 @@ public class TrainDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_details);
+
     }
 
     @Override
@@ -30,7 +31,7 @@ public class TrainDetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.admin_logout) {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(TrainDetailsActivity.this,LoginActivity.class));
+            startActivity(new Intent(TrainDetailsActivity.this, LoginActivity.class));
         }
 
         return true;

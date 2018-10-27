@@ -244,21 +244,20 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
 
 
         cancelFAB.setOnClickListener(v -> {
-            if(compareDates(exDate.getText().toString())==false)
+            if (compareDates(exDate.getText().toString()) == false)
                 cancelTicket(pnr);
             else
                 Toast.makeText(this, "Cannot cancel back dated tickets", Toast.LENGTH_SHORT).show();
         });
 
         exPassengerList.setOnItemClickListener((parent, view, position, id) -> {
-            if(compareDates(exDate.getText().toString())==false){
+            if (compareDates(exDate.getText().toString()) == false) {
                 if (passList.size() < 2)
                     cancelTicket(pnr);
                 else {
                     cancelPerson(pnr, position);
                 }
-            }
-            else
+            } else
                 Toast.makeText(this, "Cannot cancel back dated tickets", Toast.LENGTH_SHORT).show();
 
         });
@@ -425,7 +424,7 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
     }
 
     //compares previous date
-    public boolean compareDates(String getDate){
+    public boolean compareDates(String getDate) {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
         Date strDate = null;

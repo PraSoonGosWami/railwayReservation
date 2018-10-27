@@ -51,7 +51,10 @@
             android:label="My Profile"
             android:parentActivityName=".activity.TrainSearchActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".auth.AdminLogin" />
+        <activity
+            android:name=".auth.AdminLogin"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.TrainDetailsActivity"></activity>
     </application>
 

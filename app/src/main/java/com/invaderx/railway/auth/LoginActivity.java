@@ -31,9 +31,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText editTextEmail;
     EditText editTextPassword;
     TextView textView;
-    TextView adminLogin;
-    CircularProgressButton loginButton;
     final String adminUid = "QrouSopdUsQMR9hgNghOwofdmSl2";
+    CircularProgressButton loginButton;
+    TextView adminLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         adminLogin = findViewById(R.id.admin_login_text_view);
         adminLogin.setOnClickListener(view -> {
             startActivity(new Intent(LoginActivity.this, AdminLogin.class));
+            finish();
         });
         editTextEmail.setTranslationX(1000f);
         editTextPassword.setTranslationX(1000f);
@@ -123,7 +124,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             FirebaseUser user = mAuth.getCurrentUser();
             String uId = user.getUid();
             if (uId.equals(adminUid)) {
-                startActivity(new Intent(LoginActivity.this, TrainDetailsActivity.class));
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(LoginActivity.this, LoginActivity.class));
             } else {
                 startActivity(new Intent(this, TrainSearchActivity.class));
             }

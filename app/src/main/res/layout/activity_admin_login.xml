@@ -1,103 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient"
     android:orientation="vertical"
-    tools:context=".auth.LoginActivity"
-    android:background="@drawable/gradient">
+    tools:context=".auth.LoginActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_centerVertical="true"
-            android:orientation="vertical"
-            android:paddingTop="18dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
             android:layout_marginBottom="22dp"
-            android:layout_alignParentBottom="true">
+            android:orientation="vertical"
+            android:paddingLeft="12dp"
+            android:paddingTop="18dp"
+            android:paddingRight="12dp">
 
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/engine"
                 android:layout_gravity="center"
-                android:layout_margin="42dp"/>
+                android:layout_margin="42dp"
+                android:src="@drawable/engine" />
 
             <EditText
                 android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:hint=" admin email"
-                android:drawableLeft="@drawable/user"
-                android:background="@drawable/edittext"
-                android:drawablePadding="8dp"
-                android:padding="12dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="22dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/edittext"
+                android:drawableLeft="@drawable/user"
+                android:drawablePadding="8dp"
+                android:fontFamily="sans-serif"
+                android:hint=" admin email"
                 android:inputType="textEmailAddress"
+                android:padding="12dp"
                 android:paddingBottom="15dp" />
 
             <EditText
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="22dp"
+                android:background="@drawable/edittext"
+                android:drawableLeft="@drawable/key"
+                android:drawablePadding="8dp"
                 android:fontFamily="sans-serif"
                 android:hint="password"
                 android:inputType="textPassword"
-                android:paddingBottom="15dp"
-                android:drawableLeft="@drawable/key"
-                android:background="@drawable/edittext"
-                android:drawablePadding="8dp"
                 android:padding="12dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="22dp"
-                android:layout_marginBottom="22dp"
-                />
+                android:paddingBottom="15dp" />
 
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                 android:id="@+id/buttonLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="22dp"
-                android:layout_marginBottom="22dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginLeft="8dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="22dp"
                 android:background="@drawable/rounded_button_solid_white"
-                android:text="Admin Login"
                 android:padding="10dp"
+                android:text="Admin Login"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimaryDark"
-                app:spinning_bar_width="4dp"
                 app:spinning_bar_color="@color/colorPrimaryDark"
-                app:spinning_bar_padding="6dp"/>
+                app:spinning_bar_padding="6dp"
+                app:spinning_bar_width="4dp" />
 
 
             <TextView
+                android:id="@+id/user_login_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="User Login"
+                android:layout_margin="16dp"
                 android:gravity="center_horizontal"
+                android:text="User Login"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textColor="@color/colorAccent"
-                android:textSize="24sp"
-                android:layout_margin="16dp"
-                android:id="@+id/user_login_text_view"/>
+                android:textSize="24sp" />
 
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </RelativeLayout>

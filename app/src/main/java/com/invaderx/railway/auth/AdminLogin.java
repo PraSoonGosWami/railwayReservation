@@ -27,12 +27,12 @@ import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 import br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener;
 
 public class AdminLogin extends AppCompatActivity implements View.OnClickListener {
+    final String adminUid = "QrouSopdUsQMR9hgNghOwofdmSl2";
     FirebaseAuth mAuth;
     EditText editTextEmail;
     EditText editTextPassword;
     CircularProgressButton loginButton;
     TextView userLogin;
-    final String adminUid = "QrouSopdUsQMR9hgNghOwofdmSl2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +43,12 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
 
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
-        loginButton= findViewById(R.id.buttonLogin);
+        loginButton = findViewById(R.id.buttonLogin);
         loginButton.setOnClickListener(this);
         //User Login
-        userLogin= findViewById(R.id.user_login_text_view);
+        userLogin = findViewById(R.id.user_login_text_view);
         userLogin.setOnClickListener(view -> {
-            startActivity(new Intent(AdminLogin.this,LoginActivity.class));
+            startActivity(new Intent(AdminLogin.this, LoginActivity.class));
         });
         editTextEmail.setTranslationX(1000f);
         editTextPassword.setTranslationX(1000f);
@@ -87,28 +87,27 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 FirebaseUser user = mAuth.getCurrentUser();
-                String uId= user.getUid();
-                if(uId.equals(adminUid)) {
+                String uId = user.getUid();
+                if (uId.equals(adminUid)) {
                     loginButton.dispose();
                     Intent intent = new Intent(AdminLogin.this, TrainDetailsActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
-                }
-                else{
+                } else {
                     FirebaseAuth.getInstance().signOut();
                     loginButton.revertAnimation(() -> {
                         loginButton.setFinalCornerRadius(200f);
                         loginButton.setInitialCornerRadius(200f);
                     });
-                    Toast.makeText(getApplicationContext(),"Invalid Admin details,Please Enter Correct details",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Invalid Admin details,Please Enter Correct details", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 loginButton.revertAnimation(() -> {
                     loginButton.setFinalCornerRadius(200f);
                     loginButton.setInitialCornerRadius(200f);
                 });
-                Toast.makeText(getApplicationContext(),"Invalid Admin details,Please Enter Correct details", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Invalid Admin details,Please Enter Correct details", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -150,18 +149,18 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
     }
 
 
-    public void viewAnimator(){
-        ObjectAnimator loginButtonAnim = ObjectAnimator.ofFloat(loginButton, "translationX",1000f,0f);
+    public void viewAnimator() {
+        ObjectAnimator loginButtonAnim = ObjectAnimator.ofFloat(loginButton, "translationX", 1000f, 0f);
         loginButtonAnim.setDuration(500);
         loginButtonAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         loginButtonAnim.start();
 
-        ObjectAnimator emailAnim = ObjectAnimator.ofFloat(editTextEmail, "translationX",1000f,0f);
+        ObjectAnimator emailAnim = ObjectAnimator.ofFloat(editTextEmail, "translationX", 1000f, 0f);
         emailAnim.setDuration(300);
         emailAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         emailAnim.start();
 
-        ObjectAnimator passwordAnim = ObjectAnimator.ofFloat(editTextPassword, "translationX",1000f,0f);
+        ObjectAnimator passwordAnim = ObjectAnimator.ofFloat(editTextPassword, "translationX", 1000f, 0f);
         passwordAnim.setDuration(400);
         passwordAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         passwordAnim.start();

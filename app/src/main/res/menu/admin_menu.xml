@@ -4,7 +4,7 @@
     <item
         android:id="@+id/admin_logout"
         android:icon="@drawable/edit"
-        app:showAsAction="never"
-        android:title="LogOut"/>
+        android:title="LogOut"
+        app:showAsAction="never" />
 
 </menu>
