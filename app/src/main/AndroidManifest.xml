@@ -3,7 +3,7 @@
     package="com.invaderx.railway">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -46,13 +46,13 @@
             android:label="My Bookings"
             android:parentActivityName=".activity.TrainSearchActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.ProfileActivity"
+        <activity
+            android:name=".activity.ProfileActivity"
             android:label="My Profile"
             android:parentActivityName=".activity.TrainSearchActivity"
-            android:screenOrientation="portrait"
-            >
-
-        </activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".auth.AdminLogin" />
+        <activity android:name=".activity.TrainDetailsActivity"></activity>
     </application>
 
 </manifest>

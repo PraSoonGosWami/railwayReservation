@@ -26,35 +26,29 @@ import com.invaderx.railway.activity.TrainSearchActivity;
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 import br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class AdminLogin extends AppCompatActivity implements View.OnClickListener {
     FirebaseAuth mAuth;
     EditText editTextEmail;
     EditText editTextPassword;
-    TextView textView;
-    TextView adminLogin;
     CircularProgressButton loginButton;
+    TextView userLogin;
     final String adminUid = "QrouSopdUsQMR9hgNghOwofdmSl2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_admin_login);
 
         mAuth = FirebaseAuth.getInstance();
 
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
-
-        findViewById(R.id.textViewSignup).setOnClickListener(this);
-        loginButton = findViewById(R.id.buttonLogin);
+        loginButton= findViewById(R.id.buttonLogin);
         loginButton.setOnClickListener(this);
-        // For Password reset
-        textView = findViewById(R.id.textViewReset);
-        textView.setOnClickListener(view -> sendPasswordReset());
-        //Admin Login
-        adminLogin = findViewById(R.id.admin_login_text_view);
-        adminLogin.setOnClickListener(view -> {
-            startActivity(new Intent(LoginActivity.this, AdminLogin.class));
+        //User Login
+        userLogin= findViewById(R.id.user_login_text_view);
+        userLogin.setOnClickListener(view -> {
+            startActivity(new Intent(AdminLogin.this,LoginActivity.class));
         });
         editTextEmail.setTranslationX(1000f);
         editTextPassword.setTranslationX(1000f);
@@ -90,22 +84,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginButton.setFinalCornerRadius(200f);
         loginButton.setInitialCornerRadius(200f);
 
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                FirebaseUser user = mAuth.getCurrentUser();
+                String uId= user.getUid();
+                if(uId.equals(adminUid)) {
                     loginButton.dispose();
-                    Intent intent = new Intent(LoginActivity.this, TrainSearchActivity.class);
+                    Intent intent = new Intent(AdminLogin.this, TrainDetailsActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
-                } else {
+                }
+                else{
+                    FirebaseAuth.getInstance().signOut();
                     loginButton.revertAnimation(() -> {
                         loginButton.setFinalCornerRadius(200f);
                         loginButton.setInitialCornerRadius(200f);
                     });
-                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Invalid Admin details,Please Enter Correct details",Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                loginButton.revertAnimation(() -> {
+                    loginButton.setFinalCornerRadius(200f);
+                    loginButton.setInitialCornerRadius(200f);
+                });
+                Toast.makeText(getApplicationContext(),"Invalid Admin details,Please Enter Correct details", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -119,14 +122,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         viewAnimator();
         if (mAuth.getCurrentUser() != null) {
             finish();
-            //for admin user only
-            FirebaseUser user = mAuth.getCurrentUser();
-            String uId = user.getUid();
-            if (uId.equals(adminUid)) {
-                startActivity(new Intent(LoginActivity.this, TrainDetailsActivity.class));
-            } else {
-                startActivity(new Intent(this, TrainSearchActivity.class));
-            }
+            startActivity(new Intent(this, TrainSearchActivity.class));
         }
     }
 
@@ -147,58 +143,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
 
-            case R.id.textViewSignup:
-                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-                finish();
-                break;
-
             case R.id.buttonLogin:
                 userLogin();
                 break;
         }
     }
 
-    // Password Reset Method
-    public void sendPasswordReset() {
-        // [START send_password_reset]
-        String email = editTextEmail.getText().toString().trim();
 
-        if (email.isEmpty()) {
-            editTextEmail.setError("Email is required");
-            editTextEmail.requestFocus();
-            return;
-        }
-
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Please enter a valid email");
-            editTextEmail.requestFocus();
-            return;
-        }
-
-
-        mAuth.sendPasswordResetEmail(email)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(getApplicationContext(), "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-        // [END send_password_reset]
-    }
-
-    public void viewAnimator() {
-        ObjectAnimator loginButtonAnim = ObjectAnimator.ofFloat(loginButton, "translationX", 1000f, 0f);
+    public void viewAnimator(){
+        ObjectAnimator loginButtonAnim = ObjectAnimator.ofFloat(loginButton, "translationX",1000f,0f);
         loginButtonAnim.setDuration(500);
         loginButtonAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         loginButtonAnim.start();
 
-        ObjectAnimator emailAnim = ObjectAnimator.ofFloat(editTextEmail, "translationX", 1000f, 0f);
+        ObjectAnimator emailAnim = ObjectAnimator.ofFloat(editTextEmail, "translationX",1000f,0f);
         emailAnim.setDuration(300);
         emailAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         emailAnim.start();
 
-        ObjectAnimator passwordAnim = ObjectAnimator.ofFloat(editTextPassword, "translationX", 1000f, 0f);
+        ObjectAnimator passwordAnim = ObjectAnimator.ofFloat(editTextPassword, "translationX",1000f,0f);
         passwordAnim.setDuration(400);
         passwordAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         passwordAnim.start();

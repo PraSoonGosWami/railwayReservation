@@ -44,8 +44,12 @@ import com.invaderx.railway.models.UserProfile;
 import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static maes.tech.intentanim.CustomIntent.customType;
@@ -240,15 +244,22 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
 
 
         cancelFAB.setOnClickListener(v -> {
-            cancelTicket(pnr);
+            if(compareDates(exDate.getText().toString())==false)
+                cancelTicket(pnr);
+            else
+                Toast.makeText(this, "Cannot cancel back dated tickets", Toast.LENGTH_SHORT).show();
         });
 
         exPassengerList.setOnItemClickListener((parent, view, position, id) -> {
-            if(passList.size()<2)
-                cancelTicket(pnr);
-            else {
-                cancelPerson(pnr,position);
+            if(compareDates(exDate.getText().toString())==false){
+                if (passList.size() < 2)
+                    cancelTicket(pnr);
+                else {
+                    cancelPerson(pnr, position);
+                }
             }
+            else
+                Toast.makeText(this, "Cannot cancel back dated tickets", Toast.LENGTH_SHORT).show();
 
         });
 
@@ -411,5 +422,22 @@ public class MyBookings extends AppCompatActivity implements TicketAdapter.ListI
 
                     }
                 });
+    }
+
+    //compares previous date
+    public boolean compareDates(String getDate){
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+        Date strDate = null;
+        try {
+            strDate = sdf.parse(getDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (System.currentTimeMillis() > strDate.getTime())
+            return true;
+        else
+            return false;
+
     }
 }

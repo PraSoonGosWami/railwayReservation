@@ -1,14 +1,14 @@
 
-gsquid:UselessImportCheck"ERemove this unused import 'android.support.v4.content.ContextCompat'.(¹†Ç
-Š"squid:ClassVariableVisibilityCheck"YMake trainResponse a static final constant or non-public and provide accessors if needed.(ÓšôÈýÿÿÿÿ
-Tsquid:UselessImportCheck"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ
-^squid:UselessImportCheck"7Remove this unused import 'android.widget.ProgressBar'.(³ñÿŸùÿÿÿÿ
-Ssquid:S1155">Use isEmpty() to check whether the collection is empty or not.(ïØ¼¹
-tsquid:S1450"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õð»
-Msquid:S1444"3Make this "public static trainResponse" field final(ÓšôÈýÿÿÿÿ
-zsquid:S1488"eImmediately return this expression instead of assigning it to the temporary variable "formattedDate".(´öºÚ
-Zsquid:UselessImportCheck"8Remove this unused import 'android.graphics.PorterDuff'.(•ÙÄ±
-R
-squid:S106"9Replace this use of System.out or System.err by a logger.(ºŸâýÿÿÿÿ
-S"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(ì»¾úÿÿÿÿ
-Ksquid:S2696"6Make the enclosing method "static" or remove this set.(®‰Ñå
+}squid:S1450*"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õð»8Ì¸Ì’ê,
+Vsquid:S1444."3Make this "public static trainResponse" field final(ÓšôÈýÿÿÿÿ8Ì¸Ì’ê,
+Tsquid:S26966"6Make the enclosing method "static" or remove this set.(®‰Ñå8Ì¸Ì’ê,
+“"squid:ClassVariableVisibilityCheck."YMake trainResponse a static final constant or non-public and provide accessors if needed.(ÓšôÈýÿÿÿÿ8Ì¸Ì’ê,
+]squid:UselessImportCheck"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8Ì¸Ì’ê,
+gsquid:UselessImportCheck"7Remove this unused import 'android.widget.ProgressBar'.(³ñÿŸùÿÿÿÿ8Ì¸Ì’ê,
+Vsquid:UselessImportCheck "+Remove this unused import 'java.util.Date'.(¸…¼ü8Ì¸Ì’ê,
+psquid:UselessImportCheck"ERemove this unused import 'android.support.v4.content.ContextCompat'.(¹†Ç8Ì¸Ì’ê,
+csquid:UselessImportCheck"8Remove this unused import 'android.graphics.PorterDuff'.(•ÙÄ±8Ì¸Ì’ê,
+bsquid:UselessImportCheck"7Remove this unused import 'java.text.SimpleDateFormat'.(ú¡ÙÛ8Ì¸Ì’ê,
+]squid:UselessImportCheck"3Remove this unused import 'android.content.Intent'.(³ð‹G8Ì¸Ì’ê,
+Zsquid:UselessImportCheck"/Remove this unused import 'java.util.Calendar'.(ÿÛö´8Ì¸Ì’ê,
+\squid:S1155g">Use isEmpty() to check whether the collection is empty or not.(ïØ¼¹8Ì¸Ì’ê,
