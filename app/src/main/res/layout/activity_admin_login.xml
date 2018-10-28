@@ -10,7 +10,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/user_login_text_view">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -83,20 +84,25 @@
                 app:spinning_bar_width="4dp" />
 
 
-            <TextView
-                android:id="@+id/user_login_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:gravity="center_horizontal"
-                android:text="User Login"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp" />
+
 
         </LinearLayout>
 
     </ScrollView>
+
+    <TextView
+        android:id="@+id/user_login_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:padding="4dp"
+        android:text="User Login"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorAccent"
+        android:background="?android:attr/selectableItemBackground"
+        android:textStyle="bold"
+        android:textSize="16sp" />
 
 
 </RelativeLayout>

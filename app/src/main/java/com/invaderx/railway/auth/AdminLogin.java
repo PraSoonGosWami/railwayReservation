@@ -121,7 +121,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
         viewAnimator();
         if (mAuth.getCurrentUser() != null) {
             finish();
-            startActivity(new Intent(this, TrainSearchActivity.class));
+            startActivity(new Intent(this, TrainDetailsActivity.class));
         }
     }
 
@@ -134,7 +134,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
         viewAnimator();
         if (mAuth.getCurrentUser() != null) {
             finish();
-            startActivity(new Intent(this, TrainSearchActivity.class));
+            startActivity(new Intent(this, TrainDetailsActivity.class));
         }
     }
 
