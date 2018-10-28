@@ -1,0 +1,8 @@
+
+‘"squid:ClassVariableVisibilityCheck#"WMake mTrainStart a static final constant or non-public and provide accessors if needed.(’ÇŒ¶ıÿÿÿÿ8‰º•½ë,
+’"squid:ClassVariableVisibilityCheck "XMake mTrainNumber a static final constant or non-public and provide accessors if needed.(ó‡–ùÿÿÿÿ8‰º•½ë,
+–"squid:ClassVariableVisibilityCheck""aMake mTrainDestinationTime a static final constant or non-public and provide accessors if needed.(ë‚ê 8‰º•½ë,
+Š"squid:ClassVariableVisibilityCheck"VMake mTrainName a static final constant or non-public and provide accessors if needed.(£Öî8ƒÃŒ½ë,
+•"squid:ClassVariableVisibilityCheck!"[Make mTrainStartTime a static final constant or non-public and provide accessors if needed.(­í•ìÿÿÿÿÿ8‰º•½ë,
+‘"squid:ClassVariableVisibilityCheck$"\Make mTrainDestiation a static final constant or non-public and provide accessors if needed.(×ñ®ˆ8‰º•½ë,
+Ÿsquid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ø–×Ì8¤£ç¼ë,

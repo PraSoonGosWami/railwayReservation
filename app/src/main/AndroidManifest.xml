@@ -55,7 +55,8 @@
             android:name=".auth.AdminLogin"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.TrainDetailsActivity"></activity>
+        <activity android:name=".activity.TrainDetailsActivity" />
+        <activity android:name=".activity.TrainAddActivity"></activity>
     </application>
 
 </manifest>

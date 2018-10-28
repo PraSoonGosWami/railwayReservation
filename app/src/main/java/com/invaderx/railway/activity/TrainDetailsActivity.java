@@ -3,20 +3,33 @@ package com.invaderx.railway.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.invaderx.railway.R;
+import com.invaderx.railway.adapters.TrainDetailAdapter;
 import com.invaderx.railway.auth.LoginActivity;
 
 public class TrainDetailsActivity extends AppCompatActivity {
+
+    TrainDetailAdapter mTrainDetailAdapter;
+    private RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_details);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_traindetail);
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        mTrainDetailAdapter = new TrainDetailAdapter();
+        mRecyclerView.setAdapter(mTrainDetailAdapter);
 
     }
 
