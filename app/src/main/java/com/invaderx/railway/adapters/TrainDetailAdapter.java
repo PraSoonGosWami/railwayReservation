@@ -17,6 +17,7 @@ public class TrainDetailAdapter extends RecyclerView.Adapter<TrainDetailAdapter.
 
     // COMPLETED (23) Create a private string array called mWeatherData
     private String[] mWeatherData = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    String addTrain = "Hello";
 
     // COMPLETED (47) Create the default constructor (we will pass in parameters in a later lesson)
     public TrainDetailAdapter() {
@@ -66,6 +67,7 @@ public class TrainDetailAdapter extends RecyclerView.Adapter<TrainDetailAdapter.
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), TrainAddActivity.class);
+                intent.putExtra("add", addTrain);
                 view.getContext().startActivity(intent);
             }
         });

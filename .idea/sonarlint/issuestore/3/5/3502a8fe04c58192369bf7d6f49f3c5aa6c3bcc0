@@ -1,3 +1,4 @@
 
-isquid:CommentedOutCodeLine4"<This block of commented-out lines of code should be removed.(ÍÙ÷¢8ûÑ±´ë,
-squid:S1450"\Remove the "mRecyclerView" field and declare it as a local variable in the relevant methods.(Òéýÿÿÿÿ8÷¾Ï¼ë,
+isquid:CommentedOutCodeLine6"<This block of commented-out lines of code should be removed.(ÍÙ÷¢8¿ÍŠÍë,
+Rsquid:S1905"/Remove this unnecessary cast to "RecyclerView".(ø¼ªîþÿÿÿÿ8¿ÍŠÍë,
+squid:S1450"\Remove the "mRecyclerView" field and declare it as a local variable in the relevant methods.(Òéýÿÿÿÿ8¿ÍŠÍë,

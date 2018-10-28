@@ -79,3 +79,7 @@ a
 +app/src/main/res/layout/app_bar_default.xml,e/7/e7496fac4400e87d0c807145292e8aae57cff1df
 w
 Gapp/src/main/java/com/invaderx/railway/adapters/TrainDetailAdapter.java,6/9/696961fd57b1e0fe511b55ec36bc2b60c826054b
+^
+.app/src/main/res/layout/activity_train_add.xml,f/f/ffcd755c4acdb247a7b4a013791715c88212b8ea
+u
+Eapp/src/main/java/com/invaderx/railway/activity/TrainAddActivity.java,f/2/f2e8ea6b0d9065a67f1d3ac44791e6bdc54dc08d

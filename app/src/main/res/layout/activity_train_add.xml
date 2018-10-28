@@ -1,595 +1,666 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.TrainAddActivity">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="8dp"
+    android:paddingBottom="16dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp">
 
-    <LinearLayout
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        android:orientation="vertical">
+        tools:context=".activity.TrainAddActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="TRAIN NAME" />
-
-            <EditText
-                android:layout_width="150dp"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="TRAIN NUMBER" />
-
-            <EditText
-                android:layout_width="150dp"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="class"
-                    android:textAllCaps="true"
-                    android:textSize="16sp" />
+                    android:layout_marginRight="8dp"
+                    android:text="TRAIN NAME" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/train_name"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:text="day"
-                    android:textAllCaps="true"
-                    android:textSize="16sp" />
-
+                    android:hint="train Name"
+                    android:inputType="text" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:orientation="vertical">
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_marginRight="8dp"
+                    android:text="TRAIN NUMBER" />
+
+                <EditText
+                    android:id="@+id/train_number"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="class"
+                        android:textAllCaps="true"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:text="day"
+                        android:textAllCaps="true"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="1A"
+                        android:textAllCaps="true"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/a1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:text="s"
+                        android:textAllCaps="true"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="2A"
+                        android:textAllCaps="true"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/a2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:text="m"
+                        android:textAllCaps="true"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="3A"
+                        android:textAllCaps="true"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/a3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:text="t"
+                        android:textAllCaps="true"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="sl"
+                        android:textAllCaps="true"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/sl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:text="w"
+                        android:textAllCaps="true"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="cc"
+                        android:textAllCaps="true"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/cc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:text="t"
+                        android:textAllCaps="true"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="1A"
+                        android:textAllCaps="true"
+                        android:textSize="16sp"
+                        android:visibility="invisible" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:text="f"
+                        android:textAllCaps="true"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="1A"
+                        android:textAllCaps="true"
+                        android:textSize="16sp"
+                        android:visibility="invisible" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:text="s"
+                        android:textAllCaps="true"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/a1linearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
                     android:text="1A"
-                    android:textAllCaps="true"
                     android:textSize="16sp" />
-
-                <CheckBox
-                    android:id="@+id/a1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:text="s"
-                    android:textAllCaps="true"
+                    android:layout_marginRight="8dp"
+                    android:text="SEAT" />
+
+                <EditText
+                    android:id="@+id/one_a_seat"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="FAIR"
                     android:textSize="16sp" />
 
-                <CheckBox
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/one_a_fair"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content" />
+
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/a2linearlayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:orientation="vertical">
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_marginRight="16dp"
                     android:text="2A"
-                    android:textAllCaps="true"
                     android:textSize="16sp" />
-
-                <CheckBox
-                    android:id="@+id/a2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:text="m"
-                    android:textAllCaps="true"
+                    android:layout_marginRight="8dp"
+                    android:text="SEAT" />
+
+                <EditText
+                    android:id="@+id/two_a_seat"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="FAIR"
                     android:textSize="16sp" />
 
-                <CheckBox
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/two_a_fair"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content" />
+
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/a3linearlayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:orientation="vertical">
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_marginRight="16dp"
                     android:text="3A"
-                    android:textAllCaps="true"
                     android:textSize="16sp" />
-
-                <CheckBox
-                    android:id="@+id/a3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:text="t"
-                    android:textAllCaps="true"
+                    android:layout_marginRight="8dp"
+                    android:text="SEAT" />
+
+                <EditText
+                    android:id="@+id/three_a_seat"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="FAIR"
                     android:textSize="16sp" />
 
-                <CheckBox
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/three_a_fair"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content" />
+
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/sllinearlayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:text="SL"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="SEAT" />
+
+                <EditText
+                    android:id="@+id/sl_seat"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="FAIR"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/sl_fair"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cclinearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:text="CC"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="SEAT" />
+
+                <EditText
+                    android:id="@+id/cc_seat"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="FAIR"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/cc_fair"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="sl"
-                    android:textAllCaps="true"
-                    android:textSize="16sp" />
+                    android:layout_marginRight="8dp"
+                    android:text="SOURCE:"
+                    android:textColor="@color/colorPrimaryDark" />
 
-                <CheckBox
-                    android:id="@+id/sl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="8dp"
-                    android:text="w"
-                    android:textAllCaps="true"
-                    android:textSize="16sp" />
+                    android:orientation="horizontal">
 
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:text="Place" />
+
+                    <EditText
+                        android:id="@+id/source_place"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:hint="place"
+                        android:inputType="text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:text="Time" />
+
+                    <EditText
+                        android:id="@+id/source_time"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:hint="time"
+                        android:inputType="time" />
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="cc"
-                    android:textAllCaps="true"
-                    android:textSize="16sp" />
+                    android:layout_marginRight="8dp"
+                    android:text="DESTINATION: "
+                    android:textColor="@color/colorPrimaryDark" />
 
-                <CheckBox
-                    android:id="@+id/cc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="8dp"
-                    android:text="t"
-                    android:textAllCaps="true"
-                    android:textSize="16sp" />
+                    android:layout_marginBottom="16dp"
+                    android:orientation="horizontal">
 
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:text="Place" />
+
+                    <EditText
+                        android:id="@+id/dest_place"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:hint="place"
+                        android:inputType="text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:text="Time" />
+
+                    <EditText
+                        android:id="@+id/dest_time"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:hint="time"
+                        android:inputType="time" />
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/train_save_button"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="1A"
-                    android:textAllCaps="true"
-                    android:textSize="16sp"
-                    android:visibility="invisible" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:text="f"
-                    android:textAllCaps="true"
-                    android:textSize="16sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="1A"
-                    android:textAllCaps="true"
-                    android:textSize="16sp"
-                    android:visibility="invisible" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:text="s"
-                    android:textAllCaps="true"
-                    android:textSize="16sp" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_button_solid"
+                android:hapticFeedbackEnabled="true"
+                android:text="SAVE"
+                android:textColor="@android:color/white" />
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/a1linearlayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="1A"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="SEAT" />
-
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="FAIR"
-                android:textSize="16sp" />
-
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/a2linearlayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="2A"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="SEAT" />
-
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="FAIR"
-                android:textSize="16sp" />
-
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/a3linearlayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="3A"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="SEAT" />
-
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="FAIR"
-                android:textSize="16sp" />
-
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/sllinearlayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="SL"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="SEAT" />
-
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="FAIR"
-                android:textSize="16sp" />
-
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/cclinearlayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="CC"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="SEAT" />
-
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="FAIR"
-                android:textSize="16sp" />
-
-            <EditText
-                android:layout_width="60dp"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="SOURCE" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="PLACE" />
-
-            <EditText
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="TIME" />
-
-            <EditText
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="DEST" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="PLACE" />
-
-            <EditText
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:text="TIME" />
-
-            <EditText
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp" />
-
-        </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</android.support.v7.widget.CardView>

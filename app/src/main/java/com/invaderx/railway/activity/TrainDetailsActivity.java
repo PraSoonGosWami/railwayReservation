@@ -1,6 +1,7 @@
 package com.invaderx.railway.activity;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +19,8 @@ public class TrainDetailsActivity extends AppCompatActivity {
 
     TrainDetailAdapter mTrainDetailAdapter;
     private RecyclerView mRecyclerView;
+    FloatingActionButton floatingActionButton;
+    String addTrain = "add";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,14 @@ public class TrainDetailsActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mTrainDetailAdapter = new TrainDetailAdapter();
         mRecyclerView.setAdapter(mTrainDetailAdapter);
+        floatingActionButton = findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(view ->
+        {
+            Intent i = new Intent(TrainDetailsActivity.this, TrainAddActivity.class);
+            i.putExtra("add", addTrain);
+            startActivity(i);
+        });
+
 
     }
 
