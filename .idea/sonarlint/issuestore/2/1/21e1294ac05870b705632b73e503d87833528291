@@ -1,11 +1,11 @@
 
-bsquid:S1192"MDefine a constant instead of duplicating this literal "translationX" 4 times.(ÇˆŞ¶
-Bsquid:S1604"(Make this anonymous inner class a lambda(‚´´¢ùÿÿÿÿ
-dsquid:UselessImportCheck"BRemove this unused import 'com.google.firebase.FirebaseException'.(·ÚŠî
-^squid:UselessImportCheck"7Remove this unused import 'android.widget.ProgressBar'.(³ñÿŸùÿÿÿÿ
-psquid:UselessImportCheck"NRemove this unused import 'com.invaderx.railway.activity.TrainSearchActivity'.(ÚßÙô
-msquid:UselessImportCheck"KRemove this unused import 'com.google.android.gms.tasks.OnSuccessListener'.(íå¡
-N"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(ºÖ
-`squid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ
-Šsquid:UselessImportCheck"cRemove this unused import 'br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener'.(¿ ±©üÿÿÿÿ
-tsquid:S1450"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»
+U"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(ºÖ8—š±ë,
+isquid:S1192"MDefine a constant instead of duplicating this literal "translationX" 4 times.(ÇˆŞ¶8—š±ë,
+{squid:S1450"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8—š±ë,
+gsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ8—š±ë,
+Isquid:S1604"(Make this anonymous inner class a lambda(‚´´¢ùÿÿÿÿ8—š±ë,
+esquid:UselessImportCheck"7Remove this unused import 'android.widget.ProgressBar'.(³ñÿŸùÿÿÿÿ8—š±ë,
+ksquid:UselessImportCheck"BRemove this unused import 'com.google.firebase.FirebaseException'.(·ÚŠî8—š±ë,
+tsquid:UselessImportCheck"KRemove this unused import 'com.google.android.gms.tasks.OnSuccessListener'.(íå¡8—š±ë,
+‘squid:UselessImportCheck"cRemove this unused import 'br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener'.(¿ ±©üÿÿÿÿ8—š±ë,
+wsquid:UselessImportCheck"NRemove this unused import 'com.invaderx.railway.activity.TrainSearchActivity'.(ÚßÙô8—š±ë,

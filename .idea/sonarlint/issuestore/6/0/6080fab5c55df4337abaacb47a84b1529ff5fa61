@@ -1,14 +1,14 @@
 
-U"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(ºÖ8Ò›Ü´ë,
+‘squid:UselessImportCheck"cRemove this unused import 'br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener'.(¿ ±©üÿÿÿÿ8Ò›Ü´ë,
 hsquid:S1192"MDefine a constant instead of duplicating this literal "translationX" 3 times.(ÌíİK8Ò›Ü´ë,
-gsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ8Ò›Ü´ë,
-Bsquid:S1170"!Make this final field static too.(ğ¾øşùÿÿÿÿ8Ò›Ü´ë,
-Msquid:S1602",Remove useless curly braces around statement(ŸŠƒ¢ùÿÿÿÿ8Ò›Ü´ë,
-esquid:UselessImportCheck"7Remove this unused import 'android.widget.ProgressBar'.(³ñÿŸùÿÿÿÿ8Ò›Ü´ë,
+hsquid:UselessImportCheck"@Remove this unused import 'com.google.firebase.auth.AuthResult'.(âÂ8Ò›Ü´ë,
+xsquid:UselessImportCheck"JRemove this unused import 'android.support.design.widget.TextInputLayout'.(±•Ëñüÿÿÿÿ8Ò›Ü´ë,
 gsquid:UselessImportCheck"?Remove this unused import 'android.support.annotation.NonNull'.(¼Åß8Ò›Ü´ë,
 zsquid:UselessImportCheck"LRemove this unused import 'com.google.android.gms.tasks.OnCompleteListener'.(Çğ¸Òÿÿÿÿÿ8Ò›Ü´ë,
-gsquid:UselessImportCheck">Remove this unused import 'com.google.android.gms.tasks.Task'.(¦âÏô8Ò›Ü´ë,
-xsquid:UselessImportCheck"JRemove this unused import 'android.support.design.widget.TextInputLayout'.(±•Ëñüÿÿÿÿ8Ò›Ü´ë,
-hsquid:UselessImportCheck"@Remove this unused import 'com.google.firebase.auth.AuthResult'.(âÂ8Ò›Ü´ë,
-‘squid:UselessImportCheck"cRemove this unused import 'br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener'.(¿ ±©üÿÿÿÿ8Ò›Ü´ë,
+Msquid:S1602",Remove useless curly braces around statement(ŸŠƒ¢ùÿÿÿÿ8Ò›Ü´ë,
 wsquid:UselessImportCheck"NRemove this unused import 'com.invaderx.railway.activity.TrainSearchActivity'.(ÚßÙô8Ò›Ü´ë,
+U"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(ºÖ8Ò›Ü´ë,
+gsquid:UselessImportCheck">Remove this unused import 'com.google.android.gms.tasks.Task'.(¦âÏô8Ò›Ü´ë,
+gsquid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ8Ò›Ü´ë,
+Bsquid:S1170"!Make this final field static too.(ğ¾øşùÿÿÿÿ8Ò›Ü´ë,
+esquid:UselessImportCheck"7Remove this unused import 'android.widget.ProgressBar'.(³ñÿŸùÿÿÿÿ8Ò›Ü´ë,

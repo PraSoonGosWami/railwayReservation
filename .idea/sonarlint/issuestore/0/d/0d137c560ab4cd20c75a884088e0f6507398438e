@@ -1,0 +1,25 @@
+
+:squid:S1659Î""Declare "fare" on a separate line.(ÿ‹€÷
+‡"squid:ClassVariableVisibilityCheckĞ"SMake visView a static final constant or non-public and provide accessors if needed.(àô…ãùÿÿÿÿ
+"squid:ClassVariableVisibilityCheckÎ"PMake fare a static final constant or non-public and provide accessors if needed.(ÿ‹€÷
+‚"squid:ClassVariableVisibilityCheckÎ"SMake srcDest a static final constant or non-public and provide accessors if needed.(ÿ‹€÷
+/squid:S2176Ì"Rename this class.(Â×Öúÿÿÿÿ
+;squid:S1659Î"#Declare "seats" on a separate line.(ÿ‹€÷
+€"squid:ClassVariableVisibilityCheckÎ"QMake seats a static final constant or non-public and provide accessors if needed.(ÿ‹€÷
+=squid:S1659Ï" Declare "cc" on a separate line.(Íµõ¤üÿÿÿÿ
+„"squid:ClassVariableVisibilityCheckÏ"PMake book a static final constant or non-public and provide accessors if needed.(Íµõ¤üÿÿÿÿ
+?squid:S1659Ï""Declare "twoA" on a separate line.(Íµõ¤üÿÿÿÿ
+Bsquid:S1659Ï"%Declare "sleeper" on a separate line.(Íµõ¤üÿÿÿÿ
+‚"squid:ClassVariableVisibilityCheckÏ"NMake cc a static final constant or non-public and provide accessors if needed.(Íµõ¤üÿÿÿÿ
+?squid:S1659Ï""Declare "book" on a separate line.(Íµõ¤üÿÿÿÿ
+?squid:S1659Î"'Declare "trainTime" on a separate line.(ÿ‹€÷
+„"squid:ClassVariableVisibilityCheckÎ"UMake trainTime a static final constant or non-public and provide accessors if needed.(ÿ‹€÷
+„"squid:ClassVariableVisibilityCheckÏ"PMake oneA a static final constant or non-public and provide accessors if needed.(Íµõ¤üÿÿÿÿ
+isquid:S37761"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ı„õ
+Asquid:S1659Ï"$Declare "threeA" on a separate line.(Íµõ¤üÿÿÿÿ
+Tsquid:UselessImportCheck"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
+„"squid:ClassVariableVisibilityCheckÏ"PMake twoA a static final constant or non-public and provide accessors if needed.(Íµõ¤üÿÿÿÿ
+‡"squid:ClassVariableVisibilityCheckÏ"SMake sleeper a static final constant or non-public and provide accessors if needed.(Íµõ¤üÿÿÿÿ
+†"squid:ClassVariableVisibilityCheckÏ"RMake threeA a static final constant or non-public and provide accessors if needed.(Íµõ¤üÿÿÿÿ
+=squid:S1659Î"%Declare "srcDest" on a separate line.(ÿ‹€÷
+Š"squid:ClassVariableVisibilityCheckÎ"[Make trainNameNumber a static final constant or non-public and provide accessors if needed.(ÿ‹€÷

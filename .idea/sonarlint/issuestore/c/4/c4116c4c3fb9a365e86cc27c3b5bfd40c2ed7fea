@@ -1,10 +1,10 @@
 
-N"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(ºÖ
-asquid:S1192"MDefine a constant instead of duplicating this literal "translationX" 3 times.(ÌíİK
-`squid:S1301"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ
-;squid:S1170"!Make this final field static too.(ğ¾øşùÿÿÿÿ
-Bsquid:S1604"(Make this anonymous inner class a lambda(ü»×¬ıÿÿÿÿ
-^squid:UselessImportCheck"7Remove this unused import 'android.widget.ProgressBar'.(³ñÿŸùÿÿÿÿ
-qsquid:UselessImportCheck"ORemove this unused import 'com.invaderx.railway.activity.TrainDetailsActivity'.(Ÿ™ÒÄ
-qsquid:UselessImportCheck"JRemove this unused import 'android.support.design.widget.TextInputLayout'.(±•Ëñüÿÿÿÿ
-Šsquid:UselessImportCheck"cRemove this unused import 'br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener'.(¿ ±©üÿÿÿÿ
+“squid:UselessImportCheck"cRemove this unused import 'br.com.simplepass.loading_button_lib.interfaces.OnAnimationEndListener'.(¿ ±©üÿÿÿÿ8ûÑ±´ë,
+Dsquid:S1170""!Make this final field static too.(ğ¾øşùÿÿÿÿ8ûÑ±´ë,
+X"squid:SwitchLastCaseIsDefaultCheck–""Add a default case to this switch.(ºÖ8ûÑ±´ë,
+zsquid:UselessImportCheck"JRemove this unused import 'android.support.design.widget.TextInputLayout'.(±•Ëñüÿÿÿÿ8ûÑ±´ë,
+zsquid:UselessImportCheck"ORemove this unused import 'com.invaderx.railway.activity.TrainDetailsActivity'.(Ÿ™ÒÄ8ûÑ±´ë,
+jsquid:S1301–"KReplace this "switch" statement by "if" statements to increase readability.(ºÖ8ûÑ±´ë,
+ksquid:S1192Á"MDefine a constant instead of duplicating this literal "translationX" 3 times.(ÌíİK8ûÑ±´ë,
+Ksquid:S1604^"(Make this anonymous inner class a lambda(ü»×¬ıÿÿÿÿ8ûÑ±´ë,
+gsquid:UselessImportCheck"7Remove this unused import 'android.widget.ProgressBar'.(³ñÿŸùÿÿÿÿ8ûÑ±´ë,
