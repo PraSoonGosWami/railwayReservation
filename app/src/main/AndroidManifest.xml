@@ -56,7 +56,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.TrainDetailsActivity" />
-        <activity android:name=".activity.TrainAddActivity"></activity>
+        <activity android:name=".activity.TrainAddActivity" />
     </application>
 
 </manifest>

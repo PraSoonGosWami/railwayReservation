@@ -1,0 +1,7 @@
+
+:squid:S3626Ø"Remove this redundant jump.(ûÁİ…8Áü¦Öë,
+usquid:S37767"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(¨Œşÿÿÿÿ8Áü¦Öë,
+\squid:UselessImportCheck",Remove this unused import 'android.net.Uri'.(òêû‘ıÿÿÿÿ8Áü¦Öë,
+dsquid:UselessImportCheck"4Remove this unused import 'android.widget.TextView'.(„Ë‚ˆÿÿÿÿÿ8Áü¦Öë,
+rsquid:UselessImportCheck"BRemove this unused import 'com.google.firebase.auth.FirebaseAuth'.(İÄğöûÿÿÿÿ8Áü¦Öë,
+tsquid:UselessImportCheck"DRemove this unused import 'com.invaderx.railway.auth.LoginActivity'.(× Í ûÿÿÿÿ8Áü¦Öë,
