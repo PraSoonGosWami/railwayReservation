@@ -25,7 +25,7 @@
             android:text="Train name"
             android:textAllCaps="true"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="22sp" />
+            android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -52,7 +52,8 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="78dp">
+        android:layout_height="78dp"
+        android:paddingBottom="8dp">
 
         <TextView
             android:id="@+id/trainstarttime"
