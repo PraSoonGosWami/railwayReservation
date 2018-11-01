@@ -21,7 +21,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -74,12 +76,17 @@ public class TrainAddActivity extends AppCompatActivity {
     private String TNumber = "";
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private int m=0,t=0,w=0,th=0,f=0,sa=0,s=0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train_add);
+        getSupportActionBar().setElevation(0f);
+        //database references
+        firebaseDatabase=FirebaseDatabase.getInstance();
+        databaseReference=firebaseDatabase.getReference();
         //for getting intent data and updating title
         Intent intent = getIntent();
         addTrain = intent.getExtras().getString("add");
@@ -173,21 +180,15 @@ public class TrainAddActivity extends AppCompatActivity {
         });
 
         trainSaveButton.setOnClickListener(view -> saveButton());
-        staionList.add("Bhagalpur");
-        staionList.add("Bhagalpur");
-        staionList.add("Bhagalpur");
-        staionList.add("Bhagalpur");
-
 
         adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,staionList);
-        staionsListView.setAdapter(adapter);
 
         //needs work
         addStaions.setOnEditorActionListener((v, keyCode, event) -> {
             if ((keyCode == KeyEvent.KEYCODE_ENTER)) {
-                staionList.add(addStaions.getText().toString());
-                staionsListView.setAdapter(adapter);
+               /* staionList.add(addStaions.getText().toString());
+                staionsListView.setAdapter(adapter);*/
                 addStaions.setText("");
 
 
@@ -266,13 +267,113 @@ public class TrainAddActivity extends AppCompatActivity {
             return;
         }
 
+        //1A
+        if(ma1.isChecked()){
+            if(oneAFair.getText().toString().isEmpty())
+                oneAFair.setError("Enter Fair");
+            if(oneASeat.getText().toString().isEmpty())
+                oneASeat.setError("Enter Number of seats");
+        }else{
+            oneASeat.setText("0");
+            oneAFair.setText("0");
+        }
+
+        //2A
+        if(ma2.isChecked()){
+            if(twoAFair.getText().toString().isEmpty())
+                twoAFair.setError("Enter Fair");
+            if(twoASeat.getText().toString().isEmpty())
+                twoASeat.setError("Enter Number of seats");
+        }else{
+            twoASeat.setText("0");
+            twoAFair.setText("0");
+        }
+
+        //3A
+        if(ma3.isChecked()){
+            if(threeAFair.getText().toString().isEmpty())
+                twoAFair.setError("Enter Fair");
+            if(threeASeat.getText().toString().isEmpty())
+                threeASeat.setError("Enter Number of seats");
+        }else{
+            threeASeat.setText("0");
+            threeAFair.setText("0");
+        }
+
+        //CC
+        if(mcc.isChecked()){
+            if(ccFair.getText().toString().isEmpty())
+                ccFair.setError("Enter Fair");
+            if(ccSeat.getText().toString().isEmpty())
+                ccSeat.setError("Enter Number of seats");
+        }else{
+            ccFair.setText("0");
+            ccSeat.setText("0");
+        }
+
+        //SL
+        if(msl.isChecked()){
+            if(slFair.getText().toString().isEmpty())
+                slFair.setError("Enter Fair");
+            if(slSeat.getText().toString().isEmpty())
+                slSeat.setError("Enter Number of seats");
+        }else{
+            slSeat.setText("0");
+            slFair.setText("0");
+        }
+
+        //monday
+        if(mon.isChecked())
+            m=1;
+        else
+            m=0;
+
+        //tuesday
+        if(tue.isChecked())
+            t=1;
+        else
+            t=0;
+
+        //wednesday
+        if(wed.isChecked())
+            w=1;
+        else
+            w=0;
+
+        //thursday
+        if(thu.isChecked())
+            th=1;
+        else
+            th=0;
+
+        //friday
+        if(fri.isChecked())
+            f=1;
+        else
+            f=0;
+
+        //saturday
+        if(sat.isChecked())
+            sa=1;
+        else
+            sa=0;
+
+        //sunday
+        if(sun.isChecked())
+            s=1;
+        else
+            s=0;
+
+        updateAddTrain();
+
+
+
+
+
     }
 
 
     public void getTrainData(String tNo){
-        //database references
-        firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference();
 
         databaseReference.child("Trains").orderByChild("tNumber").equalTo(tNo)
                 .addValueEventListener(new ValueEventListener() {
@@ -350,8 +451,12 @@ public class TrainAddActivity extends AppCompatActivity {
 
                             sourcePlace.setText(trains1.getStations().get(0));
                             destPlace.setText(trains1.getStations().get(trains1.getStations().size()-1));
-                            sourceTime.setText(trains1.getTime());
-                            destTime.setText(trains1.getTime());
+                            String [] times = trains1.getTime().split("-");
+                            sourceTime.setText(times[0]);
+                            destTime.setText(times[1]);
+                            for(int i = 1 ; i<trains1.getStations().size()-2;i++)
+                            staionList.add(trains1.getStations().get(i));
+                            staionsListView.setAdapter(adapter);
                         }
 
                     }
@@ -360,6 +465,28 @@ public class TrainAddActivity extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
+                });
+
+    }
+
+    public void updateAddTrain(){
+        ArrayList<String> stn = new ArrayList<>();
+        stn.add("Kahalgaon");
+        stn.add("Kahalgaon");
+        stn.add("Kahalgaon");
+        stn.add("Kahalgaon");
+        Trains trainUpdate = new Trains(sourceTime.getText().toString()+"-"+destTime.getText().toString(),
+                oneAFair.getText().toString(),twoAFair.getText().toString(),threeAFair.getText().toString(),
+                ccFair.getText().toString(),slFair.getText().toString(),f,m,sa,s,th,t,w,
+                Integer.parseInt(oneASeat.getText().toString()),
+                Integer.parseInt(twoASeat.getText().toString()),
+                Integer.parseInt(threeASeat.getText().toString()),
+                Integer.parseInt(ccSeat.getText().toString()),
+                Integer.parseInt(slSeat.getText().toString()),
+                stn,trainName.getText().toString(),trainNumber.getText().toString());
+        databaseReference.child("Trains").child(trainNumber.getText().toString()).setValue(trainUpdate)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show();
                 });
 
     }

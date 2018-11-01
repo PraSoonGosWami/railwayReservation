@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
    >
 
 
@@ -24,7 +25,7 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <android.support.v7.widget.CardView
@@ -97,7 +98,6 @@
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -419,6 +419,7 @@
 
                         <EditText
                             android:id="@+id/one_a_seat"
+                            android:inputType="number"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="20dp" />
@@ -432,6 +433,7 @@
 
                         <EditText
                             android:id="@+id/one_a_fair"
+                            android:inputType="number"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content" />
 
@@ -464,6 +466,7 @@
                         <EditText
                             android:id="@+id/two_a_seat"
                             android:layout_width="60dp"
+                            android:inputType="number"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="20dp" />
 
@@ -477,6 +480,7 @@
                         <EditText
                             android:id="@+id/two_a_fair"
                             android:layout_width="60dp"
+                            android:inputType="number"
                             android:layout_height="wrap_content" />
 
 
@@ -509,6 +513,7 @@
                         <EditText
                             android:id="@+id/three_a_seat"
                             android:layout_width="60dp"
+                            android:inputType="number"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="20dp" />
 
@@ -522,6 +527,7 @@
                         <EditText
                             android:id="@+id/three_a_fair"
                             android:layout_width="60dp"
+                            android:inputType="number"
                             android:layout_height="wrap_content" />
 
 
@@ -552,6 +558,7 @@
 
                         <EditText
                             android:id="@+id/sl_seat"
+                            android:inputType="number"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="20dp" />
@@ -566,6 +573,7 @@
                         <EditText
                             android:id="@+id/sl_fair"
                             android:layout_width="60dp"
+                            android:inputType="number"
                             android:layout_height="wrap_content" />
 
 
@@ -597,6 +605,7 @@
                         <EditText
                             android:id="@+id/cc_seat"
                             android:layout_width="60dp"
+                            android:inputType="number"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="20dp" />
 
@@ -610,6 +619,7 @@
                         <EditText
                             android:id="@+id/cc_fair"
                             android:layout_width="60dp"
+                            android:inputType="number"
                             android:layout_height="wrap_content" />
 
 
@@ -617,7 +627,6 @@
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -690,13 +699,11 @@
                         </LinearLayout>
 
                     </LinearLayout>
-
                     <ListView
                         android:id="@+id/staionsListView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                     </ListView>
-
                     <EditText
                         android:id="@+id/addStaions"
                         android:layout_width="match_parent"
@@ -707,7 +714,6 @@
                         android:hapticFeedbackEnabled="true"
                         android:background="@android:color/transparent"
                         android:padding="6dp"/>
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -760,8 +766,15 @@
 
                     </LinearLayout>
 
+
+
+
+
+
                 </LinearLayout>
             </android.support.v7.widget.CardView>
+
+
 
         </LinearLayout>
 

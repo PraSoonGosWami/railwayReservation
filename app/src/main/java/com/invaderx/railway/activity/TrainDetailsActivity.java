@@ -45,6 +45,7 @@ public class TrainDetailsActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerview_traindetail);
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        getSupportActionBar().setElevation(0f);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
         mTrainDetailAdapter = new TrainDetailAdapter(trains,this);

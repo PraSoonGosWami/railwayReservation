@@ -1,3 +1,7 @@
 
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÍÙ÷¢8’¤ØÏë,
-}squid:S1450"\Remove the "mRecyclerView" field and declare it as a local variable in the relevant methods.(Òéýÿÿÿÿ8¿±ŽÔë,
+„squid:S1450"cRemove the "floatingActionButton" field and declare it as a local variable in the relevant methods.(¨”†úÿÿÿÿ8óÓÔ¶ì,
+{squid:S1450"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õð»8óÓÔ¶ì,
+Fsquid:S00108")Either remove or fill this block of code.(Ä÷œõ8óÓÔ¶ì,
+Fsquid:S00108")Either remove or fill this block of code.(á¢–¬8óÓÔ¶ì,
+\squid:UselessImportCheck".Remove this unused import 'android.view.View'.(Ø½­äþÿÿÿÿ8óÓÔ¶ì,
+Zsquid:S1155">Use isEmpty() to check whether the collection is empty or not.(Ä÷œõ8óÓÔ¶ì,

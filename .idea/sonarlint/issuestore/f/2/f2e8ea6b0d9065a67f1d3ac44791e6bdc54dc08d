@@ -1,7 +1,26 @@
 
-:squid:S3626Ø"Remove this redundant jump.(ûÁİ…8Áü¦Öë,
-usquid:S37767"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(¨Œşÿÿÿÿ8Áü¦Öë,
-\squid:UselessImportCheck",Remove this unused import 'android.net.Uri'.(òêû‘ıÿÿÿÿ8Áü¦Öë,
-dsquid:UselessImportCheck"4Remove this unused import 'android.widget.TextView'.(„Ë‚ˆÿÿÿÿÿ8Áü¦Öë,
-rsquid:UselessImportCheck"BRemove this unused import 'com.google.firebase.auth.FirebaseAuth'.(İÄğöûÿÿÿÿ8Áü¦Öë,
-tsquid:UselessImportCheck"DRemove this unused import 'com.invaderx.railway.auth.LoginActivity'.(× Í ûÿÿÿÿ8Áü¦Öë,
+Bsquid:S1659"!Declare "mon" on a separate line.(óÎÌ‹ùÿÿÿÿ8ÇÜĞ¶ì,
+Bsquid:S1659"!Declare "tue" on a separate line.(óÎÌ‹ùÿÿÿÿ8ÇÜĞ¶ì,
+Bsquid:S1659"!Declare "wed" on a separate line.(óÎÌ‹ùÿÿÿÿ8ÇÜĞ¶ì,
+Bsquid:S1659"!Declare "thu" on a separate line.(óÎÌ‹ùÿÿÿÿ8ÇÜĞ¶ì,
+Bsquid:S1659"!Declare "fri" on a separate line.(óÎÌ‹ùÿÿÿÿ8ÇÜĞ¶ì,
+Bsquid:S1659"!Declare "sat" on a separate line.(óÎÌ‹ùÿÿÿÿ8ÇÜĞ¶ì,
+Vsquid:S1191"5Use classes from the Java API instead of Sun classes.(ç¼Îéúÿÿÿÿ8ÇÜĞ¶ì,
+fsquid:S1192"JDefine a constant instead of duplicating this literal "Bhagalpur" 4 times.(Êòáí8ÇÜĞ¶ì,
+tsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(šğb8ÇÜĞ¶ì,
+zsquid:S1450"YRemove the "addStaions" field and declare it as a local variable in the relevant methods.(ş·âûÿÿÿÿ8ÇÜĞ¶ì,
+rsquid:S1450"VRemove the "adapter" field and declare it as a local variable in the relevant methods.(£üÄ¼8ÇÜĞ¶ì,
+squid:S1450"^Remove the "staionsListView" field and declare it as a local variable in the relevant methods.(Ğ”Î¥ùÿÿÿÿ8ÇÜĞ¶ì,
+rsquid:S1450"VRemove the "TNumber" field and declare it as a local variable in the relevant methods.(„Ü¿¼8ÇÜĞ¶ì,
+{squid:S1450"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8ÇÜĞ¶ì,
+squid:S1450"`Remove the "databaseReference" field and declare it as a local variable in the relevant methods.(Ï¨Î·ùÿÿÿÿ8ÇÜĞ¶ì,
+7squid:S3626"Remove this redundant jump.(ûÁİ…8ÇÜĞ¶ì,
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¨Œşÿÿÿÿ8ÇÜĞ¶ì,
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 46 to the 15 allowed.(©¸ùÿÿÿÿ8ÇÜĞ¶ì,
+¢squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8ÇÜĞ¶ì,
+osquid:S00116"RRename this field "TNumber" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Ü¿¼8ÇÜĞ¶ì,
+Zsquid:UselessImportCheck",Remove this unused import 'android.net.Uri'.(òêû‘ıÿÿÿÿ8ÇÜĞ¶ì,
+`squid:UselessImportCheck"2Remove this unused import 'android.widget.Button'.(²òıÿÿÿÿ8ÇÜĞ¶ì,
+psquid:UselessImportCheck"BRemove this unused import 'com.google.firebase.auth.FirebaseAuth'.(İÄğöûÿÿÿÿ8ÇÜĞ¶ì,
+rsquid:UselessImportCheck"DRemove this unused import 'com.invaderx.railway.auth.LoginActivity'.(× Í ûÿÿÿÿ8ÇÜĞ¶ì,
+bsquid:UselessImportCheck"4Remove this unused import 'android.widget.TextView'.(„Ë‚ˆÿÿÿÿÿ8ÇÜĞ¶ì,
