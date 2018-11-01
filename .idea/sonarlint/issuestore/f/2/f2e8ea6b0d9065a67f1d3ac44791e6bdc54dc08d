@@ -1,26 +1,38 @@
 
-Bsquid:S1659"!Declare "mon" on a separate line.(óÎÌ‹ùÿÿÿÿ8ÇÜĞ¶ì,
-Bsquid:S1659"!Declare "tue" on a separate line.(óÎÌ‹ùÿÿÿÿ8ÇÜĞ¶ì,
-Bsquid:S1659"!Declare "wed" on a separate line.(óÎÌ‹ùÿÿÿÿ8ÇÜĞ¶ì,
-Bsquid:S1659"!Declare "thu" on a separate line.(óÎÌ‹ùÿÿÿÿ8ÇÜĞ¶ì,
-Bsquid:S1659"!Declare "fri" on a separate line.(óÎÌ‹ùÿÿÿÿ8ÇÜĞ¶ì,
-Bsquid:S1659"!Declare "sat" on a separate line.(óÎÌ‹ùÿÿÿÿ8ÇÜĞ¶ì,
-Vsquid:S1191"5Use classes from the Java API instead of Sun classes.(ç¼Îéúÿÿÿÿ8ÇÜĞ¶ì,
-fsquid:S1192"JDefine a constant instead of duplicating this literal "Bhagalpur" 4 times.(Êòáí8ÇÜĞ¶ì,
-tsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(šğb8ÇÜĞ¶ì,
-zsquid:S1450"YRemove the "addStaions" field and declare it as a local variable in the relevant methods.(ş·âûÿÿÿÿ8ÇÜĞ¶ì,
-rsquid:S1450"VRemove the "adapter" field and declare it as a local variable in the relevant methods.(£üÄ¼8ÇÜĞ¶ì,
-squid:S1450"^Remove the "staionsListView" field and declare it as a local variable in the relevant methods.(Ğ”Î¥ùÿÿÿÿ8ÇÜĞ¶ì,
-rsquid:S1450"VRemove the "TNumber" field and declare it as a local variable in the relevant methods.(„Ü¿¼8ÇÜĞ¶ì,
-{squid:S1450"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8ÇÜĞ¶ì,
-squid:S1450"`Remove the "databaseReference" field and declare it as a local variable in the relevant methods.(Ï¨Î·ùÿÿÿÿ8ÇÜĞ¶ì,
-7squid:S3626"Remove this redundant jump.(ûÁİ…8ÇÜĞ¶ì,
-ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¨Œşÿÿÿÿ8ÇÜĞ¶ì,
-ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 46 to the 15 allowed.(©¸ùÿÿÿÿ8ÇÜĞ¶ì,
-¢squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8ÇÜĞ¶ì,
-osquid:S00116"RRename this field "TNumber" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Ü¿¼8ÇÜĞ¶ì,
-Zsquid:UselessImportCheck",Remove this unused import 'android.net.Uri'.(òêû‘ıÿÿÿÿ8ÇÜĞ¶ì,
-`squid:UselessImportCheck"2Remove this unused import 'android.widget.Button'.(²òıÿÿÿÿ8ÇÜĞ¶ì,
-psquid:UselessImportCheck"BRemove this unused import 'com.google.firebase.auth.FirebaseAuth'.(İÄğöûÿÿÿÿ8ÇÜĞ¶ì,
-rsquid:UselessImportCheck"DRemove this unused import 'com.invaderx.railway.auth.LoginActivity'.(× Í ûÿÿÿÿ8ÇÜĞ¶ì,
-bsquid:UselessImportCheck"4Remove this unused import 'android.widget.TextView'.(„Ë‚ˆÿÿÿÿÿ8ÇÜĞ¶ì,
+Bsquid:S1659"!Declare "mon" on a separate line.(óÎÌ‹ùÿÿÿÿ8Èïûşì,
+Bsquid:S1659"!Declare "tue" on a separate line.(óÎÌ‹ùÿÿÿÿ8Èïûşì,
+Bsquid:S1659"!Declare "wed" on a separate line.(óÎÌ‹ùÿÿÿÿ8Èïûşì,
+Bsquid:S1659"!Declare "thu" on a separate line.(óÎÌ‹ùÿÿÿÿ8Èïûşì,
+Bsquid:S1659"!Declare "fri" on a separate line.(óÎÌ‹ùÿÿÿÿ8Èïûşì,
+Bsquid:S1659"!Declare "sat" on a separate line.(óÎÌ‹ùÿÿÿÿ8Èïûşì,
+@squid:S1659"Declare "t" on a separate line.(¬©İ¹üÿÿÿÿ8Èïûşì,
+@squid:S1659"Declare "w" on a separate line.(¬©İ¹üÿÿÿÿ8Èïûşì,
+Asquid:S1659" Declare "th" on a separate line.(¬©İ¹üÿÿÿÿ8Èïûşì,
+@squid:S1659"Declare "f" on a separate line.(¬©İ¹üÿÿÿÿ8Èïûşì,
+Asquid:S1659" Declare "sa" on a separate line.(¬©İ¹üÿÿÿÿ8Èïûşì,
+@squid:S1659"Declare "s" on a separate line.(¬©İ¹üÿÿÿÿ8Èïûşì,
+Qsquid:S1191"5Use classes from the Java API instead of Sun classes.(ç…Àù8Èïûşì,
+gsquid:S1192"KDefine a constant instead of duplicating this literal "Enter Fair" 5 times.(§„çí8Èïûşì,
+rsquid:S1192"VDefine a constant instead of duplicating this literal "Enter Number of seats" 5 times.(¿Ê‘8Èïûşì,
+tsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(šğb8Èïûşì,
+usquid:S1450"YRemove the "addStaions" field and declare it as a local variable in the relevant methods.(¨êğò8Èïûşì,
+rsquid:S1450"VRemove the "TNumber" field and declare it as a local variable in the relevant methods.(„Ü¿¼8Èïûşì,
+{squid:S1450"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8Èïûşì,
+tsquid:S3973"XUse curly braces or indentation to denote the code conditionally executed by this "for".(úäê8Èïûşì,
+asquid:HiddenFieldCheck"5Rename "t" which hides the field declared at line 81.(¸ã¸ˆşÿÿÿÿ8Èïûşì,
+squid:S2681"|This line will not be executed in a loop; only the first line of this 2-line block will be. The rest will execute only once.(º½¯îşÿÿÿÿ8Èïûşì,
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(¨Œşÿÿÿÿ8Èïûşì,
+nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 50 to the 15 allowed.(¥Åë8Èïûşì,
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 49 to the 15 allowed.(©¸ùÿÿÿÿ8Èïûşì,
+Msquid:S1602",Remove useless curly braces around statement(³ÍåÙÿÿÿÿÿ8Èïûşì,
+¢squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğ÷‘Şÿÿÿÿÿ8Èïûşì,
+osquid:S00116"RRename this field "TNumber" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Ü¿¼8Èïûşì,
+]squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8Èïûşì,
+`squid:UselessImportCheck"2Remove this unused import 'android.view.KeyEvent'.(ôÊÃ–úÿÿÿÿ8Èïûşì,
+Zsquid:UselessImportCheck",Remove this unused import 'android.net.Uri'.(òêû‘ıÿÿÿÿ8Èïûşì,
+qsquid:UselessImportCheck"HRemove this unused import 'com.invaderx.railway.adapters.TrainsAdapter'.(¥Ù÷Â8Èïûşì,
+vsquid:UselessImportCheck"HRemove this unused import 'android.view.inputmethod.InputMethodManager'.(‰­àûÿÿÿÿ8Èïûşì,
+psquid:UselessImportCheck"BRemove this unused import 'com.google.firebase.auth.FirebaseAuth'.(İÄğöûÿÿÿÿ8Èïûşì,
+rsquid:UselessImportCheck"DRemove this unused import 'com.invaderx.railway.auth.LoginActivity'.(× Í ûÿÿÿÿ8Èïûşì,
+bsquid:UselessImportCheck"4Remove this unused import 'android.widget.TextView'.(„Ë‚ˆÿÿÿÿÿ8Èïûşì,
+tsquid:UselessImportCheck"KRemove this unused import 'com.google.android.gms.tasks.OnSuccessListener'.(íå¡8Èïûşì,

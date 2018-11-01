@@ -1,5 +1,6 @@
 package com.invaderx.railway.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -34,6 +35,7 @@ import com.invaderx.railway.R;
 import com.invaderx.railway.adapters.TrainsAdapter;
 import com.invaderx.railway.auth.LoginActivity;
 import com.invaderx.railway.models.Trains;
+import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 import com.yarolegovich.lovelydialog.LovelyTextInputDialog;
 
 import java.util.ArrayList;
@@ -202,6 +204,7 @@ public class TrainAddActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.delete_train) {
             //Add delete function here
+            deleteTrain(TNumber);
         }
 
         return true;
@@ -364,11 +367,14 @@ public class TrainAddActivity extends AppCompatActivity {
 
 
     public void getTrainData(String tNo){
+        ProgressDialog dialog = ProgressDialog.show(this, "Sit back and relax",
+                "Loading. Please wait...", true);
 
         databaseReference.child("Trains").orderByChild("tNumber").equalTo(tNo)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        dialog.dismiss();
                         Trains trains1=null;
                         Log.v("DataTrain", String.valueOf(dataSnapshot.getValue(Trains.class)));
                         if (dataSnapshot.exists()) {
@@ -488,12 +494,29 @@ public class TrainAddActivity extends AppCompatActivity {
                 .setTopColorRes(R.color.colorPrimaryDark)
                 .setTitle("Add Station")
                 .setMessage("Enter station name")
-                .setIcon(R.drawable.home)
+                .setIcon(R.drawable.trainwatermark)
                 .setConfirmButton(android.R.string.ok, text -> {
-                    staionList.add(text);
+                    staionList.add(text.toLowerCase());
                     staionsListView.setAdapter(adapter);
                 })
                 .show();
+    }
+
+    public void deleteTrain(String tno){
+        new LovelyStandardDialog(this, LovelyStandardDialog.ButtonLayout.VERTICAL)
+                .setTopColorRes(android.R.color.holo_red_dark)
+                .setButtonsColorRes(R.color.colorPrimary)
+                .setIcon(R.drawable.cancel_button)
+                .setTitle("Delete Train")
+                .setMessage("Are you sure you want to delete this train?")
+                .setPositiveButton(android.R.string.ok, v -> databaseReference.child("Trains").child(tno).setValue(null)
+                        .addOnSuccessListener(aVoid -> {
+                            Toast.makeText(TrainAddActivity.this, "Train Deleted Successfully", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }))
+                .setNegativeButton(android.R.string.no, null)
+                .show();
+
     }
 
 }

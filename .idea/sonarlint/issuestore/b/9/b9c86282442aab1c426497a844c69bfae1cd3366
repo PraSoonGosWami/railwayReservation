@@ -1,51 +1,52 @@
 
-bsquid:S2184"FCast one of the operands of this multiplication operation to a "long".(®‹½Ğ8¿Ô²³ë,
-Hsquid:S1659"'Declare "basicName" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
-Fsquid:S1659"%Declare "phoneNo" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
-Ksquid:S1659"*Declare "profileEmail" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
-Fsquid:S1659"%Declare "address" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
-Ksquid:S1659"*Declare "walletAmount" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
-Fsquid:S1659"%Declare "phonepe" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
-Hsquid:S1659"'Declare "debitCard" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
-Dsquid:S1659"#Declare "paytm" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
->squid:S1659""Declare "home" on a separate line.(ë˜ã8¿Ô²³ë,
-=squid:S1659"!Declare "upi" on a separate line.(ë˜ã8¿Ô²³ë,
->squid:S1659""Declare "card" on a separate line.(ë˜ã8¿Ô²³ë,
-=squid:S1659"!Declare "pay" on a separate line.(ë˜ã8¿Ô²³ë,
-Jsquid:S1659")Declare "editAddress" on a separate line.(ğÊØÿÿÿÿÿ8¿Ô²³ë,
-Jsquid:S1659")Declare "editPhonepe" on a separate line.(ğÊØÿÿÿÿÿ8¿Ô²³ë,
-Lsquid:S1659"+Declare "editDebitCard" on a separate line.(ğÊØÿÿÿÿÿ8¿Ô²³ë,
-Hsquid:S1659"'Declare "editPaytm" on a separate line.(ğÊØÿÿÿÿÿ8¿Ô²³ë,
-rsquid:S1192"VDefine a constant instead of duplicating this literal "No Phone Number Added" 4 times.(€Œï®8¿Ô²³ë,
-xsquid:S1192"WDefine a constant instead of duplicating this literal "Link Debit/Credit Card" 4 times.(ºˆù§úÿÿÿÿ8¿Ô²³ë,
-rsquid:S1192"QDefine a constant instead of duplicating this literal "No Address added" 3 times.(ÔĞÇûşÿÿÿÿ8¿Ô²³ë,
-gsquid:S1192"KDefine a constant instead of duplicating this literal "Link Paytm" 4 times.(ñÅÖµ8¿Ô²³ë,
-jsquid:S1192"IDefine a constant instead of duplicating this literal "Link UPI" 3 times.(²×¢Œùÿÿÿÿ8¿Ô²³ë,
-hsquid:S1192"LDefine a constant instead of duplicating this literal "UserProfile" 3 times.(†İä¶8¿Ô²³ë,
-squid:S1450"^Remove the "profileUsername" field and declare it as a local variable in the relevant methods.(ğøÙıÿÿÿÿ8¿Ô²³ë,
-ysquid:S1450"XRemove the "basicName" field and declare it as a local variable in the relevant methods.(ğøÙıÿÿÿÿ8¿Ô²³ë,
-|squid:S1450"[Remove the "profileEmail" field and declare it as a local variable in the relevant methods.(ğøÙıÿÿÿÿ8¿Ô²³ë,
-‚squid:S1450"aRemove the "editProfileDetails" field and declare it as a local variable in the relevant methods.(èŸåóûÿÿÿÿ8¿Ô²³ë,
-{squid:S1450"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8¿Ô²³ë,
-zsquid:S1450"^Remove the "firebaseStorage" field and declare it as a local variable in the relevant methods.(Â‹Ğí8¿Ô²³ë,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Á»¹ùúÿÿÿÿ8¿Ô²³ë,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Á»¹ùúÿÿÿÿ8¿Ô²³ë,
-Lsquid:S1481"+Remove this unused "bitmap" local variable.(ÿœí¾úÿÿÿÿ8¿Ô²³ë,
-ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(…îà¼ÿÿÿÿÿ8¿Ô²³ë,
-nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(…şÿÊ8¿Ô²³ë,
-esquid:S2259"JA "NullPointerException" could be thrown; "userProfile1" is nullable here.(­¤§~8¿Ô²³ë,
-Msquid:S1602",Remove useless curly braces around statement(‡Ó›»ÿÿÿÿÿ8¿Ô²³ë,
-Msquid:S1602",Remove useless curly braces around statement(§‚şıùÿÿÿÿ8¿Ô²³ë,
-Hsquid:S1602",Remove useless curly braces around statement(ôİÄ¥8¿Ô²³ë,
-[squid:S1854":Remove this useless assignment to local variable "bitmap".(ÿœí¾úÿÿÿÿ8¿Ô²³ë,
-ysquid:UselessImportCheck"KRemove this unused import 'com.google.firebase.storage.OnProgressListener'.(ªÄ¤úÿÿÿÿ8¿Ô²³ë,
 ]squid:UselessImportCheck"4Remove this unused import 'java.lang.reflect.Array'.(‡¡É˜8¿Ô²³ë,
-~squid:UselessImportCheck"PRemove this unused import 'com.yarolegovich.lovelydialog.LovelyTextInputDialog'.(Æºûÿÿÿÿÿ8¿Ô²³ë,
-\squid:UselessImportCheck"3Remove this unused import 'android.text.InputType'.(€¨“§8¿Ô²³ë,
-{squid:UselessImportCheck"MRemove this unused import 'com.yarolegovich.lovelydialog.LovelyChoiceDialog'.(ÀÔÛãıÿÿÿÿ8¿Ô²³ë,
-qsquid:UselessImportCheck"CRemove this unused import 'com.google.firebase.storage.UploadTask'.(®ğÇıÿÿÿÿ8¿Ô²³ë,
-Ysquid:UselessImportCheck"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8¿Ô²³ë,
-ysquid:UselessImportCheck"KRemove this unused import 'com.google.android.gms.tasks.OnFailureListener'.(ï¿ŞŞúÿÿÿÿ8¿Ô²³ë,
+esquid:S2259"JA "NullPointerException" could be thrown; "userProfile1" is nullable here.(­¤§~8¿Ô²³ë,
+xsquid:S1192"WDefine a constant instead of duplicating this literal "Link Debit/Credit Card" 4 times.(ºˆù§úÿÿÿÿ8¿Ô²³ë,
+ysquid:S1450"XRemove the "basicName" field and declare it as a local variable in the relevant methods.(ğøÙıÿÿÿÿ8¿Ô²³ë,
+Msquid:S1602",Remove useless curly braces around statement(‡Ó›»ÿÿÿÿÿ8¿Ô²³ë,
 asquid:UselessImportCheck"3Remove this unused import 'android.text.TextUtils'.(û˜½Õøÿÿÿÿ8¿Ô²³ë,
+‚squid:S1450"aRemove the "editProfileDetails" field and declare it as a local variable in the relevant methods.(èŸåóûÿÿÿÿ8¿Ô²³ë,
+nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(…şÿÊ8¿Ô²³ë,
+Dsquid:S1659"#Declare "paytm" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
+Ysquid:UselessImportCheck"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8¿Ô²³ë,
+\squid:UselessImportCheck"3Remove this unused import 'android.text.InputType'.(€¨“§8¿Ô²³ë,
+Ksquid:S1659"*Declare "profileEmail" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
+>squid:S1659""Declare "home" on a separate line.(ë˜ã8¿Ô²³ë,
+Hsquid:S1659"'Declare "basicName" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
+Fsquid:S1659"%Declare "address" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
+squid:S1450"^Remove the "profileUsername" field and declare it as a local variable in the relevant methods.(ğøÙıÿÿÿÿ8¿Ô²³ë,
 fsquid:UselessImportCheck"8Remove this unused import 'android.widget.ArrayAdapter'.( €ŠÑÿÿÿÿÿ8¿Ô²³ë,
+|squid:S1450"[Remove the "profileEmail" field and declare it as a local variable in the relevant methods.(ğøÙıÿÿÿÿ8¿Ô²³ë,
+Msquid:S1602",Remove useless curly braces around statement(§‚şıùÿÿÿÿ8¿Ô²³ë,
+qsquid:UselessImportCheck"CRemove this unused import 'com.google.firebase.storage.UploadTask'.(®ğÇıÿÿÿÿ8¿Ô²³ë,
+Lsquid:S1659"+Declare "editDebitCard" on a separate line.(ğÊØÿÿÿÿÿ8¿Ô²³ë,
+Hsquid:S1602",Remove useless curly braces around statement(ôİÄ¥8¿Ô²³ë,
+{squid:UselessImportCheck"MRemove this unused import 'com.yarolegovich.lovelydialog.LovelyChoiceDialog'.(ÀÔÛãıÿÿÿÿ8¿Ô²³ë,
+Hsquid:S1659"'Declare "debitCard" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
 tsquid:UselessImportCheck"KRemove this unused import 'com.google.android.gms.tasks.OnSuccessListener'.(íå¡8¿Ô²³ë,
+hsquid:S1192"LDefine a constant instead of duplicating this literal "UserProfile" 3 times.(†İä¶8¿Ô²³ë,
+Lsquid:S1481"+Remove this unused "bitmap" local variable.(ÿœí¾úÿÿÿÿ8¿Ô²³ë,
+~squid:UselessImportCheck"PRemove this unused import 'com.yarolegovich.lovelydialog.LovelyTextInputDialog'.(Æºûÿÿÿÿÿ8¿Ô²³ë,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Á»¹ùúÿÿÿÿ8¿Ô²³ë,
+[squid:S1854":Remove this useless assignment to local variable "bitmap".(ÿœí¾úÿÿÿÿ8¿Ô²³ë,
+Jsquid:S1659")Declare "editAddress" on a separate line.(ğÊØÿÿÿÿÿ8¿Ô²³ë,
+jsquid:S1192"IDefine a constant instead of duplicating this literal "Link UPI" 3 times.(²×¢Œùÿÿÿÿ8¿Ô²³ë,
+gsquid:S1192"KDefine a constant instead of duplicating this literal "Link Paytm" 4 times.(ñÅÖµ8¿Ô²³ë,
+rsquid:S1192"VDefine a constant instead of duplicating this literal "No Phone Number Added" 4 times.(€Œï®8¿Ô²³ë,
+Hsquid:S1659"'Declare "editPaytm" on a separate line.(ğÊØÿÿÿÿÿ8¿Ô²³ë,
+Fsquid:S1659"%Declare "phonepe" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
+bsquid:S2184"FCast one of the operands of this multiplication operation to a "long".(®‹½Ğ8¿Ô²³ë,
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(…îà¼ÿÿÿÿÿ8¿Ô²³ë,
+Ksquid:S1659"*Declare "walletAmount" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
+=squid:S1659"!Declare "pay" on a separate line.(ë˜ã8¿Ô²³ë,
+ysquid:UselessImportCheck"KRemove this unused import 'com.google.android.gms.tasks.OnFailureListener'.(ï¿ŞŞúÿÿÿÿ8¿Ô²³ë,
+>squid:S1659""Declare "card" on a separate line.(ë˜ã8¿Ô²³ë,
+Fsquid:S1659"%Declare "phoneNo" on a separate line.(ğøÙıÿÿÿÿ8¿Ô²³ë,
+Jsquid:S1659")Declare "editPhonepe" on a separate line.(ğÊØÿÿÿÿÿ8¿Ô²³ë,
+ysquid:UselessImportCheck"KRemove this unused import 'com.google.firebase.storage.OnProgressListener'.(ªÄ¤úÿÿÿÿ8¿Ô²³ë,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Á»¹ùúÿÿÿÿ8¿Ô²³ë,
+zsquid:S1450"^Remove the "firebaseStorage" field and declare it as a local variable in the relevant methods.(Â‹Ğí8¿Ô²³ë,
+rsquid:S1192"QDefine a constant instead of duplicating this literal "No Address added" 3 times.(ÔĞÇûşÿÿÿÿ8¿Ô²³ë,
+=squid:S1659"!Declare "upi" on a separate line.(ë˜ã8¿Ô²³ë,
+{squid:S1450"_Remove the "firebaseDatabase" field and declare it as a local variable in the relevant methods.(­Õğ»8¿Ô²³ë,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ÿˆ™ùì,

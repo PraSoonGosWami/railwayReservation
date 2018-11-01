@@ -1,5 +1,6 @@
 package com.invaderx.railway.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -86,6 +87,8 @@ public class TrainDetailsActivity extends AppCompatActivity {
     }
 
     public void data(){
+        ProgressDialog dialog = ProgressDialog.show(this, "Sit back and relax",
+                "Loading. Please wait...", true);
         databaseReference.child("Trains")
                 .addValueEventListener(new ValueEventListener() {
 
@@ -109,8 +112,10 @@ public class TrainDetailsActivity extends AppCompatActivity {
                         }
                         else {
 
+                            Toast.makeText(TrainDetailsActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                         }
                         mRecyclerView.setAdapter(mTrainDetailAdapter);
+                        dialog.dismiss();
 
 
                     }

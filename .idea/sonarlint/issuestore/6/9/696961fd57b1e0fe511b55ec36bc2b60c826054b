@@ -1,9 +1,9 @@
 
-Fsquid:S1068"+Remove this unused "context" private field.(êİç8ÏÌ¶ì,
-Gsquid:S1068"+Remove this unused "context" private field.(¨îÑÙ8ÏÌ¶ì,
-bsquid:HiddenFieldCheck";Rename "context" which hides the field declared at line 22.(ç¹ıø8ÏÌ¶ì,
-ˆ"squid:ClassVariableVisibilityCheck"VMake mTrainName a static final constant or non-public and provide accessors if needed.(£Öî8ÏÌ¶ì,
-"squid:ClassVariableVisibilityCheck"XMake mTrainNumber a static final constant or non-public and provide accessors if needed.(ó‡–ùÿÿÿÿ8ÏÌ¶ì,
 “"squid:ClassVariableVisibilityCheck"[Make mTrainStartTime a static final constant or non-public and provide accessors if needed.(­í•ìÿÿÿÿÿ8ÏÌ¶ì,
-"squid:ClassVariableVisibilityCheck"WMake mTrainStart a static final constant or non-public and provide accessors if needed.(’ÇŒ¶ıÿÿÿÿ8ÏÌ¶ì,
 "squid:ClassVariableVisibilityCheck"\Make mTrainDestiation a static final constant or non-public and provide accessors if needed.(×ñ®ˆ8ÏÌ¶ì,
+ˆ"squid:ClassVariableVisibilityCheck"VMake mTrainName a static final constant or non-public and provide accessors if needed.(£Öî8ÏÌ¶ì,
+Gsquid:S1068"+Remove this unused "context" private field.(¨îÑÙ8ÏÌ¶ì,
+"squid:ClassVariableVisibilityCheck"XMake mTrainNumber a static final constant or non-public and provide accessors if needed.(ó‡–ùÿÿÿÿ8ÏÌ¶ì,
+"squid:ClassVariableVisibilityCheck"WMake mTrainStart a static final constant or non-public and provide accessors if needed.(’ÇŒ¶ıÿÿÿÿ8ÏÌ¶ì,
+Fsquid:S1068"+Remove this unused "context" private field.(êİç8ÏÌ¶ì,
+bsquid:HiddenFieldCheck";Rename "context" which hides the field declared at line 22.(ç¹ıø8ÏÌ¶ì,

@@ -1,0 +1,4 @@
+
+squid:S1319"sThe type of the "stations" object should be an interface such as "List" rather than the implementation "ArrayList".(ÀÆ‹˜ùÿÿÿÿ
+Šsquid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ÿ¢É€úÿÿÿÿ
+]squid:S00107"BConstructor has 21 parameters, which is greater than 7 authorized.(ÀÆ‹˜ùÿÿÿÿ
