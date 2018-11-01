@@ -31,8 +31,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.invaderx.railway.R;
+import com.invaderx.railway.adapters.TrainsAdapter;
 import com.invaderx.railway.auth.LoginActivity;
 import com.invaderx.railway.models.Trains;
+import com.yarolegovich.lovelydialog.LovelyTextInputDialog;
 
 import java.util.ArrayList;
 
@@ -69,7 +71,7 @@ public class TrainAddActivity extends AppCompatActivity {
     String addTrain = null;
     FloatingActionButton trainSaveButton;
 
-    private EditText addStaions;
+    private Button addStaions;
     private ArrayList<String> staionList = new ArrayList<>();
     private ArrayAdapter<String> adapter;
     private ListView staionsListView;
@@ -184,21 +186,9 @@ public class TrainAddActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,staionList);
 
-        //needs work
-        addStaions.setOnEditorActionListener((v, keyCode, event) -> {
-            if ((keyCode == KeyEvent.KEYCODE_ENTER)) {
-               /* staionList.add(addStaions.getText().toString());
-                staionsListView.setAdapter(adapter);*/
-                addStaions.setText("");
-
-
-                // hide virtual keyboard
-                InputMethodManager imm = (InputMethodManager) getApplication().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(addStaions.getWindowToken(), 0);
-                return true;
-            }
-            return false;
-        });
+       addStaions.setOnClickListener(v -> {
+            addStaionsDetails();
+       });
     }
 
     @Override
@@ -454,8 +444,11 @@ public class TrainAddActivity extends AppCompatActivity {
                             String [] times = trains1.getTime().split("-");
                             sourceTime.setText(times[0]);
                             destTime.setText(times[1]);
-                            for(int i = 1 ; i<trains1.getStations().size()-2;i++)
+                            for(int i = 0 ; i<trains1.getStations().size();i++)
                             staionList.add(trains1.getStations().get(i));
+                            staionList.remove(0);
+                            staionList.remove(staionList.size()-1);
+
                             staionsListView.setAdapter(adapter);
                         }
 
@@ -470,11 +463,9 @@ public class TrainAddActivity extends AppCompatActivity {
     }
 
     public void updateAddTrain(){
-        ArrayList<String> stn = new ArrayList<>();
-        stn.add("Kahalgaon");
-        stn.add("Kahalgaon");
-        stn.add("Kahalgaon");
-        stn.add("Kahalgaon");
+        staionList.add(0,sourcePlace.getText().toString());
+        staionList.add(destPlace.getText().toString());
+
         Trains trainUpdate = new Trains(sourceTime.getText().toString()+"-"+destTime.getText().toString(),
                 oneAFair.getText().toString(),twoAFair.getText().toString(),threeAFair.getText().toString(),
                 ccFair.getText().toString(),slFair.getText().toString(),f,m,sa,s,th,t,w,
@@ -483,12 +474,26 @@ public class TrainAddActivity extends AppCompatActivity {
                 Integer.parseInt(threeASeat.getText().toString()),
                 Integer.parseInt(ccSeat.getText().toString()),
                 Integer.parseInt(slSeat.getText().toString()),
-                stn,trainName.getText().toString(),trainNumber.getText().toString());
+                staionList,trainName.getText().toString(),trainNumber.getText().toString());
         databaseReference.child("Trains").child(trainNumber.getText().toString()).setValue(trainUpdate)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show();
+                    finish();
                 });
 
+    }
+
+    public void addStaionsDetails(){
+        new LovelyTextInputDialog(this)
+                .setTopColorRes(R.color.colorPrimaryDark)
+                .setTitle("Add Station")
+                .setMessage("Enter station name")
+                .setIcon(R.drawable.home)
+                .setConfirmButton(android.R.string.ok, text -> {
+                    staionList.add(text);
+                    staionsListView.setAdapter(adapter);
+                })
+                .show();
     }
 
 }

@@ -20,14 +20,16 @@
         app:elevation="6dp"
         android:src="@drawable/tick" />
 
+
+
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -699,21 +701,6 @@
                         </LinearLayout>
 
                     </LinearLayout>
-                    <ListView
-                        android:id="@+id/staionsListView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    </ListView>
-                    <EditText
-                        android:id="@+id/addStaions"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="6dp"
-                        android:maxLines="1"
-                        android:hint="Enter Intermediate Stations"
-                        android:hapticFeedbackEnabled="true"
-                        android:background="@android:color/transparent"
-                        android:padding="6dp"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -766,6 +753,25 @@
 
                     </LinearLayout>
 
+                    <Button
+                        android:id="@+id/addStaions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+ Add Stations"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"
+                        android:hapticFeedbackEnabled="true"
+                        android:background="@drawable/rounded_button_transparent"
+                        android:padding="8dp"/>
+
+
+                    <ListView
+                        android:id="@+id/staionsListView"
+                        android:layout_width="match_parent"
+                        android:layout_height="800dp">
+                    </ListView>
+
 
 
 
@@ -773,12 +779,10 @@
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-
-
-
         </LinearLayout>
 
     </ScrollView>
+
 
 
 
